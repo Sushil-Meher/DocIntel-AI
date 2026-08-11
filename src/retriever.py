@@ -1,10 +1,11 @@
 import faiss
+from vector_store import load_index, load_chunks
 import numpy as np
 
 from embedding import create_embeddings
 
 
-def retrieve(index, chunks, query: str, top_k: int = 3):
+def retrieve(index,chunks,query: str,top_k: int = 3):
 
     query_embedding = create_embeddings([query])
 
@@ -39,22 +40,13 @@ def retrieve(index, chunks, query: str, top_k: int = 3):
 
 if __name__ == "__main__":
 
-    from document_loader import load_pdf
-    from chunking import chunk_document
-    from vector_store import create_index
-
-    documents = load_pdf(
-        "data/Artificial-Intelligence report.pdf"
+    index = load_index(
+        "artifacts/faiss.index"
     )
 
-    chunks = []
-
-    for document in documents:
-        chunks.extend(
-            chunk_document(document)
-        )
-
-    index = create_index(chunks)
+    chunks = load_chunks(
+        "artifacts/chunks.pkl"
+    )
 
     results = retrieve(
         index,
@@ -72,4 +64,5 @@ if __name__ == "__main__":
         print("Chunk:", result["chunk_id"])
         print("Distance:", result["distance"])
 
-        print("\n", result["text"])
+        print("\nText:")
+        print(result["text"])

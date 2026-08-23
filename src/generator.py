@@ -17,13 +17,5 @@ def generate_answer(prompt: str) -> str:
     return result[0]["generated_text"]
 
 
-if __name__ == "__main__":
 
-    prompt = """
-    Explain artificial intelligence in simple terms.
-    """
-
-    answer = generate_answer(prompt)
-
-    print(answer)
 

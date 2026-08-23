@@ -34,31 +34,3 @@ Answer:
     return prompt
 
 
-if __name__ == "__main__":
-
-    from vector_store import load_index, load_chunks
-    from retriever import retrieve
-
-    index = load_index(
-        "artifacts/faiss.index"
-    )
-
-    chunks = load_chunks(
-        "artifacts/chunks.pkl"
-    )
-
-    query = "What is artificial intelligence?"
-
-    results = retrieve(
-        index,
-        chunks,
-        query,
-        top_k=3
-    )
-
-    prompt = build_prompt(
-        query,
-        results
-    )
-
-    print(prompt)

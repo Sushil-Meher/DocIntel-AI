@@ -14,7 +14,11 @@ def generate_answer(prompt: str) -> str:
         max_new_tokens=100
     )
 
-    return result[0]["generated_text"]
+    generated_text = result[0]["generated_text"]
+
+    answer = generated_text[len(prompt):]
+
+    return answer.strip()
 
 
 

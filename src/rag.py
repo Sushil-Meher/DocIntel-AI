@@ -3,21 +3,32 @@ from retriever import retrieve
 from prompt_builder import build_prompt
 from generator import generate_answer
 
+
 index = load_index("artifacts/faiss.index")
 chunks = load_chunks("artifacts/chunks.pkl")
 
-query = "Who coined the phrase Artificial Intelligence and when?"
 
-results = retrieve(
-    index,
-    chunks,
-    query,
-    top_k=3
-)
+def answer_question(query: str, top_k: int = 3) -> str:
 
-prompt = build_prompt(query, results)
+    results = retrieve(
+        index,
+        chunks,
+        query,
+        top_k=top_k
+    )
 
-answer = generate_answer(prompt)
+    prompt = build_prompt(query, results)
 
-print(answer)
+    answer = generate_answer(prompt)
+
+    return answer
+
+if __name__ == "__main__":
+    query = "What is artificial intelligence?"
+
+    answer = answer_question(query)
+
+    print(answer)
+
+
 

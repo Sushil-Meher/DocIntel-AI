@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from document_loader import Document
+from .document_loader import Document
 
 
 @dataclass

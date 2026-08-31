@@ -1,11 +1,10 @@
 import faiss
 import numpy as np
-
-from embedding import create_embeddings
-from chunking import chunk_document
-from document_loader import load_pdf
 import pickle
 
+from .embedding import create_embeddings
+from .chunking import chunk_document
+from .document_loader import load_pdf
 
 def create_index(chunks):
 

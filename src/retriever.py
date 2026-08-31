@@ -1,8 +1,9 @@
 import faiss
-from vector_store import load_index, load_chunks
 import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 
-from embedding import create_embeddings
+from .vector_store import load_index, load_chunks
+from .embedding import create_embeddings
 
 
 def retrieve(index,chunks,query: str,top_k: int = 3):

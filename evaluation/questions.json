@@ -1,0 +1,67 @@
+[
+    {
+        "question": "What is the main objective of the project?",
+        "relevant_chunks": [
+            {"page": 1, "chunk_id": 0}
+        ]
+    },
+    {
+        "question": "What water-quality variables are identified as inputs to the project?",
+        "relevant_chunks": [
+            {"page": 1, "chunk_id": 5},
+            {"page": 1, "chunk_id": 6}
+        ]
+    },
+    {
+        "question": "What risks should be checked during dataset quality assessment?",
+        "relevant_chunks": [
+            {"page": 2, "chunk_id": 3}
+        ]
+    },
+    {
+        "question": "What methods are proposed for anomaly detection?",
+        "relevant_chunks": [
+            {"page": 4, "chunk_id": 3}
+        ]
+    },
+    {
+        "question": "What forecasting methods are proposed?",
+        "relevant_chunks": [
+            {"page": 4, "chunk_id": 4}
+        ]
+    },
+    {
+        "question": "What metrics are suggested for forecasting evaluation?",
+        "relevant_chunks": [
+            {"page": 2, "chunk_id": 4},
+            {"page": 2, "chunk_id": 5},
+            {"page": 4, "chunk_id": 4}
+        ]
+    },
+    {
+        "question": "What is required for the temporal train, validation, and test split?",
+        "relevant_chunks": [
+            {"page": 3, "chunk_id": 3}
+        ]
+    },
+    {
+        "question": "What activities are included in the project-specific robustness or ablation study?",
+        "relevant_chunks": [
+            {"page": 5, "chunk_id": 3},
+            {"page": 5, "chunk_id": 4}
+        ]
+    },
+    {
+        "question": "What activities are part of the final model and pipeline freeze?",
+        "relevant_chunks": [
+            {"page": 6, "chunk_id": 0},
+            {"page": 6, "chunk_id": 1}
+        ]
+    },
+    {
+        "question": "What are the mandatory final submission deliverables?",
+        "relevant_chunks": [
+            {"page": 7, "chunk_id": 2}
+        ]
+    }
+]

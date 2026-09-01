@@ -1,0 +1,80 @@
+{
+    "threshold": 0.25,
+    "total": 12,
+    "rejected": 0,
+    "rejection_rate": 0.0,
+    "questions": [
+        {
+            "question": "Who is the mentor assigned to this internship program?",
+            "category": "person",
+            "rejected": false,
+            "top_score": 0.49118727445602417
+        },
+        {
+            "question": "What is the exact size of the water-quality dataset used in this project?",
+            "category": "technical_parameter",
+            "rejected": false,
+            "top_score": 0.5154945850372314
+        },
+        {
+            "question": "What programming language or software framework must interns use for this project?",
+            "category": "tooling",
+            "rejected": false,
+            "top_score": 0.46712860465049744
+        },
+        {
+            "question": "What accuracy did the final anomaly detection model achieve?",
+            "category": "result",
+            "rejected": false,
+            "top_score": 0.5409643650054932
+        },
+        {
+            "question": "Where are the water-quality sensors physically installed?",
+            "category": "location",
+            "rejected": false,
+            "top_score": 0.43815863132476807
+        },
+        {
+            "question": "Which organization or company collected the water-quality dataset?",
+            "category": "provenance",
+            "rejected": false,
+            "top_score": 0.5155313014984131
+        },
+        {
+            "question": "Is a stipend or payment provided for completing this internship?",
+            "category": "compensation",
+            "rejected": false,
+            "top_score": 0.2763286828994751
+        },
+        {
+            "question": "How many total interns are enrolled in this internship batch?",
+            "category": "scale",
+            "rejected": false,
+            "top_score": 0.5024433135986328
+        },
+        {
+            "question": "What cloud platform or computing infrastructure should interns use to train their models?",
+            "category": "infrastructure",
+            "rejected": false,
+            "top_score": 0.45015794038772583
+        },
+        {
+            "question": "What academic qualification or GPA is required to join this internship?",
+            "category": "eligibility",
+            "rejected": false,
+            "top_score": 0.3620273172855377
+        },
+        {
+            "question": "Does this internship provide a certificate of completion?",
+            "category": "certification",
+            "rejected": false,
+            "top_score": 0.32007312774658203
+        },
+        {
+            "question": "How does this internship's evaluation process compare to a university course grading rubric?",
+            "category": "comparison",
+            "rejected": false,
+            "top_score": 0.4255865514278412
+        }
+    ]
+}

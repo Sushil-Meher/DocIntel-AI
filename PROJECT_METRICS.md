@@ -55,8 +55,43 @@ source/page citations. See `evaluation/experiments.md` for why reranking,
 the alternate prompt variants, and the Q7 prompt-rule attempt were not
 promoted, and why top_k=10 was.
 
+## Expanded Evaluation Benchmark (Task 10)
+
+A larger, harder benchmark (28 positive + 12 negative questions, vs. the
+original 10 + 5) run against the **same production configuration**
+(chunk100 index, threshold 0.25, top_k 10, no reranking, same embeddings
+and generator). This is a different, harder question population than the
+numbers above, not a re-measurement of the same benchmark - do not read
+the deltas below as regressions.
+
+- Recall@1/3/5/8/10: 0.321 / 0.643 / 0.750 / 0.821 / 0.893
+- Generation: 0.708 average keyword coverage, 0.619 average semantic
+  similarity
+- Negative-query rejection at threshold 0.25: **0/12 (0%)** — down from
+  5/5 on the historical negative set
+
+That last number is the most important finding from this benchmark
+expansion, not a weakness to hide: the historical 5 negatives were
+trivially unrelated to the corpus (e.g. "capital of France",
+similarity ~0.02) and were always going to be rejected. The 12 expanded
+negatives are realistic, topically-plausible questions (dataset size,
+sensor location, mentor's name) that share vocabulary with the corpus
+without being answered by it, and they score 0.32-0.54 - all above the
+0.25 gate. **The current similarity threshold is a topic-relevance
+filter, not a fact-coverage filter.** This is a known, documented
+limitation (see `evaluation/experiments.md`, Task 10), not fixed in this
+task per its explicit scope (benchmark expansion, not threshold tuning).
+
+See `evaluation/experiments.md` (Task 10) for the full methodology,
+category breakdown, and per-question detail. Full results:
+`evaluation/expanded_results.json`, `evaluation/
+expanded_generation_results.json`, `evaluation/expanded_negative_results.json`.
+
 ## Labeling Convention
 
 - **Production**: reflects `src/rag.py` as currently deployed.
 - **Experimental**: measured in `evaluation/*.py` scripts but not wired
   into the production pipeline. Never presented as production performance.
+- **Expanded benchmark**: measured on a larger, harder question set than
+  the original 10+5 - a different population, not a direct before/after
+  comparison with the numbers elsewhere in this file.

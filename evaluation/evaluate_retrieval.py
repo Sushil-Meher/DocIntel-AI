@@ -14,6 +14,9 @@ from src.retriever import retrieve
 
 TOP_K_VALUES = [1, 3, 5, 8, 10]
 
+QUESTIONS_PATH = "evaluation/questions_chunk100.json"
+RESULTS_PATH = "evaluation/results.json"
+
 
 def load_questions(path: str):
 
@@ -33,12 +36,15 @@ def chunk_key(result: dict) -> tuple:
     )
 
 
-def evaluate_retrieval():
+def evaluate_retrieval(questions_path: str = QUESTIONS_PATH):
 
     questions = load_questions(
-        "evaluation/questions_chunk100.json"
+        questions_path
     )
 
+    # Both benchmarks retrieve against the same chunk100 index/chunks -
+    # the production chunking/embedding configuration is unchanged here,
+    # only the question set differs.
     index = load_index(
         "evaluation/artifacts/chunk100.index"
     )
@@ -111,10 +117,22 @@ def evaluate_retrieval():
 
 if __name__ == "__main__":
 
-    results = evaluate_retrieval()
+    # Default (no argument) reproduces the historical 10-question
+    # benchmark exactly, writing to evaluation/results.json as always.
+    # "expanded" runs the larger benchmark and writes to a separate file
+    # so the historical results are never overwritten.
+    if len(sys.argv) > 1 and sys.argv[1] == "expanded":
+        questions_path = "evaluation/questions_expanded.json"
+        results_path = "evaluation/expanded_results.json"
+    else:
+        questions_path = QUESTIONS_PATH
+        results_path = RESULTS_PATH
+
+    results = evaluate_retrieval(questions_path)
 
     print()
     print("RAG RETRIEVAL EVALUATION")
+    print(f"Questions: {questions_path}")
     print("=" * 35)
 
     for metric, value in results.items():
@@ -124,7 +142,7 @@ if __name__ == "__main__":
         )
 
     with open(
-        "evaluation/results.json",
+        results_path,
         "w",
         encoding="utf-8"
     ) as file:

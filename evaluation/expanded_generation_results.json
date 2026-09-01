@@ -1,0 +1,1510 @@
+{
+    "questions_evaluated": 28,
+    "top_k": 10,
+    "average_keyword_coverage": 0.7084434421541896,
+    "average_semantic_similarity": 0.6191576415511937,
+    "questions": [
+        {
+            "question": "How many days does the internship project run for?",
+            "expected_answer": "The internship runs for 4 weeks, or 28 days.",
+            "generated_answer": "4 weeks or 28 days. Based on the provided context, the internship project runs for 4 weeks or 28 days. This duration is specified in Context 4, which states that the project phase includes \"MODE DURATION INTERN DISCUSSION MENTOR REVIEW Online / Individual Execution 4 Weeks / 28 Days\". Additionally, Context 1 mentions that the intern discussion happens every 2 days during this period, further confirming the total duration as 4 weeks or 28 days.",
+            "keyword_coverage": 1.0,
+            "semantic_similarity": 0.8272059115068944,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.5185655355453491
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.5092570185661316
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.45731180906295776
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "distance": 0.3773621618747711
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "distance": 0.3071296811103821
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "distance": 0.29156625270843506
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.2907504439353943
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.27928727865219116
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "distance": 0.27486270666122437
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.2685256600379944
+                }
+            ]
+        },
+        {
+            "question": "How often do interns have a mentor review meeting?",
+            "expected_answer": "Every 3 days.",
+            "generated_answer": "Every 3 days. According to Context 2, the text states that \"Before each mentor review, every intern prepares a maximum 3-slide progress pack: (1) work completed, (2) results/findings, and (3) blockers + next 3-day plan.\" This indicates that there is a mentor review meeting every 3 days.",
+            "keyword_coverage": 1.0,
+            "semantic_similarity": 0.4490078404067495,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.5945722460746765
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.47822946310043335
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.4385984539985657
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.42261257767677307
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.3779755234718323
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.36437341570854187
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.34611427783966064
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.34002119302749634
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.3148386478424072
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.31076374650001526
+                }
+            ]
+        },
+        {
+            "question": "Are interns allowed to divide the project work among team members?",
+            "expected_answer": "No. Every intern must complete the entire project independently from scratch, and work must not be divided among team members.",
+            "generated_answer": "No, interns are not allowed to divide the project work among team members. According to the rules set out in Context 3, all work must be completed independently from scratch by each intern without division among team members. Additionally, the text states that \"Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions\" should be done individually. This directly contradicts any notion of dividing tasks among team members. Therefore, based solely on the information provided, interns are explicitly forbidden from sharing responsibilities within their projects.",
+            "keyword_coverage": 0.7894736842105263,
+            "semantic_similarity": 0.8323426090997297,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.45416221022605896
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.41216522455215454
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.33951377868652344
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.3359563946723938
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.2577763497829437
+                }
+            ]
+        },
+        {
+            "question": "What are intern-only group discussions meant to be used for?",
+            "expected_answer": "Only for comparing findings, identifying blockers, and preparing mentor questions; code, models, experiments, and final submissions remain individual.",
+            "generated_answer": "Comparing findings, identifying blockers, and preparing mentor questions. Code, models, experiments, and final submissions remain individual.",
+            "keyword_coverage": 0.8823529411764706,
+            "semantic_similarity": 0.8801877699342603,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.578275203704834
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.45043182373046875
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.3146449327468872
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.27774691581726074
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.2748546600341797
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.2722330689430237
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.26580238342285156
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "distance": 0.2537439465522766
+                }
+            ]
+        },
+        {
+            "question": "By when will interns receive the datasets needed for the project?",
+            "expected_answer": "Before the end of Week 1.",
+            "generated_answer": "Before the end of Week 1.",
+            "keyword_coverage": 1.0,
+            "semantic_similarity": 0.9999999872104117,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.6400948762893677
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.5571229457855225
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.4501093626022339
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.4436000883579254
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.4338638484477997
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.3995843827724457
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.38154351711273193
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.34900540113449097
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "distance": 0.3480030298233032
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "distance": 0.3466678261756897
+                }
+            ]
+        },
+        {
+            "question": "Does this project require any physical hardware or on-device deployment?",
+            "expected_answer": "No. The project is software-only, and no physical hardware integration or on-device deployment is required.",
+            "generated_answer": "No, the project requires no physical hardware or on-device deployment. According to the context, the mandatory project is software-only and there is no mention of any hardware integration or on-device deployment.",
+            "keyword_coverage": 0.9333333333333333,
+            "semantic_similarity": 0.9076721503841967,
+            "retrieved_chunks": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.2898638844490051
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.2749883234500885
+                }
+            ]
+        },
+        {
+            "question": "What three things go into an intern's progress pack before a mentor review?",
+            "expected_answer": "Work completed, results/findings, and blockers plus the next 3-day plan.",
+            "generated_answer": "Work completed, results/findings, and blockers + next 3-day plan.",
+            "keyword_coverage": 0.8333333333333334,
+            "semantic_similarity": 0.9889118334590064,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.6534273624420166
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.628406286239624
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.5854425430297852
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.5442457795143127
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.516850471496582
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.5132669806480408
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.45916491746902466
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.44931334257125854
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.4473508298397064
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.4390752613544464
+                }
+            ]
+        },
+        {
+            "question": "What inputs and target outputs must an intern identify when defining the system on Day 1?",
+            "expected_answer": "Inputs: timestamped temperature, pH, dissolved oxygen, pressure, and related water-quality variables. Output/target: anomaly flags/scores and future environmental parameter values.",
+            "generated_answer": "When defining the system on Day 1, an intern must identify the inputs (timestamped temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameters).",
+            "keyword_coverage": 0.9047619047619048,
+            "semantic_similarity": 0.7094566265896973,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.5771613121032715
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.410054475069046
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.34307539463043213
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.3405797481536865
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3378032445907593
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.33286452293395996
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.32470768690109253
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.3235313892364502
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.32187703251838684
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.3202744126319885
+                }
+            ]
+        },
+        {
+            "question": "How many related methods, datasets, or prior systems should interns study during the literature review?",
+            "expected_answer": "6 to 10 closely related methods, datasets, or prior systems.",
+            "generated_answer": "related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1",
+            "keyword_coverage": 0.6,
+            "semantic_similarity": 0.7516023098706428,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.6823481917381287
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.5135672092437744
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.498327374458313
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.4717678129673004
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.42628413438796997
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.42076191306114197
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.4057047367095947
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.3995107412338257
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.3972761631011963
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3970211446285248
+                }
+            ]
+        },
+        {
+            "question": "Which candidate methods are shortlisted for anomaly detection and forecasting after the literature review?",
+            "expected_answer": "A statistical anomaly baseline; Isolation Forest or a comparable detector; regression/Random Forest/XGBoost forecasting; and a sequence model only where justified.",
+            "generated_answer": "The strong candidate methods for anomaly detection and forecasting are based on the following:\n\n1. Statistical anomaly baseline (if available)\n2. Isolation Forest or comparable machine learning anomaly detector\n3. Regression models like Random Forest or XGBoost (for forecasting)\n\nThe specific choice depends on whether the dataset allows it, as well as other factors such as the need for simplicity or more complex models. After the literature review, the team will refine their focus to identify which of these methods is most suitable for the given dataset and problem. This decision will be guided by considerations such as the availability of labeled data,",
+            "keyword_coverage": 0.6842105263157895,
+            "semantic_similarity": 0.7665690881839987,
+            "retrieved_chunks": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "distance": 0.6915870308876038
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.5510128736495972
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.5275416374206543
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.48216512799263
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.41956979036331177
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "distance": 0.40655529499053955
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.39948850870132446
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.3931320309638977
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 0,
+                    "distance": 0.3902783691883087
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.3668656647205353
+                }
+            ]
+        },
+        {
+            "question": "What must be confirmed with the mentor while refining the research framing?",
+            "expected_answer": "Target definition, dataset structure, metrics, and scope.",
+            "generated_answer": "To confirm target definition, dataset structure, metrics and scope with the mentor. This includes defining expected files/columns/labels/targets and important metadata before using the final dataset, listing likely missing-data, annotation, imbalance, temporal or leakage risks, and defining what a correct train/validation/test split should preserve. Additionally, this step involves revising research framing based on mentor's feedback.",
+            "keyword_coverage": 1.0,
+            "semantic_similarity": 0.6798509815491227,
+            "retrieved_chunks": [
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.48855060338974
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.4566969871520996
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.45031052827835083
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.42936933040618896
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.4259846806526184
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.3940555453300476
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.38718950748443604
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.3784663677215576
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3257809579372406
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.31354641914367676
+                }
+            ]
+        },
+        {
+            "question": "What should be defined about the dataset before it is used for the final experiments?",
+            "expected_answer": "The expected files, columns, labels, targets, and important metadata.",
+            "generated_answer": "Before using the final dataset, several key aspects need to be defined:\n\n- Expected files/columns/labels/targets,\n- Likely missing-data, annotation, imbalance, temporal or leakage risks,\n- What a correct train/validation/test split should preserve. \n\nThese definitions help ensure that the dataset meets the necessary quality expectations for the final experiments. They provide clarity on the format and content needed for the dataset, as well as guidelines on how to handle potential issues such as missing data, biases, and inconsistencies within the dataset. This ensures that all components of the final experiments can be conducted effectively and accurately.",
+            "keyword_coverage": 0.7777777777777778,
+            "semantic_similarity": 0.4882210649835579,
+            "retrieved_chunks": [
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.438396692276001
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.42825955152511597
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.37803104519844055
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.3770841360092163
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.360756516456604
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.3305480182170868
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.3263780474662781
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.3255108892917633
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.319379597902298
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.31181800365448
+                }
+            ]
+        },
+        {
+            "question": "Under what condition should a sequence model be used for anomaly or forecasting work?",
+            "expected_answer": "Only where justified, and its complexity should stay proportionate to the dataset.",
+            "generated_answer": "A sequence model should be used for anomaly or forecasting work only if it is justified based on the specific requirements of the dataset. The justification can include factors such as the need for capturing sequential dependencies within the data, the presence of temporal patterns that require modeling over time, or the necessity of handling sequences of events or transactions. Additionally, the complexity of the model should be kept proportional to the size and nature of the dataset to ensure both accuracy and computational efficiency. This decision would typically involve a thorough analysis of the dataset's characteristics and the potential benefits of incorporating sequence models into the overall solution.",
+            "keyword_coverage": 0.6666666666666666,
+            "semantic_similarity": 0.2639929728882631,
+            "retrieved_chunks": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "distance": 0.4863591194152832
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.35845813155174255
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.34239834547042847
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.2940504252910614
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.2694357633590698
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.2596568763256073
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.2558792233467102
+                }
+            ]
+        },
+        {
+            "question": "What must be preserved and checked when the dataset is first received?",
+            "expected_answer": "An untouched raw copy must be preserved; interns then inspect files, rows, labels/targets and metadata, and check for missing or invalid data, duplicates, and coverage issues.",
+            "generated_answer": "When the dataset is first received, it must be defined with expected files, columns, targets, and important metadata before using the final dataset. Additionally, there should be a check for likely missing data, annotation, imbalance, temporal or leakage risks, as well as defining a correct train/validation/test split. The dataset risk checklist should also be prepared.",
+            "keyword_coverage": 0.44,
+            "semantic_similarity": 0.34865417016071926,
+            "retrieved_chunks": [
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.2980806827545166
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.28736451268196106
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.28005450963974
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.2734315097332001
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.27294105291366577
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.2713046669960022
+                }
+            ]
+        },
+        {
+            "question": "What should interns audit during the temporal data quality stage?",
+            "expected_answer": "Timestamps, missing intervals, duplicates, invalid sensor ranges, and irregular sampling.",
+            "generated_answer": "During the temporal data quality stage, interns should audit timestamps, missing intervals, duplicates, invalid sensor ranges, and irregular sampling. They also need to create a sensor-wise data-quality table, identify drift/gaps and leakage risks, propose cleaning/resampling rules, and define chronological train/validation/test splits. Additionally, they must freeze an approved cleaning plan and present their findings at the intern discussion meeting. To ensure completeness, they should record any identified issues and discuss them at the mentor review session. This process helps in maintaining the integrity and reliability of the data used for further analysis.",
+            "keyword_coverage": 1.0,
+            "semantic_similarity": 0.613473000588286,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.49638688564300537
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.46799716353416443
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.4244261085987091
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.411657452583313
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.40696433186531067
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.3912048935890198
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.382302463054657
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.3799988031387329
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.3682616651058197
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.3676447868347168
+                }
+            ]
+        },
+        {
+            "question": "On which day are the chronological train, validation, and test splits defined and frozen?",
+            "expected_answer": "Day 9, during the Temporal Cleaning Review, when the chronological splits are defined and the approved cleaning plan is frozen.",
+            "generated_answer": "The chronological train, validation, and test splits are defined and frozen on Day 10 during the Environmental EDA task. This is indicated by the text stating that \"The freeze approved cleaning plan\" was completed on this day, followed by the creation of a 3-slide progress pack titled \"Pre-Dataset Readiness + Mentor Review.\" The pre-processing pipeline then follows on Day 11, implementing cleaning, chronological splits, and scaling while creating reusable timestamp/sensor preprocessing. The documentation of assumptions is also recorded at this stage.",
+            "keyword_coverage": 0.8235294117647058,
+            "semantic_similarity": 0.6383169836582754,
+            "retrieved_chunks": [
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.39418038725852966
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.3714269995689392
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.3567749857902527
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.35484063625335693
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.3525632321834564
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.3115648627281189
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "distance": 0.30654531717300415
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.30381661653518677
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.30153700709342957
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.2970019578933716
+                }
+            ]
+        },
+        {
+            "question": "What does the environmental EDA stage involve?",
+            "expected_answer": "Plotting sensor trends, distributions, and correlations; inspecting temporal patterns and candidate anomalies; analysing cross-sensor interactions; and recording anomaly/forecast hypotheses.",
+            "generated_answer": "The environmental EDA stage involves plotting sensor trends, distributions, and correlations, inspecting temporal patterns and candidate anomalies, analyzing cross-sensor interactions, recording anomaly/forecast hypotheses, and presenting trends, candidate anomalies, splits, and Dataset V1; approved. It also includes creating a sensor-wise data-quality table, defining chronological train/validation/test splits, and documenting assumptions. Additionally, it requires implementing cleaning, chronological splits, and scaling, as well as preserving raw and processed versions. Finally, it necessitates presenting timestamp/data-quality findings, confirming missing-data and resampling strategy, defining chronological train/validation/test splits",
+            "keyword_coverage": 0.9444444444444444,
+            "semantic_similarity": 0.5895183788193752,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.46526437997817993
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.45640456676483154
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.4065999388694763
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.3882889151573181
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.3746955990791321
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "distance": 0.3320862054824829
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "distance": 0.3194701671600342
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.31789708137512207
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.31642329692840576
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.31500616669654846
+                }
+            ]
+        },
+        {
+            "question": "What two versions of the data must be preserved while building the preprocessing pipeline?",
+            "expected_answer": "Both the raw and the processed versions.",
+            "generated_answer": "While building the preprocessing pipeline, the following two versions of the data must be preserved:\n\n1. The training set (train)\n2. The test set (test)\n\nThe text states that \"Define what a correct train/validation/test split should preserve\" during the Pipeline & Experiment Planning phase. This implies that both the training and testing sets need to be retained as they will be used to evaluate the model's performance. Therefore, preserving both the training and test sets is crucial for ensuring the integrity of the model's assessment.",
+            "keyword_coverage": 0.6666666666666666,
+            "semantic_similarity": 0.21645973237640048,
+            "retrieved_chunks": [
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.47664788365364075
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 2,
+                    "distance": 0.44071272015571594
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.4328863024711609
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.38928186893463135
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.38509422540664673
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.371923565864563
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "distance": 0.31494274735450745
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 3,
+                    "distance": 0.2946210205554962
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.27054741978645325
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.25026923418045044
+                }
+            ]
+        },
+        {
+            "question": "What kinds of new features can interns create from the sensor data?",
+            "expected_answer": "Lag, rolling, time-based, and cross-sensor features, created where justified, and available at prediction time.",
+            "generated_answer": "Lag, rolling, time-based, and cross-sensor features can be created from the sensor data. These features ensure that they are available at prediction time. Additionally, interns should compare raw vs engineered features to document their definitions.",
+            "keyword_coverage": 0.8571428571428571,
+            "semantic_similarity": 0.8341792302723082,
+            "retrieved_chunks": [
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.5242782235145569
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.5162374377250671
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "distance": 0.47483110427856445
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.45937567949295044
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.4330857992172241
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.42986688017845154
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.42688989639282227
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 3,
+                    "distance": 0.38698863983154297
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 0,
+                    "distance": 0.3733254671096802
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.37239107489585876
+                }
+            ]
+        },
+        {
+            "question": "What must the forecasting model be evaluated with, and on what kind of holdout set?",
+            "expected_answer": "MAE and RMSE, evaluated on a chronological holdout set.",
+            "generated_answer": "The forecasting model must be evaluated with the chronological holdout set.",
+            "keyword_coverage": 0.4444444444444444,
+            "semantic_similarity": 0.5922160480164369,
+            "retrieved_chunks": [
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.4251776337623596
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "distance": 0.381673663854599
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.3310314416885376
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "distance": 0.3107254207134247
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.2968887686729431
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.28569602966308594
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.27615049481391907
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "distance": 0.27563902735710144
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.2723138928413391
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.25723984837532043
+                }
+            ]
+        },
+        {
+            "question": "What rule governs how the validation set and test set should be used during hyperparameter tuning?",
+            "expected_answer": "Validation data should be used only for selection, and the final test set must be kept untouched.",
+            "generated_answer": "During hyperparameter tuning, the validation set is used to select the best validated configuration of the shortlisted candidate(s), while the final test set remains untouched. The validation data is only used for selection purposes and the final test set is kept untouched to ensure that the final evaluation uses an unbiased measure of performance. This approach helps in maintaining the integrity of the testing phase and ensures that the selected model performs well under real-world conditions.",
+            "keyword_coverage": 0.8125,
+            "semantic_similarity": 0.6403497687943851,
+            "retrieved_chunks": [
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.4474518895149231
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.36173784732818604
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3108770251274109
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.2687171697616577
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.2594315707683563
+                }
+            ]
+        },
+        {
+            "question": "What must interns obtain at the end of the Best Candidate Review?",
+            "expected_answer": "Mentor approval for the Week-4 final direction.",
+            "generated_answer": "Near-final report/PPT; mentor correction list; technical sign-off.",
+            "keyword_coverage": 0.25,
+            "semantic_similarity": 0.5621198612866359,
+            "retrieved_chunks": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.4390133023262024
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.41597768664360046
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3734782636165619
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.35326531529426575
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.3221001625061035
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.3016154170036316
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3015059232711792
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "distance": 0.2988686263561249
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.29081517457962036
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.27480989694595337
+                }
+            ]
+        },
+        {
+            "question": "What must happen to the preprocessing and evaluation methodology once the final method is selected?",
+            "expected_answer": "They must be frozen, the final model/pipeline artefacts and outputs saved, and the technical selection rationale documented.",
+            "generated_answer": "Once the final method is selected, the preprocessing and evaluation methodology must be finalized through the following steps:\n\n1. The mentor should confirm the split strategy, metrics, and constraints with the team.\n2. The team should update the Methodology V1 based on any feedback received.\n3. The final validation will be run on the held-out data using the frozen pipeline.\n4. The final method will be compared against the strongest simple baseline.\n5. The accuracy/quality-versus-complexity trade-offs will be recorded.\n6. The final report, PPT, and software package will be prepared.",
+            "keyword_coverage": 0.4375,
+            "semantic_similarity": 0.31918021728119883,
+            "retrieved_chunks": [
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.5308802127838135
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3965623378753662
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.35782432556152344
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.3519391417503357
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.3437005877494812
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.3409788906574249
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.3327620029449463
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3277774453163147
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.32697880268096924
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.30863475799560547
+                }
+            ]
+        },
+        {
+            "question": "What is the final method compared against during software performance validation?",
+            "expected_answer": "The strongest simple baseline, while also recording accuracy/quality-versus-complexity trade-offs and measuring runtime, inference time, and model size.",
+            "generated_answer": "The final method is compared against the strongest simple baseline during software performance validation. \n\nThe reasoning behind this answer is that according to the text, one of the steps mentioned in the context is \"Run final validation on the held-out data using the frozen pipeline.\" This implies that the final method will be compared against another method (the strongest simple baseline) during the validation process. Additionally, it's stated that \"Compare final method against the strongest simple baseline\" as part of the validation procedure. Therefore, based on the given information, we can conclude that the final method is compared against the strongest simple baseline during",
+            "keyword_coverage": 0.2,
+            "semantic_similarity": 0.45696835255273877,
+            "retrieved_chunks": [
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.6084341406822205
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.5068650841712952
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.39610016345977783
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.38407906889915466
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3574868440628052
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.3500962257385254
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.33637741208076477
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.3221900463104248
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "distance": 0.3138563632965088
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "distance": 0.31073176860809326
+                }
+            ]
+        },
+        {
+            "question": "How should recurring errors be organised during the detailed error analysis?",
+            "expected_answer": "By relevant conditions, classes, ranges, or scenes, using feature importance or visual explanations where appropriate.",
+            "generated_answer": "Recurring errors should be organised by relevant conditions, classes, ranges or scenes. This approach allows for systematic identification and documentation of common issues that occur under specific circumstances within the project's scope. By categorizing errors based on their underlying factors such as conditions, classes, ranges, or scenes, researchers can more effectively address and mitigate potential problems before they become widespread issues affecting multiple instances of the project. The structured organization ensures that all occurrences of similar errors are tracked together, facilitating a comprehensive understanding of how various elements interact and contribute to overall performance. Additionally, this method helps in identifying patterns and causes behind recurring",
+            "keyword_coverage": 0.5,
+            "semantic_similarity": 0.45731485579629616,
+            "retrieved_chunks": [
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.42839062213897705
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3910403847694397
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 2,
+                    "distance": 0.3079546391963959
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.3076833188533783
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "distance": 0.30241459608078003
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.2959519922733307
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.29090437293052673
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "distance": 0.27066975831985474
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.26371967792510986
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.26355549693107605
+                }
+            ]
+        },
+        {
+            "question": "What does the final software package and report draft stage require?",
+            "expected_answer": "Cleaning the repository, packaging the preprocessing/model/pipeline with an example inference workflow, writing a README with setup/run instructions, preparing final figures/tables, and drafting the final report and presentation.",
+            "generated_answer": "The final software package and report draft stage requires cleaning up the repository, writing a README file, setting up run instructions, preparing final figures, tables, and summarizing results, drafting the final report and presentation, and resolving any mentor's corrections. Additionally, this stage involves detailed error analysis, including inspecting worst predictions/outputs, organizing recurring errors, documenting limitations, and showing the final model and software pipeline along with their outputs. It also includes creating a clean source-code repository with an updated README, which contains all necessary information for running the software. Lastly, it requires finalising the individual project report",
+            "keyword_coverage": 0.7692307692307693,
+            "semantic_similarity": 0.7228237129267517,
+            "retrieved_chunks": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.6229742765426636
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.5484786033630371
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.5288035869598389
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.48486483097076416
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.46593326330184937
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.4622611701488495
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.45827168226242065
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.4388907849788666
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 2,
+                    "distance": 0.40942275524139404
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.40660953521728516
+                }
+            ]
+        },
+        {
+            "question": "What is verified during the peer mock presentation before final submission?",
+            "expected_answer": "Repository links, dataset/model references, and reproducibility.",
+            "generated_answer": "The final method, validation results, and remaining questions are presented during the peer mock presentation before final submission. This includes showing the reproducible input-to-output workflow, confirming final error-analysis and reporting requirements, and recording mentor corrections. Additionally, detailed error/failure analysis is conducted to inspect worst predictions/outputs individually, organise recurring errors, and document limitations and likely failure conditions. Finally, the final software package and report draft are prepared, including cleaning up the repository and preparing README and setup/run instructions. These steps ensure that all aspects of the project are thoroughly reviewed and verified prior to its final submission.",
+            "keyword_coverage": 0.2857142857142857,
+            "semantic_similarity": 0.37691186100403307,
+            "retrieved_chunks": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.4040738046169281
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3529525697231293
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.3301418721675873
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.30549728870391846
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.2994496524333954
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.2840558886528015
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.2640721797943115
+                }
+            ]
+        },
+        {
+            "question": "How many mandatory deliverables must be submitted at the end of the project?",
+            "expected_answer": "12 mandatory deliverables.",
+            "generated_answer": "12",
+            "keyword_coverage": 0.3333333333333333,
+            "semantic_similarity": 0.422906643833049,
+            "retrieved_chunks": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "distance": 0.4851991534233093
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "distance": 0.3845979571342468
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.36033013463020325
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3438248932361603
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.3368489146232605
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.3308108448982239
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "distance": 0.31425976753234863
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 1,
+                    "distance": 0.3042983412742615
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.3023282289505005
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.2912369966506958
+                }
+            ]
+        }
+    ]
+}

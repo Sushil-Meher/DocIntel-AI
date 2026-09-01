@@ -68,9 +68,9 @@ def semantic_similarity(
     return float(np.dot(expected_vector, generated_vector))
 
 
-def evaluate_generation():
+def evaluate_generation(questions_path: str = QUESTIONS_PATH):
 
-    questions = load_questions(QUESTIONS_PATH)
+    questions = load_questions(questions_path)
 
     index = load_index(INDEX_PATH)
     chunks = load_chunks(CHUNKS_PATH)
@@ -178,8 +178,14 @@ def evaluate_generation():
         "questions": results
     }
 
+    results_path = (
+        "evaluation/expanded_generation_results.json"
+        if questions_path == "evaluation/questions_expanded.json"
+        else "evaluation/generation_results.json"
+    )
+
     with open(
-        "evaluation/generation_results.json",
+        results_path,
         "w",
         encoding="utf-8"
     ) as file:
@@ -213,4 +219,12 @@ def evaluate_generation():
 
 
 if __name__ == "__main__":
-    evaluate_generation()
+
+    # Default (no argument) reproduces the historical 10-question
+    # benchmark exactly, writing to evaluation/generation_results.json as
+    # always. "expanded" runs the larger benchmark and writes to a
+    # separate file so the historical results are never overwritten.
+    if len(sys.argv) > 1 and sys.argv[1] == "expanded":
+        evaluate_generation("evaluation/questions_expanded.json")
+    else:
+        evaluate_generation()

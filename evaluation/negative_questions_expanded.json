@@ -1,0 +1,74 @@
+[
+    {
+        "question": "Who is the mentor assigned to this internship program?",
+        "category": "person",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not name a specific mentor; it only describes mentor review meetings and their cadence."
+    },
+    {
+        "question": "What is the exact size of the water-quality dataset used in this project?",
+        "category": "technical_parameter",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not state the dataset's size."
+    },
+    {
+        "question": "What programming language or software framework must interns use for this project?",
+        "category": "tooling",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not specify a required programming language or framework."
+    },
+    {
+        "question": "What accuracy did the final anomaly detection model achieve?",
+        "category": "result",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not report any model accuracy or results; it only describes the planned workflow and process."
+    },
+    {
+        "question": "Where are the water-quality sensors physically installed?",
+        "category": "location",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not describe the physical location or deployment of any sensors."
+    },
+    {
+        "question": "Which organization or company collected the water-quality dataset?",
+        "category": "provenance",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not state who collected or supplied the dataset."
+    },
+    {
+        "question": "Is a stipend or payment provided for completing this internship?",
+        "category": "compensation",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not mention any stipend or payment."
+    },
+    {
+        "question": "How many total interns are enrolled in this internship batch?",
+        "category": "scale",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not state the number of interns in the batch."
+    },
+    {
+        "question": "What cloud platform or computing infrastructure should interns use to train their models?",
+        "category": "infrastructure",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not specify any required cloud platform or computing infrastructure."
+    },
+    {
+        "question": "What academic qualification or GPA is required to join this internship?",
+        "category": "eligibility",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not mention any academic eligibility requirement."
+    },
+    {
+        "question": "Does this internship provide a certificate of completion?",
+        "category": "certification",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not mention a certificate of completion."
+    },
+    {
+        "question": "How does this internship's evaluation process compare to a university course grading rubric?",
+        "category": "comparison",
+        "relevant_chunks": [],
+        "expected_answer": "The document does not make any comparison to a university grading rubric."
+    }
+]

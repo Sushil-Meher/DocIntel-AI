@@ -1,0 +1,170 @@
+[
+    {
+        "question": "How many days does the internship project run for?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 1, "chunk_id": 0}],
+        "expected_answer": "The internship runs for 4 weeks, or 28 days."
+    },
+    {
+        "question": "How often do interns have a mentor review meeting?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 1, "chunk_id": 0}],
+        "expected_answer": "Every 3 days."
+    },
+    {
+        "question": "Are interns allowed to divide the project work among team members?",
+        "category": "paraphrase",
+        "relevant_chunks": [{"page": 1, "chunk_id": 0}],
+        "expected_answer": "No. Every intern must complete the entire project independently from scratch, and work must not be divided among team members."
+    },
+    {
+        "question": "What are intern-only group discussions meant to be used for?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 1, "chunk_id": 0}, {"page": 1, "chunk_id": 1}],
+        "expected_answer": "Only for comparing findings, identifying blockers, and preparing mentor questions; code, models, experiments, and final submissions remain individual."
+    },
+    {
+        "question": "By when will interns receive the datasets needed for the project?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 1, "chunk_id": 1}],
+        "expected_answer": "Before the end of Week 1."
+    },
+    {
+        "question": "Does this project require any physical hardware or on-device deployment?",
+        "category": "paraphrase",
+        "relevant_chunks": [{"page": 1, "chunk_id": 1}],
+        "expected_answer": "No. The project is software-only, and no physical hardware integration or on-device deployment is required."
+    },
+    {
+        "question": "What three things go into an intern's progress pack before a mentor review?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 1, "chunk_id": 1}, {"page": 1, "chunk_id": 2}],
+        "expected_answer": "Work completed, results/findings, and blockers plus the next 3-day plan."
+    },
+    {
+        "question": "What inputs and target outputs must an intern identify when defining the system on Day 1?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 1, "chunk_id": 2}, {"page": 1, "chunk_id": 3}],
+        "expected_answer": "Inputs: timestamped temperature, pH, dissolved oxygen, pressure, and related water-quality variables. Output/target: anomaly flags/scores and future environmental parameter values."
+    },
+    {
+        "question": "How many related methods, datasets, or prior systems should interns study during the literature review?",
+        "category": "entity",
+        "relevant_chunks": [{"page": 1, "chunk_id": 3}],
+        "expected_answer": "6 to 10 closely related methods, datasets, or prior systems."
+    },
+    {
+        "question": "Which candidate methods are shortlisted for anomaly detection and forecasting after the literature review?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 2, "chunk_id": 0}],
+        "expected_answer": "A statistical anomaly baseline; Isolation Forest or a comparable detector; regression/Random Forest/XGBoost forecasting; and a sequence model only where justified."
+    },
+    {
+        "question": "What must be confirmed with the mentor while refining the research framing?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 2, "chunk_id": 0}, {"page": 2, "chunk_id": 1}],
+        "expected_answer": "Target definition, dataset structure, metrics, and scope."
+    },
+    {
+        "question": "What should be defined about the dataset before it is used for the final experiments?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 2, "chunk_id": 1}],
+        "expected_answer": "The expected files, columns, labels, targets, and important metadata."
+    },
+    {
+        "question": "Under what condition should a sequence model be used for anomaly or forecasting work?",
+        "category": "methodology",
+        "relevant_chunks": [{"page": 4, "chunk_id": 2}],
+        "expected_answer": "Only where justified, and its complexity should stay proportionate to the dataset."
+    },
+    {
+        "question": "What must be preserved and checked when the dataset is first received?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 3, "chunk_id": 0}],
+        "expected_answer": "An untouched raw copy must be preserved; interns then inspect files, rows, labels/targets and metadata, and check for missing or invalid data, duplicates, and coverage issues."
+    },
+    {
+        "question": "What should interns audit during the temporal data quality stage?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 3, "chunk_id": 1}],
+        "expected_answer": "Timestamps, missing intervals, duplicates, invalid sensor ranges, and irregular sampling."
+    },
+    {
+        "question": "On which day are the chronological train, validation, and test splits defined and frozen?",
+        "category": "reworded_answer",
+        "relevant_chunks": [{"page": 3, "chunk_id": 1}, {"page": 3, "chunk_id": 2}],
+        "expected_answer": "Day 9, during the Temporal Cleaning Review, when the chronological splits are defined and the approved cleaning plan is frozen."
+    },
+    {
+        "question": "What does the environmental EDA stage involve?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 3, "chunk_id": 2}],
+        "expected_answer": "Plotting sensor trends, distributions, and correlations; inspecting temporal patterns and candidate anomalies; analysing cross-sensor interactions; and recording anomaly/forecast hypotheses."
+    },
+    {
+        "question": "What two versions of the data must be preserved while building the preprocessing pipeline?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 3, "chunk_id": 2}, {"page": 3, "chunk_id": 3}],
+        "expected_answer": "Both the raw and the processed versions."
+    },
+    {
+        "question": "What kinds of new features can interns create from the sensor data?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 4, "chunk_id": 0}],
+        "expected_answer": "Lag, rolling, time-based, and cross-sensor features, created where justified, and available at prediction time."
+    },
+    {
+        "question": "What must the forecasting model be evaluated with, and on what kind of holdout set?",
+        "category": "entity",
+        "relevant_chunks": [{"page": 4, "chunk_id": 2}],
+        "expected_answer": "MAE and RMSE, evaluated on a chronological holdout set."
+    },
+    {
+        "question": "What rule governs how the validation set and test set should be used during hyperparameter tuning?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 5, "chunk_id": 0}, {"page": 5, "chunk_id": 1}],
+        "expected_answer": "Validation data should be used only for selection, and the final test set must be kept untouched."
+    },
+    {
+        "question": "What must interns obtain at the end of the Best Candidate Review?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 5, "chunk_id": 2}, {"page": 5, "chunk_id": 3}],
+        "expected_answer": "Mentor approval for the Week-4 final direction."
+    },
+    {
+        "question": "What must happen to the preprocessing and evaluation methodology once the final method is selected?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 6, "chunk_id": 0}],
+        "expected_answer": "They must be frozen, the final model/pipeline artefacts and outputs saved, and the technical selection rationale documented."
+    },
+    {
+        "question": "What is the final method compared against during software performance validation?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 6, "chunk_id": 0}, {"page": 6, "chunk_id": 1}],
+        "expected_answer": "The strongest simple baseline, while also recording accuracy/quality-versus-complexity trade-offs and measuring runtime, inference time, and model size."
+    },
+    {
+        "question": "How should recurring errors be organised during the detailed error analysis?",
+        "category": "multi_chunk",
+        "relevant_chunks": [{"page": 6, "chunk_id": 1}, {"page": 6, "chunk_id": 2}],
+        "expected_answer": "By relevant conditions, classes, ranges, or scenes, using feature importance or visual explanations where appropriate."
+    },
+    {
+        "question": "What does the final software package and report draft stage require?",
+        "category": "multi_piece",
+        "relevant_chunks": [{"page": 6, "chunk_id": 2}],
+        "expected_answer": "Cleaning the repository, packaging the preprocessing/model/pipeline with an example inference workflow, writing a README with setup/run instructions, preparing final figures/tables, and drafting the final report and presentation."
+    },
+    {
+        "question": "What is verified during the peer mock presentation before final submission?",
+        "category": "direct_factual",
+        "relevant_chunks": [{"page": 7, "chunk_id": 0}],
+        "expected_answer": "Repository links, dataset/model references, and reproducibility."
+    },
+    {
+        "question": "How many mandatory deliverables must be submitted at the end of the project?",
+        "category": "reworded_answer",
+        "relevant_chunks": [{"page": 7, "chunk_id": 1}, {"page": 7, "chunk_id": 2}],
+        "expected_answer": "12 mandatory deliverables."
+    }
+]

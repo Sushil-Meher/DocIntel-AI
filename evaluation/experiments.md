@@ -1083,3 +1083,159 @@ coverage/semantic similarity = 0.757/0.787, exactly matching Experiment
 performance improvement; this was a reproducibility/deployment task.
 
 **Decision**: **KEEP**. No resume-worthy metric.
+
+---
+
+### Task 10 — Expanded Evaluation Benchmark
+
+**Date**: 2026-09-02
+
+This task only expanded evaluation coverage. No retrieval, embedding,
+chunking, threshold, top_k, prompt, generator, memory, or provenance code
+was changed.
+
+**Benchmark sizes**:
+- Historical: 10 positive (`evaluation/questions_chunk100.json`) + 5
+  negative (`evaluation/negative_questions.json`) - **unchanged, verified
+  byte-for-byte reproducible below**.
+- Expanded: 28 positive (`evaluation/questions_expanded.json`) + 12
+  negative (`evaluation/negative_questions_expanded.json`) - new files,
+  nothing overwritten.
+
+**Corpus understanding**: read all 7 pages of `evaluation/corpus.pdf` (a
+28-day internship workflow for an underwater water-quality analytics
+project) and mapped every one of the 28 chunks in
+`evaluation/artifacts/chunk100_chunks.pkl` to its content before writing
+a single question, so every gold chunk reference is checked against real
+chunk text rather than assumed.
+
+**Categories** (tagged per-question with a `category` field - additive,
+ignored by the existing evaluators, used only for balance-checking):
+`direct_factual`, `paraphrase`, `entity`, `multi_piece`, `multi_chunk`,
+`methodology`, `reworded_answer`. Covers the task's requested categories:
+direct facts (internship length, review cadence), paraphrases ("Are
+interns allowed to divide the work?" for a policy stated affirmatively in
+the source), specific entities (6-10 methods, MAE/RMSE, 12 deliverables),
+multi-piece answers (single chunk covering several sub-facts), genuinely
+multi-chunk answers (fact split across adjacent chunks, e.g. a sentence
+straddling a chunk boundary), a methodology question, and two "answer
+worded differently than the question" cases (asking *when* rather than
+*what*, or *how many* rather than *what are they*).
+
+**Negative question design**: deliberately avoided the historical set's
+pattern (`"What is the capital of France?"`, unrelated-topic questions)
+per the task's explicit instruction to prefer realistic-but-unsupported
+questions. All 12 ask about specifics *plausibly adjacent* to this
+corpus's subject matter - the mentor's name, dataset size, sensor
+location, stipend, cloud infrastructure, eligibility, certification - that
+a real user of this document might actually ask, but that the document
+genuinely never answers.
+
+**Validation** (`tests/test_expanded_benchmark.py`, run before finalizing
+anything, not after): every positive question's gold chunk IDs checked
+against the real 28-chunk inventory (not assumed), every negative
+question confirmed to carry no gold evidence, no duplicate question text
+across the whole file, every expected answer non-empty, benchmark size
+inside the requested 25-30/10-15 range, and category balance (no single
+category over half the set). Also asserts the historical files still
+have exactly 10 and 5 questions. All 10 checks passed on the first
+complete run - no LLM was used to decide answerability; every gold chunk
+was hand-verified against the actual corpus text dumped from the real
+chunk objects.
+
+**Evaluation scripts**: `evaluate_retrieval.py` and
+`evaluate_generation.py` each gained an optional `questions_path`
+parameter (default unchanged) and now accept an `expanded` CLI argument
+that switches the question file and the output path
+(`evaluation/expanded_results.json` /
+`evaluation/expanded_generation_results.json`) - `evaluation/results.json`
+and `evaluation/generation_results.json` are never touched by the
+expanded run. Added `evaluate_expanded_negatives.py` (mirrors
+`evaluate_negative_thresholds.py`'s retrieval logic, fixed at the
+production threshold 0.25, no sweep - threshold tuning is out of scope
+here) since the historical negative script points at a completely
+different index (`artifacts/faiss.index`, built from
+`data/Artificial-Intelligence report.pdf`) rather than this corpus, and
+the expanded negatives needed to be tested against the same
+`chunk100` index as the expanded positives for a coherent comparison.
+
+**Backward-compatibility check** (run first, before touching anything
+expanded):
+```
+Historical retrieval: recall@1/3/5/8/10 = 0.500/0.900/0.900/1.000/1.000
+Historical generation: keyword coverage 0.757, semantic similarity 0.787
+```
+Both byte-for-byte identical to the pre-existing `results.json`/
+`generation_results.json` - confirmed via diff, not just re-printed
+numbers.
+
+**Historical benchmark** (10 positive + 5 negative, for reference - not
+re-measured as "the" result of this task):
+```
+Recall@1/3/5/8/10:  0.500 / 0.900 / 0.900 / 1.000 / 1.000
+Generation:         keyword coverage 0.757, semantic similarity 0.787
+Negative rejection: 5/5 (100%) at threshold 0.25
+```
+
+**Expanded benchmark** (28 positive + 12 negative, same production
+config: chunk100 index, threshold 0.25, top_k 10, no reranking, same
+embeddings and generator):
+```
+Recall@1:  0.321   MRR@1: 0.321
+Recall@3:  0.643   MRR@3: 0.452
+Recall@5:  0.750   MRR@5: 0.479
+Recall@8:  0.821
+Recall@10: 0.893   MRR@10: 0.497
+
+Generation: average keyword coverage 0.708, average semantic similarity 0.619
+
+Negative rejection: 0/12 (0%) at threshold 0.25
+```
+
+These are **different benchmark populations** and are not directly
+comparable to the historical numbers as an improvement or regression -
+the expanded set deliberately includes harder multi-chunk questions,
+numeric-detail questions, and paraphrases that the small curated
+10-question set didn't test.
+
+**3 of 28 expanded questions miss at Recall@10** (all hand-verified as
+correctly labeled, genuine retrieval difficulty, not benchmark errors):
+"How many related methods... should interns study" (needle-in-haystack
+numeric fact), "What must happen to the preprocessing and evaluation
+methodology once the final method is selected" and "What is verified
+during the peer mock presentation" (both compete against topically
+similar "final stage" language repeated across several nearby chunks).
+Inspecting the worst generation results shows a related pattern: for
+questions the retriever missed, the model sometimes fills the gap with a
+plausible-sounding but wrong answer drawn from generic ML vocabulary
+(e.g. answering "raw and processed versions" with "training set/test
+set" - a real, specific hallucination case now captured for the first
+time by this benchmark, worth a future look).
+
+**Important negative-rejection finding, documented for a future task,
+not fixed here**: the historical negative set (`"What is the capital of
+France?"`, etc.) is trivially unrelated to this corpus and scores far
+below threshold (checked: 0.023 similarity). The expanded negatives are
+topically plausible - about datasets, sensors, mentors, infrastructure -
+words that overlap heavily with this corpus's actual vocabulary, and
+they score well *above* 0.25 (0.32-0.54 range; checked directly, e.g.
+"Where are the water-quality sensors physically installed?" scores 0.438
+against a chunk about sensor input *variables*, not sensor *location*).
+**All 12 expanded negatives were accepted by the current threshold
+gate.** This shows the 0.25 cosine-similarity gate is a *topic-relevance*
+filter, not a *fact-coverage* filter - it correctly rejects queries about
+an unrelated subject, but cannot tell "this document is broadly about
+X" apart from "this document actually answers this specific question
+about X." Per this task's explicit instructions, the threshold is **not**
+recalibrated here; this is flagged as a real limitation for a future,
+dedicated task (e.g. a stricter threshold re-tuned against this harder
+negative set, or a second-stage check for whether the retrieved context
+actually contains the requested fact).
+
+**Decision**: **KEEP** the expanded benchmark and script changes.
+
+**Resume-worthy metric**: none from this task itself (it's an evaluation-
+methodology expansion, not a performance change) - but the finding above
+(0% rejection of realistic negatives vs. 100% of trivial ones) is a
+genuinely useful, honest data point for describing the current system's
+limitations in an interview.

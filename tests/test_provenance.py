@@ -164,7 +164,7 @@ class SourcesRenderingTests(unittest.TestCase):
 
             at = AppTest.from_file(str(ROOT_DIR / "app.py"))
             at.run()
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run()
             at.sidebar.text_input[0].set_value("https://a.example.com")
             at.run()
@@ -176,9 +176,10 @@ class SourcesRenderingTests(unittest.TestCase):
         self.assertEqual(at.exception.len, 0)
 
         rendered = [m.value for m in at.markdown]
+        captions = [c.value for c in at.caption]
         self.assertIn("**Sources**", rendered)
-        self.assertIn("- Page 3 — report.pdf", rendered)
-        self.assertIn("- https://example.com/page", rendered)
+        self.assertIn("Page 3 · report.pdf", captions)
+        self.assertIn("https://example.com/page", captions)
 
     def test_no_sources_section_when_answer_has_none(self):
         from streamlit.testing.v1 import AppTest
@@ -191,7 +192,7 @@ class SourcesRenderingTests(unittest.TestCase):
 
             at = AppTest.from_file(str(ROOT_DIR / "app.py"))
             at.run()
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run()
             at.sidebar.text_input[0].set_value("https://a.example.com")
             at.run()

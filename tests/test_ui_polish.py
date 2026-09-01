@@ -42,8 +42,9 @@ class SourceStatusTests(unittest.TestCase):
 
         self.assertEqual(at.exception.len, 0)
         rendered = [m.value for m in at.markdown]
-        self.assertIn("PDF: a.pdf", rendered)
-        self.assertIn("Status: Ready", rendered)
+        captions = [c.value for c in at.caption]
+        self.assertIn("**PDF · a.pdf**", rendered)
+        self.assertIn("Ready", captions)
 
     def test_website_ingestion_shows_current_source_status(self):
         fake_index, fake_chunks = MagicMock(name="index"), ["chunk"]
@@ -51,7 +52,7 @@ class SourceStatusTests(unittest.TestCase):
         with patch("src.ingestion.ingest_url", return_value=(fake_index, fake_chunks)):
             at = AppTest.from_file(APP_PATH)
             at.run(timeout=15)
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run(timeout=15)
             at.sidebar.text_input[0].set_value("https://acme.example.com")
             at.run(timeout=15)
@@ -60,8 +61,9 @@ class SourceStatusTests(unittest.TestCase):
 
         self.assertEqual(at.exception.len, 0)
         rendered = [m.value for m in at.markdown]
-        self.assertIn("Website: https://acme.example.com", rendered)
-        self.assertIn("Status: Ready", rendered)
+        captions = [c.value for c in at.caption]
+        self.assertIn("**Website · https://acme.example.com**", rendered)
+        self.assertIn("Ready", captions)
 
 
 class AnswerDisplayTests(unittest.TestCase):
@@ -75,7 +77,7 @@ class AnswerDisplayTests(unittest.TestCase):
 
             at = AppTest.from_file(APP_PATH)
             at.run(timeout=15)
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run(timeout=15)
             at.sidebar.text_input[0].set_value("https://acme.example.com")
             at.run(timeout=15)
@@ -103,7 +105,7 @@ class AnswerDisplayTests(unittest.TestCase):
 
             at = AppTest.from_file(APP_PATH)
             at.run(timeout=15)
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run(timeout=15)
             at.sidebar.text_input[0].set_value("https://acme.example.com")
             at.run(timeout=15)
@@ -113,8 +115,9 @@ class AnswerDisplayTests(unittest.TestCase):
             at.run(timeout=15)
 
         rendered = [m.value for m in at.markdown]
+        captions = [c.value for c in at.caption]
         self.assertIn("**Sources**", rendered)
-        self.assertIn("- Page 4 — report.pdf", rendered)
+        self.assertIn("Page 4 · report.pdf", captions)
 
     def test_rejected_question_shows_clear_message_no_sources(self):
         fake_index, fake_chunks = MagicMock(name="index"), ["chunk"]
@@ -125,7 +128,7 @@ class AnswerDisplayTests(unittest.TestCase):
 
             at = AppTest.from_file(APP_PATH)
             at.run(timeout=15)
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run(timeout=15)
             at.sidebar.text_input[0].set_value("https://acme.example.com")
             at.run(timeout=15)
@@ -152,7 +155,7 @@ class DocumentSwitchTests(unittest.TestCase):
 
             at = AppTest.from_file(APP_PATH)
             at.run(timeout=15)
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run(timeout=15)
             at.sidebar.text_input[0].set_value("https://a.example.com")
             at.run(timeout=15)

@@ -9,14 +9,20 @@ from src.rag import answer_question
 
 
 st.set_page_config(
-    page_title="DocIntel AI",
-    page_icon="📚",
-    layout="wide"
+    page_title="RAGForge AI",
+    page_icon="📄",
+    layout="centered"
 )
 
+# Streamlit's default top padding leaves a lot of empty space above the
+# title; this is the only CSS in the app, purely to tighten that.
+st.markdown(
+    "<style>.block-container { padding-top: 2.5rem; }</style>",
+    unsafe_allow_html=True
+)
 
-st.title("📚 DocIntel AI")
-st.caption("Ask questions about your PDFs and websites.")
+st.title("RAGForge AI")
+st.caption("Document intelligence for PDFs and websites.")
 
 
 def format_source(source):
@@ -24,7 +30,7 @@ def format_source(source):
         return source["source"]
 
     if "page" in source:
-        return f"Page {source['page']} — {source['source']}"
+        return f"Page {source['page']} · {source['source']}"
 
     return source["source"]
 
@@ -45,110 +51,110 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 
-st.sidebar.header("Document Source")
+with st.sidebar:
 
-source_type = st.sidebar.radio(
-    "Choose source",
-    ["Upload PDF", "Company Website"]
-)
+    st.subheader("Source")
 
-
-if source_type == "Upload PDF":
-
-    uploaded_file = st.sidebar.file_uploader(
-        "Upload a PDF",
-        type=["pdf"]
+    source_type = st.segmented_control(
+        "Source type",
+        ["PDF", "Website"],
+        default="PDF",
+        required=True,
+        label_visibility="collapsed"
     )
 
-    if uploaded_file is not None:
+    if source_type == "PDF":
 
-        if st.sidebar.button("Process PDF"):
+        uploaded_file = st.file_uploader(
+            "Upload a PDF",
+            type=["pdf"]
+        )
 
-            with st.spinner("Processing PDF..."):
+        if uploaded_file is not None:
 
-                with tempfile.NamedTemporaryFile(
-                    delete=False,
-                    suffix=".pdf"
-                ) as temp_file:
+            if st.button("Process PDF"):
 
-                    temp_file.write(uploaded_file.getbuffer())
-                    temp_path = temp_file.name
+                with st.spinner("Processing PDF..."):
 
-                try:
+                    with tempfile.NamedTemporaryFile(
+                        delete=False,
+                        suffix=".pdf"
+                    ) as temp_file:
 
-                    index, chunks = ingest_pdf(temp_path)
+                        temp_file.write(uploaded_file.getbuffer())
+                        temp_path = temp_file.name
 
-                    st.session_state.index = index
-                    st.session_state.chunks = chunks
-                    st.session_state.source = uploaded_file.name
-                    st.session_state.source_type = "PDF"
-                    st.session_state.chat_history = []
-
-                    st.sidebar.success("PDF processed successfully!")
-
-                except Exception as e:
-
-                    st.sidebar.error(f"Error: {e}")
-
-                finally:
-
-                    # Best-effort cleanup - on Windows the temp file can
-                    # briefly stay locked, which shouldn't fail an
-                    # otherwise-successful upload.
                     try:
-                        if os.path.exists(temp_path):
-                            os.remove(temp_path)
-                    except OSError:
-                        pass
 
+                        index, chunks = ingest_pdf(temp_path)
 
-else:
+                        st.session_state.index = index
+                        st.session_state.chunks = chunks
+                        st.session_state.source = uploaded_file.name
+                        st.session_state.source_type = "PDF"
+                        st.session_state.chat_history = []
 
-    url = st.sidebar.text_input(
-        "Company website URL",
-        placeholder="https://example.com"
-    )
+                        st.success("PDF processed.")
 
-    if st.sidebar.button("Process Website"):
+                    except Exception as e:
 
-        if not url:
-            st.sidebar.error("Please enter a website URL.")
+                        st.error(f"Error: {e}")
 
-        else:
+                    finally:
 
-            with st.spinner("Loading website..."):
+                        # Best-effort cleanup - on Windows the temp file can
+                        # briefly stay locked, which shouldn't fail an
+                        # otherwise-successful upload.
+                        try:
+                            if os.path.exists(temp_path):
+                                os.remove(temp_path)
+                        except OSError:
+                            pass
 
-                try:
+    else:
 
-                    index, chunks = ingest_url(url)
+        url = st.text_input(
+            "Website URL",
+            placeholder="https://example.com"
+        )
 
-                    st.session_state.index = index
-                    st.session_state.chunks = chunks
-                    st.session_state.source = url
-                    st.session_state.source_type = "Website"
-                    st.session_state.chat_history = []
+        if st.button("Process website"):
 
-                    st.sidebar.success("Website processed successfully!")
+            if not url:
+                st.error("Enter a website URL.")
 
-                except Exception as e:
+            else:
 
-                    st.sidebar.error(f"Error: {e}")
+                with st.spinner("Reading website..."):
 
+                    try:
 
-st.divider()
+                        index, chunks = ingest_url(url)
+
+                        st.session_state.index = index
+                        st.session_state.chunks = chunks
+                        st.session_state.source = url
+                        st.session_state.source_type = "Website"
+                        st.session_state.chat_history = []
+
+                        st.success("Website processed.")
+
+                    except Exception as e:
+
+                        st.error(f"Error: {e}")
+
+    if st.session_state.index is not None:
+
+        st.divider()
+        st.caption("CURRENT SOURCE")
+        st.markdown(
+            f"**{st.session_state.source_type} · {st.session_state.source}**"
+        )
+        st.caption("Ready")
+        st.caption("Loading a new source starts a fresh conversation.")
 
 
 if st.session_state.index is not None:
-
-    with st.container(border=True):
-        st.markdown("**Current source**")
-        st.markdown(f"{st.session_state.source_type}: {st.session_state.source}")
-        st.markdown("Status: Ready")
-
-    st.caption(
-        "Conversation history is scoped to this document - "
-        "processing a new PDF or website starts a fresh conversation."
-    )
 
     for turn in st.session_state.chat_history:
 
@@ -161,9 +167,9 @@ if st.session_state.index is not None:
             if turn.get("sources"):
                 st.markdown("**Sources**")
                 for source in turn["sources"]:
-                    st.markdown(f"- {format_source(source)}")
+                    st.caption(format_source(source))
 
-    query = st.chat_input("Ask a question about the current document")
+    query = st.chat_input("Ask a follow-up question...")
 
     if query:
 
@@ -185,7 +191,7 @@ if st.session_state.index is not None:
             if answer.sources:
                 st.markdown("**Sources**")
                 for source in answer.sources:
-                    st.markdown(f"- {format_source(source)}")
+                    st.caption(format_source(source))
 
         st.session_state.chat_history.append(
             {
@@ -198,6 +204,7 @@ if st.session_state.index is not None:
 else:
 
     st.info(
-        "Upload a PDF or enter a company website URL in the sidebar "
-        "to get started."
+        "**No document loaded**\n\n"
+        "Upload a PDF or enter a website URL in the sidebar to start "
+        "asking questions."
     )

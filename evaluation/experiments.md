@@ -1239,3 +1239,125 @@ methodology expansion, not a performance change) - but the finding above
 (0% rejection of realistic negatives vs. 100% of trivial ones) is a
 genuinely useful, honest data point for describing the current system's
 limitations in an interview.
+
+---
+
+### Task 10.5 — Professional Streamlit UI Redesign
+
+**Date**: 2026-09-02
+
+Visual/interaction redesign only. No retrieval, embedding, chunking,
+threshold, top_k, reranking, prompt, generator, contextual query
+rewriting, conversation-memory architecture, document isolation,
+`build_sources()`, `Answer` dataclass, provenance logic, or evaluation
+file was touched.
+
+**What changed** (`app.py` only, plus the 3 existing `AppTest`-based test
+files updated to match):
+- Title changed from "📚 DocIntel AI" to a plain-text "RAGForge AI" with
+  the subtitle "Document intelligence for PDFs and websites." - no emoji
+  in the visible header (the browser-tab favicon is a single restrained
+  document emoji, which never appears in the page body).
+- `layout` switched from `"wide"` to `"centered"` so chat and answer text
+  get a comfortable, bounded reading width instead of stretching
+  edge-to-edge on a large monitor - the single most direct fix for
+  "comfortable readable width and spacing."
+- Source selection switched from `st.sidebar.radio(["Upload PDF",
+  "Company Website"])` to `st.segmented_control(["PDF", "Website"],
+  default="PDF", required=True)` - a native two-option control that
+  reads as the "[ PDF ] [ Website ]" segmented interaction the task
+  described, confirmed to always resolve to a value (`required=True`)
+  rather than risk `None` from deselection.
+- "Current source" status moved from a bordered container in the main
+  content area into the sidebar, directly under the source controls -
+  the main content area is now conversation only, matching "do not make
+  the source section consume the majority of the page" and the
+  suggested SIDEBAR/MAIN split.
+- Source status now reads as a small caption label ("CURRENT SOURCE"),
+  a bold `"{type} · {name}"` line, and a plain "Ready" caption - no
+  colored badges, no checkmark icons, no fabricated confidence value.
+- Per-source citations switched from `st.markdown(f"- {source}")` to
+  `st.caption(source)`, which Streamlit renders in a smaller, muted
+  gray font - a native, CSS-free way to satisfy "keep source typography
+  smaller than answer text." The separator changed from an em dash to
+  "·" to match the task's own citation example ("Page 3 · report.pdf").
+- Historical chat turns already carried `sources` since Task 8; that's
+  unchanged, so every past turn - not just the newest - shows its own
+  citations.
+- Empty state kept as a single `st.info(...)` (a native, restrained
+  element, not a giant illustration) but restructured to the requested
+  two-line "**No document loaded**" / description shape instead of one
+  plain sentence.
+- Removed the "Conversation history is scoped to this document..."
+  caption from the main content area (main content is conversation-only
+  now); replaced with a shorter note in the sidebar next to the source
+  status, where it's contextually relevant.
+- One small, purposeful CSS rule (`padding-top` on `.block-container`),
+  nothing else - no fonts, no colors, no gradients, no JavaScript.
+
+**Explicitly not done**, per the task's own "no gimmicks" list: no
+confidence meters, no retrieval-score display, no token counters, no
+model badges, no animated progress, no marketing copy anywhere in the
+UI strings.
+
+**Tests**: the three existing `AppTest`-based files
+(`test_ui_polish.py`, `test_conversation_memory.py`, `test_provenance.py`)
+were updated wherever they drove or asserted on UI elements that
+actually changed shape - `at.sidebar.radio[0]` → `at.sidebar.
+segmented_control[0]`, and markdown assertions for source-status/
+citation text updated for the new separator and the `st.caption` vs
+`st.markdown` split. No assertion about underlying *behavior*
+(history reset, isolation, provenance content, answer-not-object) was
+weakened or removed - only the mechanics of driving/reading the now-
+different widgets changed, continuing the same pattern established in
+Tasks 6-8 each time a widget was swapped.
+
+```
+Ran 50 tests (0 new - same count as the Task 10 baseline, since this
+task changed presentation, not behavior needing new coverage)
+OK
+```
+
+**Visual verification**: per the task's explicit instruction, the
+Browser preview tool was not used for this - an earlier task (7) found
+it launches an unrelated Next.js project instead of this repository's
+Streamlit app regardless of working directory. Verified instead via:
+1. A real `streamlit run app.py` server started from `D:\Projects\
+   DocIntel-AI`, confirmed serving HTTP 200, then stopped cleanly.
+2. `streamlit.testing.v1.AppTest` driving the actual `app.py` source
+   through all 9 requested checks: empty state (title, caption, info
+   message, no chat input, no exception), PDF source selection and
+   status, website source selection and status, a real question with a
+   rendered answer, sources rendered as captions beneath it, a follow-up
+   question extending the same conversation, and switching from a PDF to
+   a website resetting `chat_history` to `[]`. No exceptions in any of
+   the 9 checks; results matched expectations exactly (e.g. sidebar
+   markdown showed `**PDF · research_report.pdf**`, captions showed
+   `CURRENT SOURCE` / `Ready`, chat history length tracked correctly
+   across the follow-up and the reset).
+
+**Regression check**:
+
+```
+Full suite: 50/50 tests pass (unchanged count from Task 10)
+
+Historical retrieval:  recall@1/3/5/8/10 = 0.500/0.900/0.900/1.000/1.000
+Historical generation: keyword coverage 0.757, semantic similarity 0.787
+Expanded retrieval:    recall@1/3/5/8/10 = 0.321/0.643/0.750/0.821/0.893
+Expanded generation:   keyword coverage 0.708, semantic similarity 0.619
+
+evaluation/results.json:                    IDENTICAL
+evaluation/generation_results.json:         IDENTICAL
+evaluation/expanded_results.json:           IDENTICAL
+evaluation/expanded_generation_results.json: IDENTICAL
+```
+
+All four result files diffed byte-for-byte against their pre-task
+versions. **RAG behavior is explicitly unchanged** - this task touched
+only `app.py`'s presentation layer and the UI test files that exercise
+it.
+
+**Decision**: **KEEP**.
+
+**Resume-worthy metric**: none - this is a visual/UX task, not a
+performance change.

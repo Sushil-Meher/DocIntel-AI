@@ -135,7 +135,7 @@ class SessionResetTests(unittest.TestCase):
             at = AppTest.from_file(str(ROOT_DIR / "app.py"))
             at.run()
 
-            at.sidebar.radio[0].set_value("Company Website")
+            at.sidebar.segmented_control[0].set_value("Website")
             at.run()
             at.sidebar.text_input[0].set_value("https://a.example.com")
             at.run()

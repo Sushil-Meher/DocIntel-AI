@@ -23,7 +23,7 @@ def answer_question(
     query: str,
     index,
     chunks,
-    top_k: int = 3,
+    top_k: int = 10,
     min_score: float = MIN_RELEVANCE_SCORE
 ) -> str:
 

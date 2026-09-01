@@ -12,7 +12,7 @@ from src.vector_store import load_index, load_chunks
 from src.retriever import retrieve
 
 
-TOP_K_VALUES = [1, 3, 5]
+TOP_K_VALUES = [1, 3, 5, 8, 10]
 
 
 def load_questions(path: str):

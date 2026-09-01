@@ -13,6 +13,10 @@ questions (`evaluation/negative_questions.json`).
   (**experimental only** — reranking is not in production)
 - Recall@3: 0.90 (baseline, unchanged with reranking)
 - MRR@3: 0.683 baseline → 0.833 in the reranking experiment (**experimental only**)
+- Recall@5: 0.90 → **1.00** at top_k=8/10, no reranking (**production**) —
+  the one previously-missed question's relevant chunk ranked 8th by
+  similarity, just outside the old top-5 window; see
+  `evaluation/experiments.md` Experiment 7
 
 ## Retrieval Gating (production)
 
@@ -23,11 +27,11 @@ questions (`evaluation/negative_questions.json`).
 
 ## Generation
 
-- Best measured generation keyword coverage: **0.742** (original generation
-  baseline, plain FAISS retrieval, no reranking)
-- Current production prompt/top-5 configuration: 0.721 keyword coverage,
-  confirmed stable across two runs (before and after the generation-config
-  warning fix on 2026-09-01)
+- Current production configuration (top_k=10, threshold 0.25, no
+  reranking): **0.757 average keyword coverage, 0.787 average semantic
+  similarity** — the best measured generation result so far, surpassing
+  the previous historical best of 0.742 (see `evaluation/experiments.md`
+  Experiment 7)
 - Cross-encoder reranking reduced generation keyword coverage to 0.522
   (top-3) / 0.581 (top-5) — **reranking is not used in production** for
   this reason, despite its retrieval-ranking gains above
@@ -35,21 +39,21 @@ questions (`evaluation/negative_questions.json`).
 - Metric caveat: keyword coverage is a crude lexical-overlap metric,
   useful for relative comparison between configurations run on the same
   question set, not an absolute correctness score
-- Added a second, independent metric: average semantic similarity (cosine
-  similarity between MiniLM embeddings of expected vs. generated answer)
-  is **0.751** on the current production prompt/top-5 configuration. It
-  disagrees with keyword coverage in informative ways per-question (see
-  `evaluation/experiments.md`, Experiment 5) — e.g. it correctly rates a
-  paraphrased-but-correct answer highly where keyword coverage scores it
-  low, and flags a keyword-rich but off-target answer that keyword
-  coverage alone missed
+- Second, independent metric: average semantic similarity (cosine
+  similarity between MiniLM embeddings of expected vs. generated answer).
+  It disagrees with keyword coverage in informative ways per-question (see
+  Experiment 5) and was the signal that drove the top_k fix in
+  Experiment 7 — e.g. it correctly rated Q7's old answer as weak despite
+  above-average keyword coverage, because that answer echoed a task
+  description instead of stating the actual requirement
 
 ## Production Configuration (current)
 
-FAISS `IndexFlatIP` retrieval (top-k, no reranking) → 0.25 similarity
+FAISS `IndexFlatIP` retrieval (top_k=10, no reranking) → 0.25 similarity
 threshold → grounded prompt → `Qwen/Qwen2.5-1.5B-Instruct` → deterministic
-source/page citations. See `evaluation/experiments.md` for why reranking
-and the alternate prompt variants were not promoted.
+source/page citations. See `evaluation/experiments.md` for why reranking,
+the alternate prompt variants, and the Q7 prompt-rule attempt were not
+promoted, and why top_k=10 was.
 
 ## Labeling Convention
 

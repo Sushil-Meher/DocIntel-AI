@@ -19,7 +19,7 @@ INDEX_PATH = "evaluation/artifacts/chunk100.index"
 CHUNKS_PATH = "evaluation/artifacts/chunk100_chunks.pkl"
 QUESTIONS_PATH = "evaluation/questions_chunk100.json"
 
-TOP_K = 5
+TOP_K = 10
 
 
 def load_questions(path: str):

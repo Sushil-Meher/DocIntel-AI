@@ -352,3 +352,99 @@ clear regression across the benchmark. The Q7 failure mode looks primarily
 retrieval-driven (missing ground-truth chunks) rather than
 prompt-driven, which should inform Task 3's retrieval-quality work rather
 than further prompt patches in isolation.
+
+---
+
+## Experiment 7 — Retrieval Candidate Depth (top_k 5 → 10)
+
+**Date**: 2026-09-01
+
+**Hypothesis**: Experiment 6's investigation showed Q7's missing evidence
+chunk (page 3, chunk 1 — *"Define chronological train/validation/test
+splits"*) ranks **#10** by FAISS similarity across the full 28-chunk
+corpus, with a score of 0.2555 — above the 0.25 threshold, just outside
+the top-5 cutoff. Re-checking every other question the same way found the
+same pattern on Q1: its single relevant chunk (page 1, chunk 0, the
+project title) ranks **#8**, score 0.286 — also above threshold, also
+just outside top-5. Both are legitimate, above-threshold matches starved
+by too shallow a candidate window, not an embedding-quality or
+chunk-boundary problem. Hypothesis: increasing retrieval top_k from 5 to
+10 should surface both without needing reranking or a different embedding
+model.
+
+**Configuration**: only `top_k` changed, from 5 to 10. Chunking (100/20),
+embedding model (`all-MiniLM-L6-v2`), threshold (0.25), generation model,
+and prompt (`src/prompt_builder.py`, unchanged from before Experiment 6)
+all held fixed.
+
+- `evaluation/evaluate_retrieval.py`: `TOP_K_VALUES` extended from
+  `[1, 3, 5]` to `[1, 3, 5, 8, 10]` (additive — existing k=1/3/5 values
+  are computed exactly as before and don't move).
+- `evaluation/evaluate_generation.py`: `TOP_K` changed from 5 to 10.
+
+**Retrieval metrics** (`evaluation/results.json`)
+
+| Metric | k=5 (before) | k=8 | k=10 |
+|---|---|---|---|
+| Recall | 0.900 | 1.000 | 1.000 |
+| MRR | 0.683 | 0.696 | 0.696 |
+
+Recall@1/3/5 and MRR@1/3/5 are unchanged (0.500/0.900/0.900 and
+0.500/0.683/0.683) — expected, since they're separate cutoffs and were
+already "hit" for every question except Q1. Recall reaches **1.000** at
+k=8 and k=10: Q1's chunk (rank 8) is now captured, and no question is a
+total miss anymore.
+
+**Generation metrics** (`evaluation/generation_results.json`, top_k=10,
+threshold 0.25, no reranking, prompt unchanged)
+
+| Metric | Before (top_k=5) | After (top_k=10) |
+|---|---|---|
+| Average keyword coverage | 0.721 | **0.757** |
+| Average semantic similarity | 0.751 | **0.787** |
+
+Both metrics improved, and average keyword coverage now **exceeds the
+historical best of 0.742** for the first time.
+
+**Q7 before/after**:
+
+- Before: *"The best practice is to define what a correct
+  train/validation/test split should preserve..."* (echoes a task
+  instruction, never states the requirement, gets cut off mid-sentence).
+  keyword coverage 0.786, semantic similarity 0.588.
+- After: *"...determining the chronological train, validation, and test
+  splits. These steps ensure that the data used for training, validating,
+  and testing is clean, consistent, and appropriately structured..."* —
+  now explicitly states the chronological requirement. keyword coverage
+  0.643 (down slightly — the answer restructures rather than repeating
+  the question's exact wording as densely), semantic similarity **0.732**
+  (up from 0.588). Retrieved chunks now include (3, 1), the chunk
+  containing the actual requirement, confirming the mechanism.
+
+**Q1 before/after** (same root cause, different question): before, a
+long rambling paragraph, keyword coverage 0.684 / semantic similarity
+0.710. After: *"To detect and predict underwater environmental changes
+using water quality parameters"* — short, precise, matches the project
+title almost verbatim. keyword coverage 0.579 (down — the terse answer
+drops some padding words that happened to overlap with the expected
+answer), semantic similarity **0.834** (up from 0.710).
+
+**Other questions**: no catastrophic regression. Q5 and Q10 lost some
+keyword coverage (0.933→0.667, 0.326→0.500 respectively — note Q10 is
+still net *positive*) from answer rewording, but semantic similarity held
+roughly flat on both (0.853→0.808, 0.764→0.758). No sign of irrelevant
+context leakage or hallucination from the larger context window on manual
+inspection of the full result set.
+
+**Conclusion**: candidate depth (top_k) was the actual bottleneck behind
+both the Q7 and Q1 weaknesses — the correct evidence already scores above
+the relevance threshold, it just needed a wider retrieval window to reach
+the prompt. This improves retrieval recall, fixes the specific Q7 failure
+mode with a general (non-Q7-specific) change, and improves both generation
+metrics with no material regression elsewhere.
+
+**Production decision**: **KEEP**. `src/rag.py`'s default `top_k` raised
+from 3 to 10 to match the validated configuration (threshold 0.25 is
+unchanged and still does the job of rejecting out-of-document queries;
+see Experiment 1 — a larger top_k does not weaken that gate, since
+`retrieve()` still drops anything under 0.25 regardless of k).

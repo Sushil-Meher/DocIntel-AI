@@ -268,3 +268,87 @@ coverage.
 keyword coverage. Neither metric replaces the other; both are recorded
 per question going forward in `evaluate_generation.py`. Q7 is flagged as
 the priority case for the Task 2 answer-quality investigation.
+
+---
+
+## Experiment 6 — Q7 Answer-Quality Investigation and Prompt Rule (Rejected)
+
+**Date**: 2026-09-01
+
+**Investigation**: before changing anything, traced Q7 ("What is required
+for the temporal train, validation, and test split?") through the actual
+retrieved chunks in `evaluation/generation_results.json` and
+`evaluation/artifacts/chunk100_chunks.pkl`:
+
+- Q7's generated answer was truncated mid-sentence at the 120-token
+  generation limit, and never states "chronological."
+- Two of the three human-labeled relevant chunks for Q7
+  (`questions_chunk100.json`: page 3 chunk 1, page 3 chunk 2 — which
+  literally say *"Define chronological train/validation/test splits"* and
+  *"Implement cleaning, chronological splits and scaling"*) were **not
+  retrieved** in the top-5 at all. This is a genuine retrieval gap, out of
+  scope for this task (reserved for Task 3).
+- The highest-scoring retrieved chunk (page 2, chunk 1) is a task
+  instruction from the source planning document — *"Define what a correct
+  train/validation/test split should preserve"* — not the actual
+  requirement. The model echoed this meta-instruction almost verbatim
+  instead of locating the concrete fact elsewhere in its context (the word
+  "chronological" does appear once in the retrieved set, in an unrelated
+  ablation-study chunk, but the model never surfaced it).
+
+Conclusion of the investigation: the problem is a mix of (a) a retrieval
+gap that this task isn't allowed to touch, and (b) the model paraphrasing
+a task-description sentence instead of hunting for the concrete fact in
+weaker supporting context — a prompt/generation-behavior issue on top of
+the retrieval gap.
+
+**Change tried**: added one rule to `src/prompt_builder.py` instructing
+the model to open with a direct factual sentence rather than describing
+what needs to be "defined" or "decided":
+
+```
+3. Start with a direct sentence that states the answer itself.
+   Do not open by describing what needs to be decided, defined, or
+   determined - state the actual requirement or fact.
+```
+
+This was a single, general instruction (not Q7-specific), inserted early
+in the numbered rule list.
+
+**Result** (same config: top_k=5, threshold 0.25, no reranking):
+
+| Metric | Before | After |
+|---|---|---|
+| Average keyword coverage | 0.721 | 0.667 |
+| Average semantic similarity | 0.751 | 0.733 |
+| Q7 keyword coverage | 0.786 | 0.786 (unchanged) |
+| Q7 semantic similarity | 0.588 | 0.593 (unchanged, within noise) |
+
+Q7's generated answer was **essentially unchanged** — the model still
+opened with "The best practice is to define what a correct
+train/validation/test split should preserve..." almost word-for-word,
+ignoring the new rule. Meanwhile the same change **regressed several
+unrelated questions**: Q1 (keyword coverage 0.684 → 0.421, semantic
+similarity 0.710 → 0.642) lost detail and became overly terse; Q5
+(keyword coverage 0.933 → 0.667, semantic similarity 0.853 → 0.618) got
+noticeably worse and started blending in an unrelated anomaly-detection
+method ("isolation forest") into an answer about forecasting methods.
+
+**Why it failed**: Qwen2.5-1.5B-Instruct under greedy decoding does not
+reliably follow an additional directive buried in a growing numbered rule
+list — it kept reproducing the same opening sentence from its
+highest-scored context chunk regardless of the new instruction, while the
+instruction's side effects (pushing toward terser, more "direct-sounding"
+phrasing) trimmed genuinely relevant detail from otherwise-good answers.
+This is evidence that prompt-only nudges have limited leverage over this
+model's tendency to anchor on and paraphrase its top-ranked context chunk,
+and that Q7 specifically is bottlenecked more by what's retrieved than by
+how the prompt asks for it to be used.
+
+**Production decision**: **REJECTED and reverted**. `src/prompt_builder.py`
+and `evaluation/generation_results.json` are back to their pre-experiment
+state (confirmed via `git diff` — no changes). No net improvement, and a
+clear regression across the benchmark. The Q7 failure mode looks primarily
+retrieval-driven (missing ground-truth chunks) rather than
+prompt-driven, which should inform Task 3's retrieval-quality work rather
+than further prompt patches in isolation.

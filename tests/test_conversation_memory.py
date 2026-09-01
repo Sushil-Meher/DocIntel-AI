@@ -144,16 +144,12 @@ class SessionResetTests(unittest.TestCase):
 
             self.assertEqual(at.session_state.chat_history, [])
 
-            at.text_input[0].set_value("What is A about?")
-            at.run()
-            at.button[0].click()
+            at.chat_input[0].set_value("What is A about?")
             at.run()
 
             self.assertEqual(len(at.session_state.chat_history), 1)
 
-            at.text_input[0].set_value("What else does it cover?")
-            at.run()
-            at.button[0].click()
+            at.chat_input[0].set_value("What else does it cover?")
             at.run()
 
             self.assertEqual(len(at.session_state.chat_history), 2)
@@ -169,9 +165,7 @@ class SessionResetTests(unittest.TestCase):
 
             self.assertEqual(at.session_state.chat_history, [])
 
-            at.text_input[0].set_value("What is B about?")
-            at.run()
-            at.button[0].click()
+            at.chat_input[0].set_value("What is B about?")
             at.run()
 
             self.assertEqual(len(at.session_state.chat_history), 1)

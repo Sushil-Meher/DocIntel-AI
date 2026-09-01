@@ -859,3 +859,106 @@ improvement.
 
 **Decision**: **KEEP**. No resume-worthy metric - this is a UX/correctness
 change, not a measured improvement, and none is claimed.
+
+---
+
+## Task 8 — Streamlit UI Polish
+
+**Date**: 2026-09-02
+
+Purpose: make `app.py` feel like a small polished RAG product rather than
+a raw prototype, without touching any RAG behavior. No retrieval or
+generation code was modified.
+
+**Files changed**: `app.py`, `tests/test_conversation_memory.py`,
+`tests/test_provenance.py` (both updated for the new chat-input
+interaction, not for behavior changes), `tests/test_ui_polish.py` (new).
+
+**Inspection first**: several of the requested UI goals already existed
+adequately (title/header, sidebar ingestion area, processing spinners,
+empty-state message) and were left alone or only lightly touched.  Two
+real gaps were found:
+- The PDF ingestion path had **no exception handling at all** (only the
+  website path did) - an invalid/corrupt PDF would crash the whole script
+  with a raw traceback instead of the clean `st.sidebar.error(...)` the
+  website path already produced for the same class of failure.
+- Historical chat turns never carried their `sources` - only the answer
+  that was *just* generated showed citations; re-rendered history on a
+  later rerun showed plain text with no provenance at all.
+
+**UI changes**:
+- Replaced the manual `st.text_input` + `st.button("Ask")` pattern with
+  Streamlit's native `st.chat_input`/`st.chat_message` for the Q&A flow
+  (Streamlit 1.62, already installed, supports both; confirmed
+  `streamlit.testing.v1.AppTest` supports testing them before committing
+  to the change). User and assistant turns now render as chat bubbles;
+  `st.chat_input` submits on Enter and clears itself, removing the old
+  "please enter a question" empty-string check as dead code.
+- Added the missing `except Exception as e: st.sidebar.error(f"Error:
+  {e}")` to the PDF path, mirroring the website path exactly and reusing
+  whatever message `ingest_pdf`/`load_pdf` raises - no ingestion code
+  changed.
+- Made the temp-file cleanup in the PDF path best-effort
+  (`try/except OSError: pass` around `os.remove`) rather than letting a
+  transient Windows file-lock crash an otherwise-successful upload -
+  this is temp-file lifecycle management in `app.py`, not a change to
+  ingestion error-handling logic.
+- Restructured the "current source" line into a bordered `st.container()`
+  showing source type, name, and "Status: Ready" as separate lines,
+  matching the task's example format.
+- `chat_history` entries now also store `sources` (still exactly the
+  dicts `Answer.sources`/`build_sources()` already produced - no new
+  provenance logic, no duplication of `build_sources()`), so every
+  historical turn shows its own citations, not just the newest one.
+  `format_source()` is a small presentation-only helper (string
+  formatting of an already-built dict), used for both the newest answer
+  and history replay so the two code paths can't drift apart.
+- Title/caption tightened to "📚 DocIntel AI" / "Ask questions about your
+  PDFs and websites." per the task's example wording. Project/repo name
+  intentionally left as DocIntel-AI, per the task's explicit instruction
+  not to rename yet.
+
+**Tests** (`tests/test_ui_polish.py`, `unittest`, `streamlit.testing.v1.
+AppTest`, ingestion and `answer_question` mocked - no network, no model
+download needed for these 7):
+
+| Test | Proves |
+|---|---|
+| `test_no_document_loaded_shows_helpful_message_and_no_chat_input` | empty state: info message shown, no chat input rendered, no exception |
+| `test_pdf_ingestion_shows_current_source_status` | PDF upload -> "PDF: a.pdf" / "Status: Ready" |
+| `test_website_ingestion_shows_current_source_status` | website processed -> "Website: <url>" / "Status: Ready" |
+| `test_assistant_message_shows_answer_text_not_the_object` | rendered markdown contains the answer text, never the dataclass repr (`Answer(text=...`, `sources=...`) |
+| `test_sources_rendered_from_answer_sources` | a source dict on `Answer.sources` renders as an expected bullet |
+| `test_rejected_question_shows_clear_message_no_sources` | a refused answer shows its message clearly with no Sources section |
+| `test_switching_source_resets_conversation_history` | processing a second website resets `chat_history` to `[]` |
+
+Existing `AppTest`-based tests from Tasks 6 and 7 were updated to interact
+via `at.chat_input[0].set_value(...)` instead of `at.text_input[0]` +
+`at.button[0]` (the underlying Q&A widget changed), and the two provenance
+UI assertions were updated from `"### Sources"` to `"**Sources**"` to
+match the new heading style. No assertions about the underlying
+behavior (history reset, isolation, provenance content) were changed -
+only how the test drives the now-different widget.
+
+**Regression check**:
+
+```
+Ran 34 tests in ~14s (7 new Task 8 tests + 27 existing from Tasks 4-7)
+OK
+```
+
+Re-ran `evaluate_retrieval.py` and `evaluate_generation.py` and diffed
+output byte-for-byte against pre-Task-8 versions:
+
+```
+evaluation/results.json: IDENTICAL
+evaluation/generation_results.json: IDENTICAL
+```
+
+recall@1/3/5/8/10 (0.500/0.900/0.900/1.000/1.000) and average keyword
+coverage/semantic similarity (0.757/0.787) match Experiment 7 exactly, as
+expected - no retrieval or generation code was touched. Not claimed as an
+improvement.
+
+**Decision**: **KEEP**. No resume-worthy metric - this is a UI/UX task,
+not a measured improvement, and none is claimed.

@@ -16,7 +16,17 @@ st.set_page_config(
 
 
 st.title("📚 DocIntel AI")
-st.subheader("Ask questions about your documents or company website")
+st.caption("Ask questions about your PDFs and websites.")
+
+
+def format_source(source):
+    if source["source_type"] == "Website":
+        return source["source"]
+
+    if "page" in source:
+        return f"Page {source['page']} — {source['source']}"
+
+    return source["source"]
 
 
 if "index" not in st.session_state:
@@ -76,10 +86,20 @@ if source_type == "Upload PDF":
 
                     st.sidebar.success("PDF processed successfully!")
 
+                except Exception as e:
+
+                    st.sidebar.error(f"Error: {e}")
+
                 finally:
 
-                    if os.path.exists(temp_path):
-                        os.remove(temp_path)
+                    # Best-effort cleanup - on Windows the temp file can
+                    # briefly stay locked, which shouldn't fail an
+                    # otherwise-successful upload.
+                    try:
+                        if os.path.exists(temp_path):
+                            os.remove(temp_path)
+                    except OSError:
+                        pass
 
 
 else:
@@ -120,65 +140,64 @@ st.divider()
 
 if st.session_state.index is not None:
 
-    st.success(
-        f"Currently using ({st.session_state.source_type}): "
-        f"{st.session_state.source}"
-    )
+    with st.container(border=True):
+        st.markdown("**Current source**")
+        st.markdown(f"{st.session_state.source_type}: {st.session_state.source}")
+        st.markdown("Status: Ready")
+
     st.caption(
         "Conversation history is scoped to this document - "
         "processing a new PDF or website starts a fresh conversation."
     )
 
     for turn in st.session_state.chat_history:
-        st.markdown(f"**You:** {turn['question']}")
-        st.markdown(f"**Assistant:** {turn['answer']}")
 
-    query = st.text_input(
-        "Ask a question",
-        placeholder="What are the most important points in the company policy?"
-    )
+        with st.chat_message("user"):
+            st.write(turn["question"])
 
-    if st.button("Ask"):
+        with st.chat_message("assistant"):
+            st.write(turn["answer"])
 
-        if not query.strip():
+            if turn.get("sources"):
+                st.markdown("**Sources**")
+                for source in turn["sources"]:
+                    st.markdown(f"- {format_source(source)}")
 
-            st.warning("Please enter a question.")
+    query = st.chat_input("Ask a question about the current document")
 
-        else:
+    if query:
 
-            with st.spinner("Thinking..."):
+        with st.chat_message("user"):
+            st.write(query)
 
-                answer = answer_question(
-                    query,
-                    st.session_state.index,
-                    st.session_state.chunks,
-                    history=st.session_state.chat_history
-                )
+        with st.spinner("Thinking..."):
 
-            st.session_state.chat_history.append(
-                {"question": query, "answer": answer.text}
+            answer = answer_question(
+                query,
+                st.session_state.index,
+                st.session_state.chunks,
+                history=st.session_state.chat_history
             )
 
-            st.markdown("### Answer")
+        with st.chat_message("assistant"):
             st.write(answer.text)
 
             if answer.sources:
-
-                st.markdown("### Sources")
-
+                st.markdown("**Sources**")
                 for source in answer.sources:
+                    st.markdown(f"- {format_source(source)}")
 
-                    if source["source_type"] == "Website":
-                        st.markdown(f"- {source['source']}")
-
-                    elif "page" in source:
-                        st.markdown(f"- Page {source['page']} — {source['source']}")
-
-                    else:
-                        st.markdown(f"- {source['source']}")
+        st.session_state.chat_history.append(
+            {
+                "question": query,
+                "answer": answer.text,
+                "sources": answer.sources
+            }
+        )
 
 else:
 
     st.info(
-        "Upload a PDF or enter a company website to get started."
+        "Upload a PDF or enter a company website URL in the sidebar "
+        "to get started."
     )

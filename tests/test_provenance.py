@@ -170,15 +170,13 @@ class SourcesRenderingTests(unittest.TestCase):
             at.run()
             at.sidebar.button[0].click()
             at.run()
-            at.text_input[0].set_value("What does it say?")
-            at.run()
-            at.button[0].click()
+            at.chat_input[0].set_value("What does it say?")
             at.run()
 
         self.assertEqual(at.exception.len, 0)
 
         rendered = [m.value for m in at.markdown]
-        self.assertIn("### Sources", rendered)
+        self.assertIn("**Sources**", rendered)
         self.assertIn("- Page 3 — report.pdf", rendered)
         self.assertIn("- https://example.com/page", rendered)
 
@@ -199,13 +197,11 @@ class SourcesRenderingTests(unittest.TestCase):
             at.run()
             at.sidebar.button[0].click()
             at.run()
-            at.text_input[0].set_value("What is the capital of France?")
-            at.run()
-            at.button[0].click()
+            at.chat_input[0].set_value("What is the capital of France?")
             at.run()
 
         rendered = [m.value for m in at.markdown]
-        self.assertNotIn("### Sources", rendered)
+        self.assertNotIn("**Sources**", rendered)
 
 
 if __name__ == "__main__":

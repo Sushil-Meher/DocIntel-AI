@@ -22,6 +22,10 @@ artifacts/*.index
 # Environment variables / secrets
 .env
 .env.*
+!.env.example
+
+# Streamlit local config/secrets
+.streamlit/
 
 # OS files
 .DS_Store

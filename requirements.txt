@@ -1,5 +1,9 @@
-pymupdf
-sentence-transformers
-faiss-cpu
-requests
-beautifulsoup4
+pymupdf>=1.28
+sentence-transformers>=5.7
+faiss-cpu>=1.15
+requests>=2.34
+beautifulsoup4>=4.15
+transformers>=5.14
+torch>=2.13
+streamlit>=1.62
+numpy>=2.5

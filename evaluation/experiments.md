@@ -962,3 +962,124 @@ improvement.
 
 **Decision**: **KEEP**. No resume-worthy metric - this is a UI/UX task,
 not a measured improvement, and none is claimed.
+
+---
+
+### Task 9 — Deployment Readiness & Reproducibility
+
+**Date**: 2026-09-02
+
+Purpose: make the project reproducible and deployment-ready without
+touching any RAG behavior. No retrieval, embedding, chunking, threshold,
+top_k, generation model, prompt, memory, or provenance code was changed.
+
+**Files changed**: `src/generator.py`, `requirements.txt`, `.gitignore`,
+`.env.example` (new), `README.md`, `tests/test_deployment_readiness.py`
+(new).
+
+**Dependencies**: `requirements.txt` was missing three packages the
+application directly imports - `transformers` (`src/generator.py`),
+`torch` (needed directly after this task's device-selection fix), and
+`streamlit` (`app.py`) - a gap already flagged back in the very first
+inspection of this project and left unaddressed until now. Also added
+`numpy`, imported directly by `src/embedding.py`/`src/vector_store.py`/
+`src/retriever.py` rather than only relied on transitively. Added `>=`
+version floors (based on the versions actually installed and working in
+this environment) to all nine packages, rather than leaving them fully
+unpinned - a bare `pip install -r requirements.txt` with no floor at all
+could silently pull an incompatible future major version months from
+now. Deliberately not exact-pinned (`==`), and the installed `torch`
+build tag (`+cu126`, a CUDA-specific local version) was stripped from
+the constraint - keeping it would have made the file fail to resolve on
+a CPU-only deployment target entirely.
+
+**Portability (the actual deployment-breaking bug found)**:
+`src/generator.py` hard-coded `device=0` in the `pipeline(...)` call,
+assuming a CUDA GPU. That's a real, concrete assumption that only holds
+on the dev machine - most free/low-cost Streamlit hosting targets are
+CPU-only, and this would have crashed generation entirely on any of
+them. Fixed with `device = 0 if torch.cuda.is_available() else -1`,
+verified to still select GPU 0 and produce identical output on this
+machine (no behavior change here, only on a GPU-less target). Searched
+the full repo for hard-coded Windows paths, secrets, and other
+machine-specific assumptions - found none beyond this one.
+
+**Write locations**: confirmed the live Streamlit app still only uses
+session-scoped in-memory `index`/`chunks` per Task 4 - `ingest_pdf`/
+`ingest_url` write no shared file, and nothing in this task reintroduced
+one. The one upload-side write is the OS temp directory (outside the
+repo, standard practice), whose best-effort cleanup was already made
+tolerant of Windows file-lock timing in Task 8.
+
+**Configuration/secrets**: no code reads any environment variable today
+(confirmed - no `os.environ`/`getenv` usage anywhere). The only
+deployment-relevant configuration knob is the optional `HF_TOKEN`
+Hugging Face Hub reads automatically to raise anonymous rate limits on
+model downloads; documented in a new `.env.example` with an empty
+placeholder value. Found and fixed a real footgun while adding it: the
+existing `.gitignore` rule `.env.*` would have silently swallowed
+`.env.example` itself (matching literally any `.env.` prefix), so it was
+never committed - added `!.env.example` to un-ignore it, and `.streamlit/`
+(where a local `secrets.toml` would live) to the ignore list, since none
+of that existed to guard against before.
+
+**Reproducibility gap documented, not silently "fixed" by committing more
+binaries**: `evaluation/artifacts/chunk100.index`/`chunk100_chunks.pkl`
+(what `evaluate_retrieval.py`/`evaluate_generation.py` actually read, and
+where every recorded metric in this log comes from) are gitignored and
+were never committed - only `baseline.index`/`baseline_chunks.pkl` are
+tracked, an existing inconsistency this task didn't need to resolve.
+The source they're built from, `evaluation/corpus.pdf`, **is** tracked,
+so they're fully reproducible by running `evaluation/
+build_chunking_experiment.py` once - documented in the new README setup
+section rather than adding more binary artifacts to the repository.
+Separately, `data/Artificial-Intelligence report.pdf` (used only by
+`src/rag.py`'s standalone `__main__` demo and two legacy evaluation
+scripts, `evaluate_negative_thresholds.py`/`inspect_scores.py` - none of
+which the live app touches) is gitignored and not tracked; noted as a
+known limitation of those specific scripts rather than fixed, since doing
+so would mean either committing a PDF of unclear provenance or rewiring
+evaluation scripts, both out of this task's scope.
+
+**README**: added a "Local Setup" section (Python version, venv creation,
+`pip install`, `streamlit run app.py`, first-run model download/cache
+behavior, how to use the PDF/website workflows, where evaluation scripts
+live and how to regenerate their artifacts). Left the rest of the README
+untouched per the task's instruction that Task 11 owns the full rewrite.
+Also closed a pre-existing unclosed ` ```text ` code fence in the
+architecture diagram while editing this exact spot.
+
+**Tests** (`tests/test_deployment_readiness.py`, `unittest`, no network,
+no model download - only one of the six needs `AppTest`/a model load at
+all):
+
+| Test | Proves |
+|---|---|
+| `test_generator_does_not_hardcode_gpu_device` | regression guard against reintroducing `device=0` |
+| `test_no_hardcoded_windows_drive_paths_in_source` | no `X:\` path anywhere in `src/`/`app.py` |
+| `test_rag_module_does_not_load_artifacts_at_import_time` | regression guard for the Task 4 fix - no `load_index`/`load_chunks` outside `__main__` |
+| `test_all_imported_third_party_packages_are_declared` | every third-party import actually used in `src/`/`app.py` has a matching `requirements.txt` entry |
+| `test_env_example_has_no_real_looking_secret` | `.env.example` only has placeholder (empty) values |
+| `test_pdf_upload_survives_temp_file_cleanup_failure` | (`AppTest`) a `PermissionError` during temp-file cleanup doesn't crash a successful upload |
+
+**Regression check**:
+
+```
+Ran 40 tests in ~14s (6 new Task 9 tests + 34 existing from Tasks 4-8)
+OK
+```
+
+Re-ran `evaluate_retrieval.py` and `evaluate_generation.py` and diffed
+output byte-for-byte against pre-Task-9 versions:
+
+```
+evaluation/results.json: IDENTICAL
+evaluation/generation_results.json: IDENTICAL
+```
+
+Recall@1/3/5/8/10 = 0.500/0.900/0.900/1.000/1.000 and average keyword
+coverage/semantic similarity = 0.757/0.787, exactly matching Experiment
+7's recorded values - **unchanged**, as expected. Not claimed as a
+performance improvement; this was a reproducibility/deployment task.
+
+**Decision**: **KEEP**. No resume-worthy metric.

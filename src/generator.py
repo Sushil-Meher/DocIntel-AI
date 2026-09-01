@@ -1,10 +1,16 @@
+import torch
 from transformers import pipeline
 
+
+# Hard-coding GPU index 0 here would assume a CUDA GPU, which only
+# exists on the dev machine - most deployment targets are CPU-only,
+# so pick whatever is actually available.
+device = 0 if torch.cuda.is_available() else -1
 
 generator = pipeline(
     "text-generation",
     model="Qwen/Qwen2.5-1.5B-Instruct",
-    device=0
+    device=device
 )
 
 # The pipeline builds its own merged generation_config with a leftover

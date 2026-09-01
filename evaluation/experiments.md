@@ -1361,3 +1361,81 @@ it.
 
 **Resume-worthy metric**: none - this is a visual/UX task, not a
 performance change.
+
+---
+
+### Task 11 — Professional Final README & Documentation
+
+**Date**: 2026-09-02
+
+Documentation only. No application code was modified - confirmed via
+`git status` showing only `README.md` changed (plus the perennial,
+unrelated `src/__pycache__/*.pyc` noise from running the test suite).
+
+**What changed**: rewrote `README.md` from scratch, replacing the old
+"Phase 1 / Phase 2" checklist-style draft (which described a FastAPI
+backend that was never built and undersold the project as "basic
+testing" against what is now a 50-test suite) with structured technical
+documentation: Overview, Features, Architecture, Tech Stack, How It
+Works, Evaluation, Experiments, Limitations, Project Structure, Setup,
+Usage, Configuration, Testing, Future Work.
+
+Every claim was checked against the actual repository before writing it
+down, not asserted from memory:
+- All metric values (historical and expanded, retrieval and generation,
+  negative-rejection) were re-read directly from `evaluation/results.json`,
+  `generation_results.json`, `expanded_results.json`,
+  `expanded_generation_results.json`, and `expanded_negative_results.json`
+  rather than transcribed from a prior summary.
+- The project tree in "Project Structure" was built from an actual
+  directory listing, not the illustrative example in the task prompt.
+- The test count (50) and file count (7) came from actually running the
+  suite, not an assumed number.
+- The "Testing" section documents the real command,
+  `python -m unittest discover -s tests` - the task prompt's suggested
+  `pytest` would have been factually wrong, since this project
+  deliberately uses only the standard library's `unittest` (a choice
+  made explicitly in Task 4 to avoid adding a test-framework dependency).
+- The experiment summary table includes only experiments with an actual
+  recorded result in this log (baseline, threshold calibration,
+  reranking, the rejected Q7 prompt change, the semantic-similarity
+  metric, and candidate depth 5→10). The task prompt's example list also
+  mentioned "cosine similarity vs. FAISS IP" and "chunking 50/10 vs.
+  100/20" as expected table rows; `evaluation/experiments.md` was
+  searched for either and neither has ever been run with a recorded,
+  reproducible comparison in this project's history (`build_cosine.py`
+  exists as a script but was never evaluated against a benchmark) - so
+  they were left out rather than inventing numbers for them.
+- Reranking and the prompt-only Q7 change are explicitly labeled
+  rejected/experiment-only, not part of the deployed path.
+- The "important finding" (0/12 negative rejection on the expanded,
+  realistic negative set vs. 5/5 on the trivial historical set) is
+  reported prominently, in the Evaluation section itself, not buried -
+  matching the project's own established practice of surfacing negative
+  results rather than hiding them.
+- Project name kept as "DocIntel-AI" throughout; "RAGForge AI" (already
+  the Streamlit page title as of Task 10.5) does not appear anywhere in
+  the README, per this task's explicit scope.
+- No screenshots or demo link were added - neither exists, and the task
+  is explicit that a missing one is preferable to a fabricated one.
+
+**Validation performed before committing**: markdown code fences counted
+even (10, i.e. 5 balanced pairs); 22 headings confirmed hierarchical;
+grepped for `RAGForge`, marketing buzzwords ("revolutionary",
+"cutting-edge", "next-generation", "state-of-the-art", etc.), local
+machine paths (`D:\`, `C:\`, `/home/`, `/Users/`), and secret-shaped
+strings - all zero matches; every metric in the README cross-checked
+against the actual JSON result files.
+
+**Test result**:
+
+```
+Ran 50 tests in ~14s (unchanged from Task 10.5 - documentation cannot
+change test behavior)
+OK
+```
+
+**Decision**: **KEEP**.
+
+**Resume-worthy metric**: none - this is a documentation task. No new
+metric was measured or claimed.

@@ -9,53 +9,56 @@
     {
         "question": "What water-quality variables are identified as inputs to the project?",
         "relevant_chunks": [
-            {"page": 1, "chunk_id": 5},
-            {"page": 1, "chunk_id": 6}
+            {"page": 1, "chunk_id": 2},
+            {"page": 1, "chunk_id": 3}
         ],
-        "expected_answer": "The identified inputs include timestamped temperature, pH, dissolved oxygen, pressure, and other available water-quality variables."
+        "expected_answer": "The identified inputs include timestamped temperature, pH, dissolved oxygen, pressure, and available related water-quality variables."
     },
     {
         "question": "What risks should be checked during dataset quality assessment?",
         "relevant_chunks": [
-            {"page": 2, "chunk_id": 3}
+            {"page": 2, "chunk_id": 1}
         ],
         "expected_answer": "The assessment should consider missing data, annotation issues, imbalance, temporal risks, and leakage risks."
     },
     {
         "question": "What methods are proposed for anomaly detection?",
         "relevant_chunks": [
-            {"page": 4, "chunk_id": 3}
+            {"page": 2, "chunk_id": 0},
+            {"page": 4, "chunk_id": 1}
         ],
         "expected_answer": "The proposed methods include a simple statistical or rule-based anomaly baseline and Isolation Forest or a comparable machine-learning anomaly detector."
     },
     {
         "question": "What forecasting methods are proposed?",
         "relevant_chunks": [
-            {"page": 4, "chunk_id": 4}
+            {"page": 4, "chunk_id": 2}
         ],
         "expected_answer": "The proposed forecasting methods include persistence, simple regression, Random Forest, and XGBoost or comparable models."
     },
     {
         "question": "What metrics are suggested for forecasting evaluation?",
         "relevant_chunks": [
-            {"page": 2, "chunk_id": 4},
-            {"page": 2, "chunk_id": 5},
-            {"page": 4, "chunk_id": 4}
+            {"page": 2, "chunk_id": 2},
+            {"page": 4, "chunk_id": 2},
+            {"page": 5, "chunk_id": 0}
         ],
         "expected_answer": "MAE and RMSE are suggested for forecasting evaluation."
     },
     {
         "question": "What is required for the temporal train, validation, and test split?",
         "relevant_chunks": [
-            {"page": 3, "chunk_id": 3}
+            {"page": 2, "chunk_id": 1},
+            {"page": 3, "chunk_id": 1},
+            {"page": 3, "chunk_id": 2}
         ],
-        "expected_answer": "The split should be chronological and should preserve the temporal ordering of the data."
+        "expected_answer": "The train, validation, and test split should be chronological and preserve the temporal ordering of the data."
     },
     {
         "question": "What activities are included in the project-specific robustness or ablation study?",
         "relevant_chunks": [
-            {"page": 5, "chunk_id": 3},
-            {"page": 5, "chunk_id": 4}
+            {"page": 5, "chunk_id": 1},
+            {"page": 5, "chunk_id": 2}
         ],
         "expected_answer": "The study includes sensor or feature ablation, chronological validation, dashboard-style monitoring visualisation, evaluation across relevant conditions or component variants, and quantifying the effect of the tested change."
     },
@@ -65,13 +68,13 @@
             {"page": 6, "chunk_id": 0},
             {"page": 6, "chunk_id": 1}
         ],
-        "expected_answer": "The final method is selected using validation evidence, robustness, and simplicity; preprocessing, splits, and evaluation methodology are frozen; final model and pipeline artefacts are saved; and the technical selection rationale is documented."
+        "expected_answer": "The final method is selected using validation evidence, robustness, and appropriate simplicity; preprocessing, splits, and evaluation methodology are frozen; final model and pipeline artefacts are saved; and the technical selection rationale is documented."
     },
     {
         "question": "What are the mandatory final submission deliverables?",
         "relevant_chunks": [
-            {"page": 7, "chunk_id": 2}
+            {"page": 7, "chunk_id": 1}
         ],
-        "expected_answer": "The mandatory deliverables include the problem understanding and literature review, dataset quality report, preprocessing and EDA notebook, feature or representation preparation notebook, baseline and advanced method work, experiment and comparison materials, robustness or error analysis, final software pipeline and artefacts, a clean source-code repository with README, the final project report, and the final presentation."
+        "expected_answer": "The mandatory deliverables include the Problem Understanding Note and Literature Review, Dataset Understanding/Quality Report, Preprocessing/EDA Notebook, Feature/Representation Preparation Notebook, Baseline Model/Method Notebook, Advanced Model/Method Experiments, Model/Method Comparison and Experiment Log, Project-Specific Robustness/Ablation/Error Analysis, Final Model/Software Pipeline and Output Artefacts, Clean Source-Code Repository with README, Final Individual Project Report, and Final Individual Presentation."
     }
 ]

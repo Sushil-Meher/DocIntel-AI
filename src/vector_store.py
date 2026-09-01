@@ -19,7 +19,7 @@ def create_index(chunks):
 
     dimension = vectors.shape[1]
 
-    index = faiss.IndexFlatL2(dimension)
+    index = faiss.IndexFlatIP(dimension)
 
     index.add(vectors)
 

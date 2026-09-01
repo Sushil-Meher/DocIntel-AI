@@ -36,15 +36,15 @@ def chunk_key(result: dict) -> tuple:
 def evaluate_retrieval():
 
     questions = load_questions(
-        "evaluation/questions.json"
+        "evaluation/questions_chunk100.json"
     )
 
     index = load_index(
-        "evaluation/artifacts/baseline.index"
+        "evaluation/artifacts/chunk100.index"
     )
 
     chunks = load_chunks(
-        "evaluation/artifacts/baseline_chunks.pkl"
+        "evaluation/artifacts/chunk100_chunks.pkl"
     )
 
     metrics = {}
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     results = evaluate_retrieval()
 
     print()
-    print("RAG RETRIEVAL BASELINE")
+    print("RAG RETRIEVAL EVALUATION")
     print("=" * 35)
 
     for metric, value in results.items():

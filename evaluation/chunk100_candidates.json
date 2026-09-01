@@ -1,0 +1,907 @@
+[
+    {
+        "question_number": 1,
+        "question": "What is the main objective of the project?",
+        "candidates": [
+            {
+                "score": 17,
+                "page": 1,
+                "chunk_id": 0,
+                "matches": [
+                    "ai",
+                    "an",
+                    "and",
+                    "based",
+                    "changes",
+                    "detect",
+                    "environmental",
+                    "model",
+                    "parameters",
+                    "predict",
+                    "project",
+                    "quality",
+                    "the",
+                    "to",
+                    "underwater",
+                    "using",
+                    "water"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 1 4-Week Daily Internship Workflow Development of an AI-Based Model to Detect and Predict Underwater Environmental Changes Using Water Quality Parameters MODE DURATION INTERN DISCUSSION MENTOR REVIEW Online / Individual Execution 4 Weeks / 28 Days Every 2 Days Every 3 Days Mandatory Individual Execution Every intern must complete the entire project independently from scratch. Work must not be divided among team members. Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions"
+            },
+            {
+                "score": 8,
+                "page": 1,
+                "chunk_id": 3,
+                "matches": [
+                    "ai",
+                    "and",
+                    "environmental",
+                    "quality",
+                    "the",
+                    "to",
+                    "underwater",
+                    "water"
+                ],
+                "text": "temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter values). • Draw the end-to-end software pipeline and define success criteria. • Prepare at least 8 technical questions or assumptions requiring clarification. Problem Understanding Note; pipeline diagram; questions list — 2 Literature Review - Domain + ML • Review the core domain concepts for AI / Machine Learning / IoT Data Analytics / Underwater Environmental Monitoring. • Study 6-10 closely related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1"
+            },
+            {
+                "score": 8,
+                "page": 7,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "changes",
+                    "environmental",
+                    "model",
+                    "project",
+                    "the",
+                    "to",
+                    "underwater"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 7 Day Focus Individual Tasks Daily Output Meeting • Freeze technical results after approved changes. 28 Peer Mock Presentation & Final Submission • Run the full individual presentation for the other interns without the mentor. • Test timing, clarity and ability to defend technical choices. • Verify repository links, dataset/model references and reproducibility. • Complete and submit the entire individual project package. Final report; final PPT; repository; model/pipeline; outputs; future scope Intern Discussion 14 / Mock Presentation Week Final | Individual Submission"
+            },
+            {
+                "score": 7,
+                "page": 5,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "environmental",
+                    "model",
+                    "project",
+                    "the",
+                    "underwater",
+                    "using"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 5 Day Focus Individual Tasks Daily Output Meeting • Save candidate model. 18 Model / Method Comparison + Mentor Review • Prepare one comparison table covering all methods built so far. • Compare performance using anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Discuss overfitting, data limitations, complexity and failure patterns. • Shortlist the strongest candidate(s) for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter"
+            },
+            {
+                "score": 7,
+                "page": 6,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "environmental",
+                    "model",
+                    "project",
+                    "the",
+                    "underwater",
+                    "using"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 6 Day Focus Individual Tasks Daily Output Meeting 22 Final Model / Pipeline Freeze • Select the final method using validation evidence, robustness and appropriate simplicity. • Freeze preprocessing, split and evaluation methodology. • Save final model/pipeline artefacts and outputs. • Document the technical selection rationale. Frozen final model/pipeline; reproducible artefacts Intern Discussion 11 23 Software Performance / Final Validation • Measure relevant runtime, inference/processing time and model size where applicable. • Run final validation on the held-out data using the frozen"
+            }
+        ]
+    },
+    {
+        "question_number": 2,
+        "question": "What water-quality variables are identified as inputs to the project?",
+        "candidates": [
+            {
+                "score": 13,
+                "page": 1,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "available",
+                    "dissolved",
+                    "inputs",
+                    "oxygen",
+                    "ph",
+                    "pressure",
+                    "quality",
+                    "temperature",
+                    "the",
+                    "timestamped",
+                    "variables",
+                    "water"
+                ],
+                "text": "days, the intern discussion happens first. Before each mentor review, every intern prepares a maximum 3-slide progress pack: (1) work completed, (2) results/findings, and (3) blockers + next 3-day plan. Week 1 | Problem Understanding, Research & Dataset Readiness Week 2 | Temporal Cleaning, EDA & Feature Engineering Day Focus Individual Tasks Daily Output Meeting 1 Problem Understanding & System Definition • Read the complete problem statement and rewrite it in your own technical words. • Identify the inputs (timestamped temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter"
+            },
+            {
+                "score": 11,
+                "page": 1,
+                "chunk_id": 3,
+                "matches": [
+                    "and",
+                    "available",
+                    "dissolved",
+                    "oxygen",
+                    "ph",
+                    "pressure",
+                    "quality",
+                    "temperature",
+                    "the",
+                    "variables",
+                    "water"
+                ],
+                "text": "temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter values). • Draw the end-to-end software pipeline and define success criteria. • Prepare at least 8 technical questions or assumptions requiring clarification. Problem Understanding Note; pipeline diagram; questions list — 2 Literature Review - Domain + ML • Review the core domain concepts for AI / Machine Learning / IoT Data Analytics / Underwater Environmental Monitoring. • Study 6-10 closely related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1"
+            },
+            {
+                "score": 4,
+                "page": 1,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "quality",
+                    "the",
+                    "water"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 1 4-Week Daily Internship Workflow Development of an AI-Based Model to Detect and Predict Underwater Environmental Changes Using Water Quality Parameters MODE DURATION INTERN DISCUSSION MENTOR REVIEW Online / Individual Execution 4 Weeks / 28 Days Every 2 Days Every 3 Days Mandatory Individual Execution Every intern must complete the entire project independently from scratch. Work must not be divided among team members. Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions"
+            },
+            {
+                "score": 3,
+                "page": 2,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "quality",
+                    "the"
+                ],
+                "text": "progress pack: completed work, findings, blockers and next plan. • Confirm target definition, dataset structure, metrics and scope with the mentor. • Record mentor decisions and update assumptions. 3-slide progress pack; revised research framing; mentor notes Mentor Review 1 4 Dataset Design & Quality Expectations • Define expected files/columns/labels/targets and important metadata before using the final dataset. • List likely missing-data, annotation, imbalance, temporal or leakage risks. • Define what a correct train/validation/test split should preserve. • Prepare a dataset-risk checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from"
+            },
+            {
+                "score": 3,
+                "page": 6,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "quality",
+                    "the"
+                ],
+                "text": "relevant runtime, inference/processing time and model size where applicable. • Run final validation on the held-out data using the frozen pipeline. • Compare final method against the strongest simple baseline. • Record accuracy/quality-versus-complexity trade- offs. Final-validation notebook; performance comparison — 24 Final Technical Review • Present the final method, validation results and remaining questions. • Show the reproducible input-to-output workflow. • Confirm final error-analysis and reporting requirements. • Record mentor corrections. 3-slide progress pack; final review; correction list Intern Discussion 12 + Mentor Review 8 25 Detailed Error / Failure Analysis • Inspect worst predictions/outputs individually. • Organise recurring errors"
+            }
+        ]
+    },
+    {
+        "question_number": 3,
+        "question": "What risks should be checked during dataset quality assessment?",
+        "candidates": [
+            {
+                "score": 10,
+                "page": 2,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "annotation",
+                    "data",
+                    "imbalance",
+                    "leakage",
+                    "missing",
+                    "risks",
+                    "should",
+                    "temporal",
+                    "the"
+                ],
+                "text": "progress pack: completed work, findings, blockers and next plan. • Confirm target definition, dataset structure, metrics and scope with the mentor. • Record mentor decisions and update assumptions. 3-slide progress pack; revised research framing; mentor notes Mentor Review 1 4 Dataset Design & Quality Expectations • Define expected files/columns/labels/targets and important metadata before using the final dataset. • List likely missing-data, annotation, imbalance, temporal or leakage risks. • Define what a correct train/validation/test split should preserve. • Prepare a dataset-risk checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from"
+            },
+            {
+                "score": 6,
+                "page": 3,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "data",
+                    "leakage",
+                    "missing",
+                    "risks",
+                    "temporal"
+                ],
+                "text": "Cleaning, EDA & Feature Engineering Week 3 | Anomaly Detection & Forecasting Experiments Day Focus Individual Tasks Daily Output Meeting 8 Temporal Data Quality • Audit timestamps, missing intervals, duplicates, invalid sensor ranges and irregular sampling. • Create a sensor-wise data-quality table. • Identify drift/gaps and leakage risks. • Propose cleaning/resampling rules. Sensor data-quality table; cleaning/resampling plan Intern Discussion 4 9 Temporal Cleaning Review • Present timestamp/data-quality findings. • Confirm missing-data and resampling strategy. • Define chronological train/validation/test splits. • Freeze approved cleaning plan. 3-slide progress pack; approved temporal split Mentor Review 3 10 Environmental EDA • Plot sensor trends,"
+            },
+            {
+                "score": 4,
+                "page": 3,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "data",
+                    "missing",
+                    "the"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 3 Day Focus Individual Tasks Daily Output Meeting 7 Dataset Receipt & Initial Inspection • Preserve an untouched raw copy of the supplied dataset. • Inspect files/rows/images/videos/sequences, labels/targets and metadata. • Check missing/invalid data, duplicates, class/target coverage and obvious inconsistencies. • Generate first-look statistics or visualisations without irreversible cleaning. Raw-data archive; initial inspection notebook; preliminary dataset report — Week 2 | Data Cleaning, EDA & Feature Engineering Week 3 | Anomaly Detection & Forecasting Experiments Day Focus Individual Tasks Daily Output Meeting"
+            },
+            {
+                "score": 3,
+                "page": 1,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "temporal",
+                    "the"
+                ],
+                "text": "days, the intern discussion happens first. Before each mentor review, every intern prepares a maximum 3-slide progress pack: (1) work completed, (2) results/findings, and (3) blockers + next 3-day plan. Week 1 | Problem Understanding, Research & Dataset Readiness Week 2 | Temporal Cleaning, EDA & Feature Engineering Day Focus Individual Tasks Daily Output Meeting 1 Problem Understanding & System Definition • Read the complete problem statement and rewrite it in your own technical words. • Identify the inputs (timestamped temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter"
+            },
+            {
+                "score": 3,
+                "page": 1,
+                "chunk_id": 3,
+                "matches": [
+                    "and",
+                    "data",
+                    "the"
+                ],
+                "text": "temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter values). • Draw the end-to-end software pipeline and define success criteria. • Prepare at least 8 technical questions or assumptions requiring clarification. Problem Understanding Note; pipeline diagram; questions list — 2 Literature Review - Domain + ML • Review the core domain concepts for AI / Machine Learning / IoT Data Analytics / Underwater Environmental Monitoring. • Study 6-10 closely related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1"
+            }
+        ]
+    },
+    {
+        "question_number": 4,
+        "question": "What methods are proposed for anomaly detection?",
+        "candidates": [
+            {
+                "score": 12,
+                "page": 2,
+                "chunk_id": 0,
+                "matches": [
+                    "a",
+                    "and",
+                    "anomaly",
+                    "baseline",
+                    "comparable",
+                    "detector",
+                    "forest",
+                    "isolation",
+                    "methods",
+                    "or",
+                    "statistical",
+                    "the"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 2 Day Focus Individual Tasks Daily Output Meeting • Prepare a paper/method comparison table with data, approach, metrics, results and limitations. • Shortlist candidate methods including statistical anomaly baseline; Isolation Forest or comparable detector; regression/Random Forest/XGBoost forecasting; sequence model only where justified. 3 Research Framing & Mentor Review • Refine the research question and measurable outputs. • Prepare a maximum 3-slide individual progress pack: completed work, findings, blockers and next plan. • Confirm target definition, dataset structure, metrics and scope with the"
+            },
+            {
+                "score": 12,
+                "page": 4,
+                "chunk_id": 1,
+                "matches": [
+                    "a",
+                    "and",
+                    "anomaly",
+                    "baseline",
+                    "comparable",
+                    "detector",
+                    "forest",
+                    "isolation",
+                    "or",
+                    "rule",
+                    "simple",
+                    "statistical"
+                ],
+                "text": "definitions. Feature-engineering notebook; feature comparison — 14 Week-2 Peer Consolidation • Compare EDA/anomaly hypotheses without code sharing. • Discuss temporal patterns and sensor quality. • Record one peer insight and one hypothesis. • Prepare Week-2 package. Week-2 package; peer insight; hypotheses Intern Discussion 7 Week 3 | Model Development & Comparative Experiments Week 4 | Integrated Monitoring Analysis & Final Output Day Focus Individual Tasks Daily Output Meeting 15 Anomaly Baseline + Mentor Review • Implement a simple statistical/rule anomaly baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy."
+            },
+            {
+                "score": 11,
+                "page": 4,
+                "chunk_id": 2,
+                "matches": [
+                    "a",
+                    "and",
+                    "anomaly",
+                    "baseline",
+                    "comparable",
+                    "detector",
+                    "forest",
+                    "isolation",
+                    "or",
+                    "simple",
+                    "the"
+                ],
+                "text": "baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy. Anomaly baseline notebook; anomaly plots Mentor Review 5 16 Forecasting Baselines • Build persistence/simple regression forecast baseline. • Train Random Forest/XGBoost or comparable model. • Evaluate MAE/RMSE on chronological holdout. • Plot predicted vs actual values. Forecast notebook; prediction plots; metrics Intern Discussion 8 17 Advanced Anomaly / Forecast Model • Train a stronger anomaly or sequence model only if justified. • Keep complexity proportionate to the dataset. • Track validation behaviour. Advanced-model notebook; candidate results —"
+            },
+            {
+                "score": 7,
+                "page": 1,
+                "chunk_id": 3,
+                "matches": [
+                    "and",
+                    "anomaly",
+                    "learning",
+                    "machine",
+                    "methods",
+                    "or",
+                    "the"
+                ],
+                "text": "temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter values). • Draw the end-to-end software pipeline and define success criteria. • Prepare at least 8 technical questions or assumptions requiring clarification. Problem Understanding Note; pipeline diagram; questions list — 2 Literature Review - Domain + ML • Review the core domain concepts for AI / Machine Learning / IoT Data Analytics / Underwater Environmental Monitoring. • Study 6-10 closely related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1"
+            },
+            {
+                "score": 7,
+                "page": 2,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "anomaly",
+                    "baseline",
+                    "methods",
+                    "or",
+                    "proposed",
+                    "the"
+                ],
+                "text": "checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from raw data to final evaluation. • Define baseline method, advanced methods and the project-specific experiment. • Set tentative evaluation criteria: anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Create experiment-log and repository/folder structure. Pipeline flowchart; experiment plan; log template; folder structure — 6 Pre-Dataset Readiness + Mentor Review • Complete literature, methodology and data-readiness package. • Present proposed preprocessing, modelling and evaluation plan. • Confirm split strategy, metrics and constraints with the mentor. •"
+            }
+        ]
+    },
+    {
+        "question_number": 5,
+        "question": "What forecasting methods are proposed?",
+        "candidates": [
+            {
+                "score": 11,
+                "page": 4,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "comparable",
+                    "forecasting",
+                    "forest",
+                    "or",
+                    "persistence",
+                    "random",
+                    "regression",
+                    "simple",
+                    "the",
+                    "xgboost"
+                ],
+                "text": "baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy. Anomaly baseline notebook; anomaly plots Mentor Review 5 16 Forecasting Baselines • Build persistence/simple regression forecast baseline. • Train Random Forest/XGBoost or comparable model. • Evaluate MAE/RMSE on chronological holdout. • Plot predicted vs actual values. Forecast notebook; prediction plots; metrics Intern Discussion 8 17 Advanced Anomaly / Forecast Model • Train a stronger anomaly or sequence model only if justified. • Keep complexity proportionate to the dataset. • Track validation behaviour. Advanced-model notebook; candidate results —"
+            },
+            {
+                "score": 10,
+                "page": 2,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "comparable",
+                    "forecasting",
+                    "forest",
+                    "methods",
+                    "or",
+                    "random",
+                    "regression",
+                    "the",
+                    "xgboost"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 2 Day Focus Individual Tasks Daily Output Meeting • Prepare a paper/method comparison table with data, approach, metrics, results and limitations. • Shortlist candidate methods including statistical anomaly baseline; Isolation Forest or comparable detector; regression/Random Forest/XGBoost forecasting; sequence model only where justified. 3 Research Framing & Mentor Review • Refine the research question and measurable outputs. • Prepare a maximum 3-slide individual progress pack: completed work, findings, blockers and next plan. • Confirm target definition, dataset structure, metrics and scope with the"
+            },
+            {
+                "score": 6,
+                "page": 2,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "forecasting",
+                    "methods",
+                    "or",
+                    "proposed",
+                    "the"
+                ],
+                "text": "checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from raw data to final evaluation. • Define baseline method, advanced methods and the project-specific experiment. • Set tentative evaluation criteria: anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Create experiment-log and repository/folder structure. Pipeline flowchart; experiment plan; log template; folder structure — 6 Pre-Dataset Readiness + Mentor Review • Complete literature, methodology and data-readiness package. • Present proposed preprocessing, modelling and evaluation plan. • Confirm split strategy, metrics and constraints with the mentor. •"
+            },
+            {
+                "score": 5,
+                "page": 4,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "comparable",
+                    "forest",
+                    "or",
+                    "simple"
+                ],
+                "text": "definitions. Feature-engineering notebook; feature comparison — 14 Week-2 Peer Consolidation • Compare EDA/anomaly hypotheses without code sharing. • Discuss temporal patterns and sensor quality. • Record one peer insight and one hypothesis. • Prepare Week-2 package. Week-2 package; peer insight; hypotheses Intern Discussion 7 Week 3 | Model Development & Comparative Experiments Week 4 | Integrated Monitoring Analysis & Final Output Day Focus Individual Tasks Daily Output Meeting 15 Anomaly Baseline + Mentor Review • Implement a simple statistical/rule anomaly baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy."
+            },
+            {
+                "score": 5,
+                "page": 5,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "forecasting",
+                    "methods",
+                    "or",
+                    "the"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 5 Day Focus Individual Tasks Daily Output Meeting • Save candidate model. 18 Model / Method Comparison + Mentor Review • Prepare one comparison table covering all methods built so far. • Compare performance using anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Discuss overfitting, data limitations, complexity and failure patterns. • Shortlist the strongest candidate(s) for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter"
+            }
+        ]
+    },
+    {
+        "question_number": 6,
+        "question": "What metrics are suggested for forecasting evaluation?",
+        "candidates": [
+            {
+                "score": 6,
+                "page": 2,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "evaluation",
+                    "for",
+                    "forecasting",
+                    "mae",
+                    "rmse"
+                ],
+                "text": "checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from raw data to final evaluation. • Define baseline method, advanced methods and the project-specific experiment. • Set tentative evaluation criteria: anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Create experiment-log and repository/folder structure. Pipeline flowchart; experiment plan; log template; folder structure — 6 Pre-Dataset Readiness + Mentor Review • Complete literature, methodology and data-readiness package. • Present proposed preprocessing, modelling and evaluation plan. • Confirm split strategy, metrics and constraints with the mentor. •"
+            },
+            {
+                "score": 5,
+                "page": 4,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "evaluation",
+                    "forecasting",
+                    "mae",
+                    "rmse"
+                ],
+                "text": "baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy. Anomaly baseline notebook; anomaly plots Mentor Review 5 16 Forecasting Baselines • Build persistence/simple regression forecast baseline. • Train Random Forest/XGBoost or comparable model. • Evaluate MAE/RMSE on chronological holdout. • Plot predicted vs actual values. Forecast notebook; prediction plots; metrics Intern Discussion 8 17 Advanced Anomaly / Forecast Model • Train a stronger anomaly or sequence model only if justified. • Keep complexity proportionate to the dataset. • Track validation behaviour. Advanced-model notebook; candidate results —"
+            },
+            {
+                "score": 5,
+                "page": 5,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "for",
+                    "forecasting",
+                    "mae",
+                    "rmse"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 5 Day Focus Individual Tasks Daily Output Meeting • Save candidate model. 18 Model / Method Comparison + Mentor Review • Prepare one comparison table covering all methods built so far. • Compare performance using anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Discuss overfitting, data limitations, complexity and failure patterns. • Shortlist the strongest candidate(s) for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter"
+            },
+            {
+                "score": 3,
+                "page": 1,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "are",
+                    "for"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 1 4-Week Daily Internship Workflow Development of an AI-Based Model to Detect and Predict Underwater Environmental Changes Using Water Quality Parameters MODE DURATION INTERN DISCUSSION MENTOR REVIEW Online / Individual Execution 4 Weeks / 28 Days Every 2 Days Every 3 Days Mandatory Individual Execution Every intern must complete the entire project independently from scratch. Work must not be divided among team members. Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions"
+            },
+            {
+                "score": 3,
+                "page": 1,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "are",
+                    "for"
+                ],
+                "text": "members. Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions remain individual. Dataset & Hardware Scope All required datasets will be provided before the end of Week 1. The mandatory project is software-only and no physical hardware integration or on-device deployment is required. Week 1 | Environmental Analytics & Dataset Readiness Meeting Protocol Intern-only group discussion: every 2 days (30-45 minutes). Mentor review: every 3 days (45-60 minutes). On overlap days, the intern discussion happens first. Before each mentor review, every intern prepares a maximum 3-slide progress pack: (1) work"
+            }
+        ]
+    },
+    {
+        "question_number": 7,
+        "question": "What is required for the temporal train, validation, and test split?",
+        "candidates": [
+            {
+                "score": 7,
+                "page": 2,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "data",
+                    "preserve",
+                    "should",
+                    "split",
+                    "temporal",
+                    "the"
+                ],
+                "text": "progress pack: completed work, findings, blockers and next plan. • Confirm target definition, dataset structure, metrics and scope with the mentor. • Record mentor decisions and update assumptions. 3-slide progress pack; revised research framing; mentor notes Mentor Review 1 4 Dataset Design & Quality Expectations • Define expected files/columns/labels/targets and important metadata before using the final dataset. • List likely missing-data, annotation, imbalance, temporal or leakage risks. • Define what a correct train/validation/test split should preserve. • Prepare a dataset-risk checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from"
+            },
+            {
+                "score": 5,
+                "page": 3,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "data",
+                    "of",
+                    "preserve",
+                    "the"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 3 Day Focus Individual Tasks Daily Output Meeting 7 Dataset Receipt & Initial Inspection • Preserve an untouched raw copy of the supplied dataset. • Inspect files/rows/images/videos/sequences, labels/targets and metadata. • Check missing/invalid data, duplicates, class/target coverage and obvious inconsistencies. • Generate first-look statistics or visualisations without irreversible cleaning. Raw-data archive; initial inspection notebook; preliminary dataset report — Week 2 | Data Cleaning, EDA & Feature Engineering Week 3 | Anomaly Detection & Forecasting Experiments Day Focus Individual Tasks Daily Output Meeting"
+            },
+            {
+                "score": 5,
+                "page": 3,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "chronological",
+                    "data",
+                    "split",
+                    "temporal"
+                ],
+                "text": "Cleaning, EDA & Feature Engineering Week 3 | Anomaly Detection & Forecasting Experiments Day Focus Individual Tasks Daily Output Meeting 8 Temporal Data Quality • Audit timestamps, missing intervals, duplicates, invalid sensor ranges and irregular sampling. • Create a sensor-wise data-quality table. • Identify drift/gaps and leakage risks. • Propose cleaning/resampling rules. Sensor data-quality table; cleaning/resampling plan Intern Discussion 4 9 Temporal Cleaning Review • Present timestamp/data-quality findings. • Confirm missing-data and resampling strategy. • Define chronological train/validation/test splits. • Freeze approved cleaning plan. 3-slide progress pack; approved temporal split Mentor Review 3 10 Environmental EDA • Plot sensor trends,"
+            },
+            {
+                "score": 5,
+                "page": 3,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "chronological",
+                    "preserve",
+                    "split",
+                    "temporal"
+                ],
+                "text": "Freeze approved cleaning plan. 3-slide progress pack; approved temporal split Mentor Review 3 10 Environmental EDA • Plot sensor trends, distributions and correlations. • Inspect temporal patterns and candidate anomalies. • Analyse cross-sensor interactions. • Record anomaly/forecast hypotheses. Environmental EDA notebook; observations Intern Discussion 5 11 Preprocessing Pipeline • Implement cleaning, chronological splits and scaling. • Create reusable timestamp/sensor preprocessing. • Preserve raw and processed versions. • Document assumptions. Processed Dataset V1; temporal pipeline — 12 EDA / • Present trends, candidate anomalies, splits and Dataset V1; approved Intern Discussion"
+            },
+            {
+                "score": 4,
+                "page": 1,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "be",
+                    "of",
+                    "the"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 1 4-Week Daily Internship Workflow Development of an AI-Based Model to Detect and Predict Underwater Environmental Changes Using Water Quality Parameters MODE DURATION INTERN DISCUSSION MENTOR REVIEW Online / Individual Execution 4 Weeks / 28 Days Every 2 Days Every 3 Days Mandatory Individual Execution Every intern must complete the entire project independently from scratch. Work must not be divided among team members. Intern discussions are only for comparing findings, identifying blockers and preparing mentor questions; code, models, experiments and final submissions"
+            }
+        ]
+    },
+    {
+        "question_number": 8,
+        "question": "What activities are included in the project-specific robustness or ablation study?",
+        "candidates": [
+            {
+                "score": 20,
+                "page": 5,
+                "chunk_id": 2,
+                "matches": [
+                    "ablation",
+                    "across",
+                    "and",
+                    "change",
+                    "chronological",
+                    "component",
+                    "conditions",
+                    "dashboard",
+                    "effect",
+                    "monitoring",
+                    "of",
+                    "or",
+                    "relevant",
+                    "study",
+                    "style",
+                    "tested",
+                    "the",
+                    "validation",
+                    "variants",
+                    "visualisation"
+                ],
+                "text": "ablation, chronological validation and dashboard-style monitoring visualisation. • Evaluate the same metrics across relevant conditions or component variants. • Quantify the effect of the tested change/condition. • Interpret the result in terms of the research question. Robustness/ablation table or notebook; research insight Intern Discussion 10 21 Best Candidate Review • Present baseline versus tuned results and the project-specific study. • Show representative successes and failures. • Discuss remaining weaknesses and unusual errors. • Get mentor approval for the Week-4 final direction. Best-candidate checkpoint; approved Week-4 direction Mentor Review 7 Week 4 | Edge Optimisation, Validation & Final Research Output End-of-week"
+            },
+            {
+                "score": 19,
+                "page": 5,
+                "chunk_id": 1,
+                "matches": [
+                    "ablation",
+                    "across",
+                    "and",
+                    "change",
+                    "chronological",
+                    "component",
+                    "conditions",
+                    "dashboard",
+                    "feature",
+                    "monitoring",
+                    "or",
+                    "relevant",
+                    "sensor",
+                    "study",
+                    "style",
+                    "the",
+                    "validation",
+                    "variants",
+                    "visualisation"
+                ],
+                "text": "for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter / Parameter Experiments • Tune only shortlisted candidate(s) with a documented search strategy. • Change meaningful settings systematically and log every experiment. • Use validation data only for selection and keep the final test set untouched. • Save the best validated configuration. Experiment log; tuned candidate(s) — 20 Project-Specific Robustness / Ablation Study • Conduct the planned special analysis: sensor/feature ablation, chronological validation and dashboard-style monitoring visualisation. • Evaluate the same metrics across relevant conditions or component variants. • Quantify"
+            },
+            {
+                "score": 6,
+                "page": 4,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "evaluation",
+                    "feature",
+                    "monitoring",
+                    "or",
+                    "sensor"
+                ],
+                "text": "definitions. Feature-engineering notebook; feature comparison — 14 Week-2 Peer Consolidation • Compare EDA/anomaly hypotheses without code sharing. • Discuss temporal patterns and sensor quality. • Record one peer insight and one hypothesis. • Prepare Week-2 package. Week-2 package; peer insight; hypotheses Intern Discussion 7 Week 3 | Model Development & Comparative Experiments Week 4 | Integrated Monitoring Analysis & Final Output Day Focus Individual Tasks Daily Output Meeting 15 Anomaly Baseline + Mentor Review • Implement a simple statistical/rule anomaly baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy."
+            },
+            {
+                "score": 6,
+                "page": 4,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "chronological",
+                    "evaluation",
+                    "or",
+                    "the",
+                    "validation"
+                ],
+                "text": "baseline. • Implement Isolation Forest or comparable ML anomaly detector. • Visualise detected anomalies. • Present and confirm evaluation strategy. Anomaly baseline notebook; anomaly plots Mentor Review 5 16 Forecasting Baselines • Build persistence/simple regression forecast baseline. • Train Random Forest/XGBoost or comparable model. • Evaluate MAE/RMSE on chronological holdout. • Plot predicted vs actual values. Forecast notebook; prediction plots; metrics Intern Discussion 8 17 Advanced Anomaly / Forecast Model • Train a stronger anomaly or sequence model only if justified. • Keep complexity proportionate to the dataset. • Track validation behaviour. Advanced-model notebook; candidate results —"
+            },
+            {
+                "score": 5,
+                "page": 1,
+                "chunk_id": 3,
+                "matches": [
+                    "and",
+                    "monitoring",
+                    "or",
+                    "study",
+                    "the"
+                ],
+                "text": "temperature, pH, dissolved oxygen, pressure and available related water-quality variables) and the required output/target (anomaly flags/scores and future environmental parameter values). • Draw the end-to-end software pipeline and define success criteria. • Prepare at least 8 technical questions or assumptions requiring clarification. Problem Understanding Note; pipeline diagram; questions list — 2 Literature Review - Domain + ML • Review the core domain concepts for AI / Machine Learning / IoT Data Analytics / Underwater Environmental Monitoring. • Study 6-10 closely related methods, datasets or prior systems. Literature review; comparison table; candidate-method list Intern Discussion 1"
+            }
+        ]
+    },
+    {
+        "question_number": 9,
+        "question": "What activities are part of the final model and pipeline freeze?",
+        "candidates": [
+            {
+                "score": 19,
+                "page": 6,
+                "chunk_id": 0,
+                "matches": [
+                    "and",
+                    "artefacts",
+                    "evaluation",
+                    "evidence",
+                    "final",
+                    "frozen",
+                    "method",
+                    "methodology",
+                    "model",
+                    "pipeline",
+                    "preprocessing",
+                    "rationale",
+                    "robustness",
+                    "selection",
+                    "simplicity",
+                    "technical",
+                    "the",
+                    "using",
+                    "validation"
+                ],
+                "text": "TIH, IIT Guwahati | 4-Week Online Internship Project Phase TIH IIT Guwahati • Underwater Environmental Analytics • Page 6 Day Focus Individual Tasks Daily Output Meeting 22 Final Model / Pipeline Freeze • Select the final method using validation evidence, robustness and appropriate simplicity. • Freeze preprocessing, split and evaluation methodology. • Save final model/pipeline artefacts and outputs. • Document the technical selection rationale. Frozen final model/pipeline; reproducible artefacts Intern Discussion 11 23 Software Performance / Final Validation • Measure relevant runtime, inference/processing time and model size where applicable. • Run final validation on the held-out data using the frozen"
+            },
+            {
+                "score": 10,
+                "page": 6,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "final",
+                    "frozen",
+                    "method",
+                    "model",
+                    "pipeline",
+                    "technical",
+                    "the",
+                    "using",
+                    "validation"
+                ],
+                "text": "relevant runtime, inference/processing time and model size where applicable. • Run final validation on the held-out data using the frozen pipeline. • Compare final method against the strongest simple baseline. • Record accuracy/quality-versus-complexity trade- offs. Final-validation notebook; performance comparison — 24 Final Technical Review • Present the final method, validation results and remaining questions. • Show the reproducible input-to-output workflow. • Confirm final error-analysis and reporting requirements. • Record mentor corrections. 3-slide progress pack; final review; correction list Intern Discussion 12 + Mentor Review 8 25 Detailed Error / Failure Analysis • Inspect worst predictions/outputs individually. • Organise recurring errors"
+            },
+            {
+                "score": 8,
+                "page": 2,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "evaluation",
+                    "final",
+                    "method",
+                    "methodology",
+                    "pipeline",
+                    "preprocessing",
+                    "the"
+                ],
+                "text": "checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from raw data to final evaluation. • Define baseline method, advanced methods and the project-specific experiment. • Set tentative evaluation criteria: anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Create experiment-log and repository/folder structure. Pipeline flowchart; experiment plan; log template; folder structure — 6 Pre-Dataset Readiness + Mentor Review • Complete literature, methodology and data-readiness package. • Present proposed preprocessing, modelling and evaluation plan. • Confirm split strategy, metrics and constraints with the mentor. •"
+            },
+            {
+                "score": 8,
+                "page": 5,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "documented",
+                    "final",
+                    "method",
+                    "robustness",
+                    "selection",
+                    "the",
+                    "validation"
+                ],
+                "text": "for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter / Parameter Experiments • Tune only shortlisted candidate(s) with a documented search strategy. • Change meaningful settings systematically and log every experiment. • Use validation data only for selection and keep the final test set untouched. • Save the best validated configuration. Experiment log; tuned candidate(s) — 20 Project-Specific Robustness / Ablation Study • Conduct the planned special analysis: sensor/feature ablation, chronological validation and dashboard-style monitoring visualisation. • Evaluate the same metrics across relevant conditions or component variants. • Quantify"
+            },
+            {
+                "score": 8,
+                "page": 7,
+                "chunk_id": 1,
+                "matches": [
+                    "and",
+                    "artefacts",
+                    "final",
+                    "method",
+                    "model",
+                    "pipeline",
+                    "preprocessing",
+                    "robustness"
+                ],
+                "text": "Final report; final PPT; repository; model/pipeline; outputs; future scope Intern Discussion 14 / Mock Presentation Week Final | Individual Submission Package # Mandatory Deliverable 1 Problem Understanding Note and Literature Review 2 Dataset Understanding / Quality Report 3 Preprocessing / EDA Notebook 4 Feature / Representation Preparation Notebook 5 Baseline Model / Method Notebook 6 Advanced Model / Method Experiments 7 Model / Method Comparison and Experiment Log 8 Project-Specific Robustness / Ablation / Error Analysis 9 Final Model / Software Pipeline and Output Artefacts 10 Clean Source-Code Repository with README 11 Final Individual Project Report 12 Final Individual Presentation"
+            }
+        ]
+    },
+    {
+        "question_number": 10,
+        "question": "What are the mandatory final submission deliverables?",
+        "candidates": [
+            {
+                "score": 35,
+                "page": 7,
+                "chunk_id": 1,
+                "matches": [
+                    "advanced",
+                    "analysis",
+                    "and",
+                    "artefacts",
+                    "baseline",
+                    "clean",
+                    "code",
+                    "comparison",
+                    "dataset",
+                    "eda",
+                    "error",
+                    "experiment",
+                    "feature",
+                    "final",
+                    "literature",
+                    "mandatory",
+                    "method",
+                    "notebook",
+                    "pipeline",
+                    "preparation",
+                    "preprocessing",
+                    "presentation",
+                    "problem",
+                    "project",
+                    "quality",
+                    "readme",
+                    "report",
+                    "repository",
+                    "representation",
+                    "review",
+                    "robustness",
+                    "software",
+                    "source",
+                    "understanding",
+                    "with"
+                ],
+                "text": "Final report; final PPT; repository; model/pipeline; outputs; future scope Intern Discussion 14 / Mock Presentation Week Final | Individual Submission Package # Mandatory Deliverable 1 Problem Understanding Note and Literature Review 2 Dataset Understanding / Quality Report 3 Preprocessing / EDA Notebook 4 Feature / Representation Preparation Notebook 5 Baseline Model / Method Notebook 6 Advanced Model / Method Experiments 7 Model / Method Comparison and Experiment Log 8 Project-Specific Robustness / Ablation / Error Analysis 9 Final Model / Software Pipeline and Output Artefacts 10 Clean Source-Code Repository with README 11 Final Individual Project Report 12 Final Individual Presentation"
+            },
+            {
+                "score": 16,
+                "page": 2,
+                "chunk_id": 2,
+                "matches": [
+                    "advanced",
+                    "and",
+                    "baseline",
+                    "dataset",
+                    "experiment",
+                    "final",
+                    "literature",
+                    "method",
+                    "or",
+                    "pipeline",
+                    "preprocessing",
+                    "project",
+                    "repository",
+                    "review",
+                    "the",
+                    "with"
+                ],
+                "text": "checklist. Dataset schema/structure note; risk checklist Intern Discussion 2 5 Pipeline & Experiment Planning • Design the reproducible workflow from raw data to final evaluation. • Define baseline method, advanced methods and the project-specific experiment. • Set tentative evaluation criteria: anomaly detection rate or precision/recall/F1 where labels exist; MAE/RMSE for forecasting; processing time. • Create experiment-log and repository/folder structure. Pipeline flowchart; experiment plan; log template; folder structure — 6 Pre-Dataset Readiness + Mentor Review • Complete literature, methodology and data-readiness package. • Present proposed preprocessing, modelling and evaluation plan. • Confirm split strategy, metrics and constraints with the mentor. •"
+            },
+            {
+                "score": 16,
+                "page": 6,
+                "chunk_id": 2,
+                "matches": [
+                    "analysis",
+                    "and",
+                    "clean",
+                    "error",
+                    "feature",
+                    "final",
+                    "notebook",
+                    "or",
+                    "pipeline",
+                    "preprocessing",
+                    "presentation",
+                    "readme",
+                    "report",
+                    "repository",
+                    "review",
+                    "software"
+                ],
+                "text": "12 + Mentor Review 8 25 Detailed Error / Failure Analysis • Inspect worst predictions/outputs individually. • Organise recurring errors by relevant conditions, classes, ranges or scenes. • Use feature importance/visual explanations where appropriate. • Document limitations and likely failure conditions. Error/failure-analysis notebook; limitation list — 26 Final Software Package & Report Draft • Clean repository and package preprocessing, model/pipeline and example inference/output workflow. • Write README and setup/run instructions. • Prepare final figures, tables and result summary. • Draft final report and presentation. Final software package; README; report/PPT draft Intern Discussion 13 27 Final Mentor Review • Present near-final"
+            },
+            {
+                "score": 14,
+                "page": 5,
+                "chunk_id": 1,
+                "matches": [
+                    "a",
+                    "analysis",
+                    "and",
+                    "comparison",
+                    "experiment",
+                    "feature",
+                    "final",
+                    "method",
+                    "or",
+                    "project",
+                    "review",
+                    "robustness",
+                    "the",
+                    "with"
+                ],
+                "text": "for deeper experiments. 3-slide progress pack; method comparison; shortlisted candidates Intern Discussion 9 + Mentor Review 6 19 Controlled Hyperparameter / Parameter Experiments • Tune only shortlisted candidate(s) with a documented search strategy. • Change meaningful settings systematically and log every experiment. • Use validation data only for selection and keep the final test set untouched. • Save the best validated configuration. Experiment log; tuned candidate(s) — 20 Project-Specific Robustness / Ablation Study • Conduct the planned special analysis: sensor/feature ablation, chronological validation and dashboard-style monitoring visualisation. • Evaluate the same metrics across relevant conditions or component variants. • Quantify"
+            },
+            {
+                "score": 14,
+                "page": 7,
+                "chunk_id": 2,
+                "matches": [
+                    "and",
+                    "artefacts",
+                    "clean",
+                    "code",
+                    "final",
+                    "pipeline",
+                    "presentation",
+                    "project",
+                    "readme",
+                    "report",
+                    "repository",
+                    "software",
+                    "source",
+                    "with"
+                ],
+                "text": "Software Pipeline and Output Artefacts 10 Clean Source-Code Repository with README 11 Final Individual Project Report 12 Final Individual Presentation and Future Scope"
+            }
+        ]
+    }
+]

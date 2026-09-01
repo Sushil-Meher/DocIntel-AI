@@ -1,0 +1,32 @@
+[
+    {
+        "threshold": 0.2,
+        "rejected": 4,
+        "total": 5,
+        "rejection_rate": 0.8
+    },
+    {
+        "threshold": 0.25,
+        "rejected": 5,
+        "total": 5,
+        "rejection_rate": 1.0
+    },
+    {
+        "threshold": 0.3,
+        "rejected": 5,
+        "total": 5,
+        "rejection_rate": 1.0
+    },
+    {
+        "threshold": 0.35,
+        "rejected": 5,
+        "total": 5,
+        "rejection_rate": 1.0
+    },
+    {
+        "threshold": 0.4,
+        "rejected": 5,
+        "total": 5,
+        "rejection_rate": 1.0
+    }
+]

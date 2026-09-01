@@ -1,0 +1,62 @@
+[
+    {
+        "threshold": 0.0,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333,
+        "rejected_queries": 0
+    },
+    {
+        "threshold": 0.1,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333,
+        "rejected_queries": 0
+    },
+    {
+        "threshold": 0.2,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333,
+        "rejected_queries": 0
+    },
+    {
+        "threshold": 0.3,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333,
+        "rejected_queries": 0
+    },
+    {
+        "threshold": 0.35,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333,
+        "rejected_queries": 0
+    },
+    {
+        "threshold": 0.4,
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.7,
+        "mrr@3": 0.5833333333333333,
+        "recall@5": 0.7,
+        "mrr@5": 0.5833333333333333,
+        "rejected_queries": 2
+    }
+]

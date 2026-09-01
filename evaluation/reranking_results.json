@@ -1,0 +1,531 @@
+{
+    "questions_evaluated": 10,
+    "baseline": {
+        "recall@1": 0.5,
+        "mrr@1": 0.5,
+        "recall@3": 0.9,
+        "mrr@3": 0.6833333333333333,
+        "recall@5": 0.9,
+        "mrr@5": 0.6833333333333333
+    },
+    "reranked": {
+        "recall@1": 0.8,
+        "mrr@1": 0.8,
+        "recall@3": 0.9,
+        "mrr@3": 0.8333333333333334,
+        "recall@5": 0.9,
+        "mrr@5": 0.8333333333333334
+    },
+    "questions": [
+        {
+            "question_number": 1,
+            "question": "What is the main objective of the project?",
+            "initial_results": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.37385886907577515
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "faiss_score": 0.3473662734031677
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "faiss_score": 0.33611470460891724
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "faiss_score": 0.31797438859939575
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "faiss_score": 0.3094274401664734
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "faiss_score": 0.3094274401664734,
+                    "rerank_score": -9.47441577911377
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.37385886907577515,
+                    "rerank_score": -10.227618217468262
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 3,
+                    "faiss_score": 0.33611470460891724,
+                    "rerank_score": -10.325542449951172
+                }
+            ]
+        },
+        {
+            "question_number": 2,
+            "question": "What water-quality variables are identified as inputs to the project?",
+            "initial_results": [
+                {
+                    "page": 1,
+                    "chunk_id": 3,
+                    "faiss_score": 0.6741562485694885
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "faiss_score": 0.5044257640838623
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "faiss_score": 0.4819605350494385
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "faiss_score": 0.4660278856754303
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "faiss_score": 0.45392972230911255
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "faiss_score": 0.4819605350494385,
+                    "rerank_score": 0.4861171543598175
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 3,
+                    "faiss_score": 0.6741562485694885,
+                    "rerank_score": -1.5207276344299316
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 0,
+                    "faiss_score": 0.5044257640838623,
+                    "rerank_score": -6.007597923278809
+                }
+            ]
+        },
+        {
+            "question_number": 3,
+            "question": "What risks should be checked during dataset quality assessment?",
+            "initial_results": [
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "faiss_score": 0.48655569553375244
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.45456087589263916
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4518830180168152
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3928111791610718
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "faiss_score": 0.3573015034198761
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4518830180168152,
+                    "rerank_score": 3.206219434738159
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.45456087589263916,
+                    "rerank_score": -2.301748514175415
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "faiss_score": 0.48655569553375244,
+                    "rerank_score": -6.612669944763184
+                }
+            ]
+        },
+        {
+            "question_number": 4,
+            "question": "What methods are proposed for anomaly detection?",
+            "initial_results": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.5312989950180054
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "faiss_score": 0.49472635984420776
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "faiss_score": 0.3900858759880066
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "faiss_score": 0.36753249168395996
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "faiss_score": 0.30987659096717834
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "faiss_score": 0.30987659096717834,
+                    "rerank_score": 2.8592171669006348
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.5312989950180054,
+                    "rerank_score": 1.3631954193115234
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 1,
+                    "faiss_score": 0.49472635984420776,
+                    "rerank_score": -1.1513757705688477
+                }
+            ]
+        },
+        {
+            "question_number": 5,
+            "question": "What forecasting methods are proposed?",
+            "initial_results": [
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "faiss_score": 0.4518488645553589
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.39285218715667725
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.28339219093322754
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "faiss_score": 0.2780963182449341
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "faiss_score": 0.2775667905807495
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.39285218715667725,
+                    "rerank_score": -4.920981407165527
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "faiss_score": 0.2780963182449341,
+                    "rerank_score": -6.2110371589660645
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.28339219093322754,
+                    "rerank_score": -9.022880554199219
+                }
+            ]
+        },
+        {
+            "question_number": 6,
+            "question": "What metrics are suggested for forecasting evaluation?",
+            "initial_results": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.44139307737350464
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4123598337173462
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3556632697582245
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.35442018508911133
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "faiss_score": 0.3278166651725769
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 4,
+                    "chunk_id": 2,
+                    "faiss_score": 0.44139307737350464,
+                    "rerank_score": 0.0994364395737648
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.35442018508911133,
+                    "rerank_score": -0.6782387495040894
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3556632697582245,
+                    "rerank_score": -8.595097541809082
+                }
+            ]
+        },
+        {
+            "question_number": 7,
+            "question": "What is required for the temporal train, validation, and test split?",
+            "initial_results": [
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3840498924255371
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "faiss_score": 0.36544767022132874
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "faiss_score": 0.3484938144683838
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "faiss_score": 0.3263630270957947
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "faiss_score": 0.31800025701522827
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "faiss_score": 0.36544767022132874,
+                    "rerank_score": 1.2958630323410034
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "faiss_score": 0.31800025701522827,
+                    "rerank_score": -9.432398796081543
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3840498924255371,
+                    "rerank_score": -9.973772048950195
+                }
+            ]
+        },
+        {
+            "question_number": 8,
+            "question": "What activities are included in the project-specific robustness or ablation study?",
+            "initial_results": [
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "faiss_score": 0.641602098941803
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "faiss_score": 0.6204652786254883
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4971240162849426
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.4369984269142151
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "faiss_score": 0.43681982159614563
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "faiss_score": 0.641602098941803,
+                    "rerank_score": 3.0556657314300537
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 1,
+                    "faiss_score": 0.6204652786254883,
+                    "rerank_score": 3.036644458770752
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4971240162849426,
+                    "rerank_score": -0.4293562173843384
+                }
+            ]
+        },
+        {
+            "question_number": 9,
+            "question": "What activities are part of the final model and pipeline freeze?",
+            "initial_results": [
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "faiss_score": 0.5049597024917603
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.489134281873703
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "faiss_score": 0.4729243516921997
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "faiss_score": 0.46809881925582886
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4585351347923279
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 6,
+                    "chunk_id": 0,
+                    "faiss_score": 0.5049597024917603,
+                    "rerank_score": 3.473292827606201
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.489134281873703,
+                    "rerank_score": -4.6006574630737305
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "faiss_score": 0.46809881925582886,
+                    "rerank_score": -5.8945698738098145
+                }
+            ]
+        },
+        {
+            "question_number": 10,
+            "question": "What are the mandatory final submission deliverables?",
+            "initial_results": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4867786467075348
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3720133900642395
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 2,
+                    "faiss_score": 0.33513179421424866
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "faiss_score": 0.33331218361854553
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "faiss_score": 0.3061554729938507
+                }
+            ],
+            "reranked_results": [
+                {
+                    "page": 7,
+                    "chunk_id": 1,
+                    "faiss_score": 0.4867786467075348,
+                    "rerank_score": 4.8039631843566895
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "faiss_score": 0.33331218361854553,
+                    "rerank_score": -9.782108306884766
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "faiss_score": 0.3720133900642395,
+                    "rerank_score": -10.769721984863281
+                }
+            ]
+        }
+    ]
+}

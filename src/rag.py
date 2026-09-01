@@ -16,7 +16,7 @@ chunks = load_chunks(
 
 # Minimum retrieval similarity required
 # for a query to proceed to the LLM.
-MIN_RELEVANCE_SCORE = 0.20
+MIN_RELEVANCE_SCORE = 0.25
 
 
 def answer_question(
@@ -93,7 +93,7 @@ def answer_question(
 if __name__ == "__main__":
 
     query = "What is the capital of France?"
-
+    
     answer = answer_question(
         query,
         index,

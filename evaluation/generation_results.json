@@ -1,13 +1,13 @@
 {
     "questions_evaluated": 10,
-    "top_k": 3,
-    "average_keyword_coverage": 0.7416741519350215,
+    "top_k": 5,
+    "average_keyword_coverage": 0.7205478705124013,
     "questions": [
         {
             "question": "What is the main objective of the project?",
             "expected_answer": "The project aims to develop an AI-based model to detect and predict underwater environmental changes using water quality parameters.",
-            "generated_answer": "Based on the information provided from the given context, the main objective of the project appears to be \"to identify and flag anomalies or errors in the dataset.\" This can be inferred from several details within the context:\n\n1. The section labeled \"Problem Understanding\" mentions understanding the problem statement and identifying the necessary input/output relationships.\n2. The subsections under \"Dataset Understanding / Quality Report\" suggest analyzing the data quality.\n3. The term \"Future Scope\" implies there might be plans for improvements beyond just",
-            "keyword_coverage": 0.3157894736842105,
+            "generated_answer": "The main objective of the project is to develop an underwater environmental analytics tool that can detect anomalies in real-time based on various parameters such as temperature, pH, dissolved oxygen, pressure, and available water-quality variables. This involves understanding the problem statement thoroughly, preparing a comprehensive dataset, designing effective preprocessing steps, selecting suitable models for analysis, comparing different approaches, and ensuring the project's robustness through error analysis. Additionally, the team will create a clean code repository, prepare a final individual project report, and conduct peer mock presentations before submitting the final submission package. The goal is to produce a reliable and efficient",
+            "keyword_coverage": 0.6842105263157895,
             "retrieved_chunks": [
                 {
                     "page": 7,
@@ -23,14 +23,24 @@
                     "page": 2,
                     "chunk_id": 3,
                     "distance": 0.33611470460891724
+                },
+                {
+                    "page": 7,
+                    "chunk_id": 0,
+                    "distance": 0.31797438859939575
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.3094274401664734
                 }
             ]
         },
         {
             "question": "What water-quality variables are identified as inputs to the project?",
             "expected_answer": "The identified inputs include timestamped temperature, pH, dissolved oxygen, pressure, and available related water-quality variables.",
-            "generated_answer": "The water-quality variables identified as inputs to the project are timestamped temperature, pH, dissolved oxygen, pressure, and available related water-quality variables. These variables are used to detect and predict underwater environmental changes using water quality parameters. The input data will include multiple measurements over time, such as temperature, pH, dissolved oxygen levels, pressure readings, and other relevant water-quality metrics, which will be processed by the AI-based model developed by the intern during the internship period.",
-            "keyword_coverage": 1.0,
+            "generated_answer": "Temperature, pH, dissolved oxygen, pressure, and available related water-quality variables. The project requires the detection and prediction of underwater environmental changes using these parameters.",
+            "keyword_coverage": 0.75,
             "retrieved_chunks": [
                 {
                     "page": 1,
@@ -46,14 +56,24 @@
                     "page": 1,
                     "chunk_id": 2,
                     "distance": 0.4819605350494385
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 0,
+                    "distance": 0.4660278856754303
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 0,
+                    "distance": 0.45392972230911255
                 }
             ]
         },
         {
             "question": "What risks should be checked during dataset quality assessment?",
             "expected_answer": "The assessment should consider missing data, annotation issues, imbalance, temporal risks, and leakage risks.",
-            "generated_answer": "During dataset quality assessment, it is essential to check for missing data, annotations, imbalances, temporal issues, and potential leakage risks. These considerations help ensure that the dataset is ready for use and can provide reliable outcomes for the project. The process involves defining the expected columns, targets, and metadata needed, as well as identifying any potential issues such as missing values, inconsistent labeling, unequal class distributions, temporal dependencies, or information leaking into training data. This ensures that the dataset meets the necessary standards for",
-            "keyword_coverage": 0.6923076923076923,
+            "generated_answer": "During dataset quality assessment, you should check for missing data, annotation issues, imbalances, temporal dependencies, and potential leakage risks. These checks help ensure that your dataset is well-prepared and ready for analysis. The dataset risk checklist mentioned in Context 3 provides guidance on identifying such risks. Additionally, it's crucial to define clear targets, columns, labels, and metadata before using the final dataset. This ensures consistency across all stages of the process.",
+            "keyword_coverage": 0.8461538461538461,
             "retrieved_chunks": [
                 {
                     "page": 4,
@@ -69,13 +89,23 @@
                     "page": 2,
                     "chunk_id": 1,
                     "distance": 0.4518830180168152
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 1,
+                    "distance": 0.3928111791610718
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.3573015034198761
                 }
             ]
         },
         {
             "question": "What methods are proposed for anomaly detection?",
             "expected_answer": "The proposed methods include a simple statistical or rule-based anomaly baseline and Isolation Forest or a comparable machine-learning anomaly detector.",
-            "generated_answer": "Based on the information provided from Contexts 1 and 2, the following methods are proposed for anomaly detection:\n\n1. Simple Statistical/Rule Anomaly Baseline (from Context 1)\n   - Implementation details include visualising detected anomalies.\n   \n2. Isolation Forest (analogous to \"Isolation Forest\" mentioned in Context 1) (from Context 1)\n\n3. Persistence/Simple Regression Forecast Baseline (from Context 2)\n\nThese methods are suggested as potential approaches for",
+            "generated_answer": "The methods proposed for anomaly detection include implementing an Isolation Forest or similar machine learning anomaly detector, as well as visualizing the detected anomalies. Additionally, there is a suggestion to present and confirm the evaluation strategy. No specific models for forecasting are mentioned in this context.",
             "keyword_coverage": 0.6842105263157895,
             "retrieved_chunks": [
                 {
@@ -92,14 +122,24 @@
                     "page": 3,
                     "chunk_id": 3,
                     "distance": 0.3900858759880066
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 4,
+                    "distance": 0.36753249168395996
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 1,
+                    "distance": 0.30987659096717834
                 }
             ]
         },
         {
             "question": "What forecasting methods are proposed?",
             "expected_answer": "The proposed forecasting methods include persistence, simple regression, Random Forest, and XGBoost or comparable models.",
-            "generated_answer": "The proposal includes building a persistence/simple regression forecast baseline as one of the forecasting methods. The documentation also mentions training Random Forest/XGBoost or comparable models for evaluating Mean Absolute Error (MAE) or Root Mean Squared Error (RMSE). However, no specific names of advanced anomaly or sequence models are mentioned. \n\nCould you please clarify what other forecasting methods might have been considered? Or do we need more information from the sources available here?",
-            "keyword_coverage": 0.8,
+            "generated_answer": "Persistence/simple regression forecast baseline is proposed as a forecasting method. The text mentions that this will be trained with Random Forest/XGBoost or comparable models and evaluated on chronological holdout. It also states that the goal of this step is to build a strong baseline for further analysis. No other specific forecasting methods are mentioned beyond this initial baseline training phase. Therefore, based solely on the given context, the only explicitly stated forecasting method is the persistence/simple regression forecast baseline. However, it's important to note that while this is the only explicit mention of a forecasting method, there may be additional methods used in more",
+            "keyword_coverage": 0.9333333333333333,
             "retrieved_chunks": [
                 {
                     "page": 1,
@@ -115,14 +155,24 @@
                     "page": 6,
                     "chunk_id": 1,
                     "distance": 0.28339219093322754
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 0,
+                    "distance": 0.2780963182449341
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 3,
+                    "distance": 0.2775667905807495
                 }
             ]
         },
         {
             "question": "What metrics are suggested for forecasting evaluation?",
             "expected_answer": "MAE and RMSE are suggested for forecasting evaluation.",
-            "generated_answer": "The metrics suggested for forecasting evaluation are Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE). This can be seen from the \"Forecast notebook\" mentioned in Context 1 under page 6, which specifies \"Evaluate MAE/RMSE on chronological holdout.\" Additionally, the mention of \"chronological holdout\" further indicates that this is related to forecasting evaluation, as it refers to a specific type of cross-validation technique used in such evaluations. The use of these metrics",
-            "keyword_coverage": 1.0,
+            "generated_answer": "The text suggests evaluating MAE (Mean Absolute Error) and RMSE (Root Mean Squared Error) on the chronological holdout for the forecasting baseline.",
+            "keyword_coverage": 0.625,
             "retrieved_chunks": [
                 {
                     "page": 4,
@@ -138,14 +188,24 @@
                     "page": 5,
                     "chunk_id": 1,
                     "distance": 0.3556632697582245
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.35442018508911133
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 3,
+                    "distance": 0.3278166651725769
                 }
             ]
         },
         {
             "question": "What is required for the temporal train, validation, and test split?",
             "expected_answer": "The train, validation, and test split should be chronological and preserve the temporal ordering of the data.",
-            "generated_answer": "The temporal train, validation, and test split should be defined to ensure that they preserve the integrity of the dataset, which may include defining what constitutes a \"correct\" split that reflects the actual distribution of the data over time. Additionally, it is recommended to prepare a dataset-risk checklist as part of this process to identify any potential issues such as missing data, annotation errors, imbalance, temporal dependencies, or leakage. This will help in making informed decisions about how to handle these risks during the training, validation",
-            "keyword_coverage": 0.8571428571428571,
+            "generated_answer": "The best practice is to define what a correct train/validation/test split should preserve. This involves preparing a dataset-risk checklist to identify potential issues such as missing data, annotation, imbalance, temporal or leakage risks, and ensuring that the split preserves the integrity of the dataset. Additionally, it's crucial to confirm the validity of the train/validation/test splits through detailed error analysis and failure inspection. These steps ensure that the chosen split accurately reflects the intended training, validation, and testing phases of the machine learning process. To achieve this, one must carefully consider each aspect mentioned in the text, including defining clear expectations for",
+            "keyword_coverage": 0.7857142857142857,
             "retrieved_chunks": [
                 {
                     "page": 6,
@@ -161,14 +221,24 @@
                     "page": 5,
                     "chunk_id": 3,
                     "distance": 0.3484938144683838
+                },
+                {
+                    "page": 4,
+                    "chunk_id": 3,
+                    "distance": 0.3263630270957947
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.31800025701522827
                 }
             ]
         },
         {
             "question": "What activities are included in the project-specific robustness or ablation study?",
             "expected_answer": "The study includes sensor or feature ablation, chronological validation, dashboard-style monitoring visualisation, evaluation across relevant conditions or component variants, and quantifying the effect of the tested change.",
-            "generated_answer": "The project-specific robustness or ablation study includes conducting the planned special analysis: sensor/feature ablation, chronological validation, and dashboard-style monitoring visualisation. It evaluates the same metrics across relevant conditions or component variants and quantifies the effect of the tested changes or conditions. Additionally, it interprets the results in terms of the research question. The study uses validation data to select the best validated configuration and saves this configuration.",
-            "keyword_coverage": 0.88,
+            "generated_answer": "The project-specific robustness or ablation study includes conducting the planned special analysis: sensor/feature ablation, chronological validation, and dashboard-style monitoring visualisation. It evaluates the same metrics across relevant conditions or component variants and quantifies the effects of the tested changes or conditions. Additionally, it interprets the results in terms of the research question.",
+            "keyword_coverage": 0.84,
             "retrieved_chunks": [
                 {
                     "page": 5,
@@ -184,13 +254,23 @@
                     "page": 7,
                     "chunk_id": 1,
                     "distance": 0.4971240162849426
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 2,
+                    "distance": 0.4369984269142151
+                },
+                {
+                    "page": 1,
+                    "chunk_id": 2,
+                    "distance": 0.43681982159614563
                 }
             ]
         },
         {
             "question": "What activities are part of the final model and pipeline freeze?",
             "expected_answer": "The final method is selected using validation evidence, robustness, and appropriate simplicity; preprocessing, splits, and evaluation methodology are frozen; final model and pipeline artefacts are saved; and the technical selection rationale is documented.",
-            "generated_answer": "The final model and pipeline freeze involves selecting the final method using validation evidence, ensuring robustness, and maintaining appropriate simplicity. It also includes freezing preprocessing, splitting, and evaluating methodologies, saving final model/pipeline artifacts, documenting the technical selection rationale, and making sure the final model is reproducible. Additionally, it encompasses measuring software performance during the final validation phase and running this validation on the held-out data. The final model is then saved and documented, and a clean source-code repository with a README file",
+            "generated_answer": "Select the final method using validation evidence, robustness and appropriate simplicity; freeze preprocessing, split and evaluation methodology; save final model/pipeline artefacts and outputs; document the technical selection rationale.",
             "keyword_coverage": 0.7307692307692307,
             "retrieved_chunks": [
                 {
@@ -207,14 +287,24 @@
                     "page": 2,
                     "chunk_id": 2,
                     "distance": 0.4729243516921997
+                },
+                {
+                    "page": 3,
+                    "chunk_id": 2,
+                    "distance": 0.46809881925582886
+                },
+                {
+                    "page": 2,
+                    "chunk_id": 1,
+                    "distance": 0.4585351347923279
                 }
             ]
         },
         {
             "question": "What are the mandatory final submission deliverables?",
             "expected_answer": "The mandatory deliverables include the Problem Understanding Note and Literature Review, Dataset Understanding/Quality Report, Preprocessing/EDA Notebook, Feature/Representation Preparation Notebook, Baseline Model/Method Notebook, Advanced Model/Method Experiments, Model/Method Comparison and Experiment Log, Project-Specific Robustness/Ablation/Error Analysis, Final Model/Software Pipeline and Output Artefacts, Clean Source-Code Repository with README, Final Individual Project Report, and Final Individual Presentation.",
-            "generated_answer": "The mandatory final submission deliverables include:\n\n1. The individual project report.\n2. The individual presentation package.\n3. The clean source-code repository with a README file.\n4. The final model/software pipeline output artefacts.\n5. The clean source-code repository with a README file. To summarize, these items encompass all required documentation for the final submission, including reports, presentations, code repositories, and artifacts produced during the project development process.",
-            "keyword_coverage": 0.45652173913043476,
+            "generated_answer": "Mandatory Deliverables include:\n- Final individual project report (Final Individual Project Report)\n- Final individual presentation (Final Individual Presentation) \n- Clean source-code repository with README (Clean Source-Code Repository with README)\n- Final software package (Final Software Package)\n- Final individual project report (Final Individual Project Report)\n- Final individual presentation (Final Individual Presentation) \n- Final software package (Final Software Package)\n- Clean source-code repository with README (Clean Source-Code Repository with README) \n- Final individual project report (Final Individual Project Report)\n- Final individual presentation (Final Individual Presentation) \n-",
+            "keyword_coverage": 0.32608695652173914,
             "retrieved_chunks": [
                 {
                     "page": 7,
@@ -230,6 +320,16 @@
                     "page": 6,
                     "chunk_id": 2,
                     "distance": 0.33513179421424866
+                },
+                {
+                    "page": 6,
+                    "chunk_id": 3,
+                    "distance": 0.33331218361854553
+                },
+                {
+                    "page": 5,
+                    "chunk_id": 2,
+                    "distance": 0.3061554729938507
                 }
             ]
         }

@@ -7,6 +7,12 @@ generator = pipeline(
     device=0
 )
 
+# The pipeline builds its own merged generation_config with a leftover
+# max_length=20 default, even though the model's own config has no
+# max_length set. That stale value fights with max_new_tokens below and
+# triggers "Both max_new_tokens and max_length seem to have been set."
+generator.generation_config.max_length = None
+
 
 def generate_answer(prompt: str) -> str:
 

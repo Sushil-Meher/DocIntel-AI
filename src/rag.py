@@ -1,17 +1,6 @@
 from .retriever import retrieve
 from .prompt_builder import build_prompt
 from .generator import generate_answer
-from .vector_store import load_index, load_chunks
-
-
-# Load the current application index and chunks
-index = load_index(
-    "artifacts/faiss.index"
-)
-
-chunks = load_chunks(
-    "artifacts/chunks.pkl"
-)
 
 
 # Minimum retrieval similarity required
@@ -92,8 +81,13 @@ def answer_question(
 
 if __name__ == "__main__":
 
+    from .vector_store import load_index, load_chunks
+
+    index = load_index("artifacts/faiss.index")
+    chunks = load_chunks("artifacts/chunks.pkl")
+
     query = "What is the capital of France?"
-    
+
     answer = answer_question(
         query,
         index,

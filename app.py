@@ -28,6 +28,9 @@ if "chunks" not in st.session_state:
 if "source" not in st.session_state:
     st.session_state.source = None
 
+if "source_type" not in st.session_state:
+    st.session_state.source_type = None
+
 
 st.sidebar.header("Document Source")
 
@@ -65,6 +68,7 @@ if source_type == "Upload PDF":
                     st.session_state.index = index
                     st.session_state.chunks = chunks
                     st.session_state.source = uploaded_file.name
+                    st.session_state.source_type = "PDF"
 
                     st.sidebar.success("PDF processed successfully!")
 
@@ -97,6 +101,7 @@ else:
                     st.session_state.index = index
                     st.session_state.chunks = chunks
                     st.session_state.source = url
+                    st.session_state.source_type = "Website"
 
                     st.sidebar.success("Website processed successfully!")
 
@@ -111,7 +116,8 @@ st.divider()
 if st.session_state.index is not None:
 
     st.success(
-        f"Currently using: {st.session_state.source}"
+        f"Currently using ({st.session_state.source_type}): "
+        f"{st.session_state.source}"
     )
 
     query = st.text_input(

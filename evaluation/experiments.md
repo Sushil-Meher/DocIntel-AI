@@ -448,3 +448,104 @@ from 3 to 10 to match the validated configuration (threshold 0.25 is
 unchanged and still does the job of rejecting out-of-document queries;
 see Experiment 1 — a larger top_k does not weaken that gate, since
 `retrieve()` still drops anything under 0.25 regardless of k).
+
+---
+
+## Task 4 — Document-Specific Retrieval Isolation
+
+**Date**: 2026-09-01
+
+This is an architecture/correctness change, not a retrieval-quality
+experiment — no retrieval or generation metrics are expected to move, and
+none did.
+
+**Previous architecture**: `app.py` already stored the active
+`index`/`chunks` in `st.session_state`, so a browser session's own
+question-answering calls were already correctly scoped to whichever
+document it last processed — switching PDFs or websites within one
+session fully replaced `session_state.index`/`chunks` with a fresh object,
+no merging. That part was already correct on inspection.
+
+The actual risk was underneath that: `ingest_pdf`/`ingest_url`
+(`src/ingestion.py`) unconditionally wrote every processed document to
+the same fixed path, `artifacts/faiss.index` and `artifacts/chunks.pkl`,
+regardless of caller or session. Nothing in the live app read that path
+back, so it was pure dead weight - but it meant two concurrent sessions
+(or two users on a real deployment) processing different documents would
+silently clobber each other's copy on disk, and any future code that
+naively read from that "current document" path would get whichever
+document was processed most recently by anyone. Separately, `src/rag.py`
+loaded a global `index`/`chunks` pair from that same shared path at
+**import time** - unused by `app.py` (which never imports those names),
+but a landmine: it would crash on a fresh clone/deployment with no
+artifacts yet, and is exactly the "stale global index" pattern this task
+is about.
+
+**Change**:
+- `src/ingestion.py`: `ingest_pdf`/`ingest_url` no longer call
+  `save_index`/`save_chunks`. They build and return a fresh `(index,
+  chunks)` pair per call; the caller owns it entirely. `save_index`/
+  `save_chunks` themselves are untouched in `src/vector_store.py` and are
+  still used by the evaluation build scripts
+  (`evaluation/build_baseline.py`, `build_cosine.py`,
+  `build_chunking_experiment.py`), which write to their own
+  `evaluation/artifacts/*` paths and are unaffected.
+- `src/rag.py`: removed the module-level `load_index`/`load_chunks` call.
+  Moved it into the `if __name__ == "__main__":` block, which is the only
+  place that actually used it (a standalone CLI smoke test).
+- `app.py`: added `st.session_state.source_type` ("PDF" or "Website"),
+  shown alongside the source name, so the active document is
+  unambiguous. No other UI change.
+
+**Tests** (`tests/test_document_isolation.py`, `unittest`, no new
+dependency): ingests synthetic documents (bypassing real PDF/network I/O
+via `unittest.mock.patch` on `load_pdf`/`load_webpage`) to keep the tests
+fast and deterministic.
+
+| Test | Proves |
+|---|---|
+| `test_pdf_a_retrieves_own_content` | PDF A's index answers an A-specific question |
+| `test_pdf_b_retrieves_own_content` | PDF B's index answers a B-specific question |
+| `test_switching_from_a_to_b_drops_a_content` | B's chunks contain no trace of A's text; querying A-specific content against B's index at threshold 0.25 returns nothing |
+| `test_website_retrieves_own_content` | A website's index answers a website-specific question |
+| `test_switching_from_website_to_pdf_drops_website_content` | switching from website to PDF drops the website content the same way |
+| `test_ingestion_does_not_touch_shared_artifacts` | `ingest_pdf` run from an empty temp directory never creates an `artifacts/` folder |
+
+The last test is the direct regression test for the actual bug. Verified
+it fails meaningfully against the pre-fix code: run from an empty temp
+directory (no `artifacts/` folder to coincidentally already exist), the
+old `ingest_pdf` crashes with
+`RuntimeError: ... could not open artifacts/faiss.index for writing: No
+such file or directory` - concrete proof it depended on a fixed shared
+path existing outside of its own control. (An earlier version of this
+test compared file bytes before/after in the real repo `artifacts/`
+folder and passed even against the old code, because previous manual test
+runs had already overwritten that gitignored file with the same synthetic
+content - a good reminder that shared mutable state can quietly break the
+test that's supposed to catch it, too.)
+
+All 6 tests pass against the fixed code:
+```
+Ran 6 tests in 9.4s
+OK
+```
+
+**Cross-document leakage**:
+- Before: not observed in the live Streamlit query path itself (session
+  state was already correct), but present at the persistence layer -
+  concurrent sessions/users would overwrite each other's saved document
+  on disk, and `src/rag.py` imported a stale/absent global index.
+- After: `ingest_pdf`/`ingest_url` touch no shared file at all; each call
+  is fully self-contained. `src/rag.py` imports cleanly with no import-time
+  file dependency.
+
+**Retrieval/generation metrics**: unchanged, as expected -
+`evaluation/results.json` and `evaluation/generation_results.json` were
+not touched by this task. (The local, gitignored `artifacts/faiss.index`
+/`chunks.pkl` scratch files were incidentally overwritten with synthetic
+test content during test development and have been regenerated from
+`data/Artificial-Intelligence report.pdf` to match their pre-task state -
+these are not tracked by git and don't affect any recorded evaluation
+result.)
+
+**Decision**: **KEEP**.

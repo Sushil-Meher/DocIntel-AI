@@ -31,6 +31,9 @@ if "source" not in st.session_state:
 if "source_type" not in st.session_state:
     st.session_state.source_type = None
 
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
 
 st.sidebar.header("Document Source")
 
@@ -69,6 +72,7 @@ if source_type == "Upload PDF":
                     st.session_state.chunks = chunks
                     st.session_state.source = uploaded_file.name
                     st.session_state.source_type = "PDF"
+                    st.session_state.chat_history = []
 
                     st.sidebar.success("PDF processed successfully!")
 
@@ -102,6 +106,7 @@ else:
                     st.session_state.chunks = chunks
                     st.session_state.source = url
                     st.session_state.source_type = "Website"
+                    st.session_state.chat_history = []
 
                     st.sidebar.success("Website processed successfully!")
 
@@ -119,6 +124,14 @@ if st.session_state.index is not None:
         f"Currently using ({st.session_state.source_type}): "
         f"{st.session_state.source}"
     )
+    st.caption(
+        "Conversation history is scoped to this document - "
+        "processing a new PDF or website starts a fresh conversation."
+    )
+
+    for turn in st.session_state.chat_history:
+        st.markdown(f"**You:** {turn['question']}")
+        st.markdown(f"**Assistant:** {turn['answer']}")
 
     query = st.text_input(
         "Ask a question",
@@ -138,8 +151,13 @@ if st.session_state.index is not None:
                 answer = answer_question(
                     query,
                     st.session_state.index,
-                    st.session_state.chunks
+                    st.session_state.chunks,
+                    history=st.session_state.chat_history
                 )
+
+            st.session_state.chat_history.append(
+                {"question": query, "answer": answer}
+            )
 
             st.markdown("### Answer")
             st.write(answer)

@@ -1,5 +1,5 @@
 from .retriever import retrieve
-from .prompt_builder import build_prompt
+from .prompt_builder import build_prompt, build_contextual_query_prompt
 from .generator import generate_answer
 
 
@@ -7,20 +7,40 @@ from .generator import generate_answer
 # for a query to proceed to the LLM.
 MIN_RELEVANCE_SCORE = 0.25
 
+# Only the last few turns matter for resolving a pronoun or a follow-up;
+# older turns just add noise to the rewrite prompt.
+HISTORY_WINDOW = 3
+
+
+def contextualize_query(query: str, history: list[dict]) -> str:
+    if not history:
+        return query
+
+    prompt = build_contextual_query_prompt(query, history[-HISTORY_WINDOW:])
+
+    rewritten = generate_answer(prompt).strip()
+
+    return rewritten or query
+
 
 def answer_question(
     query: str,
     index,
     chunks,
+    history: list[dict] | None = None,
     top_k: int = 10,
     min_score: float = MIN_RELEVANCE_SCORE
 ) -> str:
+
+    # History is only ever used to resolve references in the query itself -
+    # the retrieved document chunks remain the only source of facts.
+    retrieval_query = contextualize_query(query, history or [])
 
     # Retrieve candidate chunks
     results = retrieve(
         index,
         chunks,
-        query,
+        retrieval_query,
         top_k=top_k,
         min_score=min_score
     )
@@ -33,9 +53,11 @@ def answer_question(
             "provided documents."
         )
 
-    # Build grounded prompt
+    # Build grounded prompt - uses the standalone (contextualized) query
+    # so the model isn't asked to answer a dangling "it"/"this" without
+    # the conversation that resolves it.
     prompt = build_prompt(
-        query,
+        retrieval_query,
         results
     )
 

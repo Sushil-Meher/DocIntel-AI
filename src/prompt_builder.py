@@ -1,3 +1,32 @@
+def build_contextual_query_prompt(query: str, history: list[dict]) -> str:
+
+    history_text = "\n".join(
+        f"User: {turn['question']}\nAssistant: {turn['answer']}"
+        for turn in history
+    )
+
+    prompt = f"""
+Rewrite the latest user question as a single standalone question that
+does not depend on the conversation below. Use the conversation only to
+resolve pronouns or references such as "it", "this", or "that". If the
+latest question is already standalone, repeat it unchanged.
+
+Do not answer the question. Do not add information that isn't already
+implied by the question or the conversation. Output only the rewritten
+question, nothing else.
+
+Conversation:
+
+{history_text}
+
+Latest question: {query}
+
+Standalone question:
+"""
+
+    return prompt.strip()
+
+
 def build_prompt(query: str, results: list[dict]) -> str:
 
     context_parts = []

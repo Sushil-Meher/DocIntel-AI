@@ -639,3 +639,113 @@ untouched. The document-isolation tests from Task 4 were re-run alongside
 the new tests and still pass.
 
 **Decision**: **KEEP**.
+
+---
+
+## Task 6 — Scoped Conversation Memory
+
+**Date**: 2026-09-01
+
+This is a functionality/correctness task, not a retrieval-quality
+experiment. No retrieval or generation metrics are expected to move -
+`evaluate_generation.py`/`evaluate_retrieval.py` call `retrieve`/
+`build_prompt`/`generate_answer` directly, never `answer_question`, so
+they are structurally unaffected by anything in this task.
+
+**Problem**: follow-up questions like "What parameters does it use?"
+can't be answered correctly without knowing what "it" refers to, but the
+conversation history itself must never be treated as a source of facts -
+only the currently selected document may ground an answer.
+
+**Architecture**:
+- `src/prompt_builder.py`: new `build_contextual_query_prompt(query,
+  history)` - a prompt asking the model to rewrite the latest question as
+  a standalone question, resolving pronouns from the conversation, and
+  explicitly told not to answer the question or add new information.
+- `src/rag.py`: new `contextualize_query(query, history)` reuses the
+  *existing* `generate_answer`/Qwen pipeline for this rewrite - no second
+  model added, since inspection didn't turn up a simpler approach that
+  would reliably resolve "it"/"this"-style references (a keyword
+  heuristic would be fragile; the model is already loaded in process).
+  Returns `query` unchanged when there's no history yet, so the very
+  first question in a conversation never pays for a rewrite call.
+  `answer_question` now accepts an optional `history` list and uses the
+  contextualized query for *both* retrieval and the final grounded-answer
+  prompt (so the model isn't asked to answer a dangling pronoun even
+  though the retrieved context is already correctly targeted). The raw
+  conversation text itself is never passed into `build_prompt` - only the
+  rewritten question is, so history can influence phrasing but never
+  supplies facts directly.
+- `app.py`: added `st.session_state.chat_history` (a list of
+  `{"question", "answer"}` dicts). Reset to `[]` whenever a new PDF or
+  website is processed (same two code paths already isolating
+  `index`/`chunks`/`source` from Task 4). Passed into `answer_question`
+  as `history=`, appended to after each answer. A caption makes the
+  per-document scoping explicit to the user, and prior turns are rendered
+  above the input box.
+
+**Verified manually against the real model** (not just the automated
+suite) using the task's own example, against `evaluation/artifacts/
+chunk100.index`:
+- Q1 "What is the main objective of the project?" -> correct answer.
+- Q2 "What parameters does it use?" -> rewritten to "What are the key
+  parameters used in detecting and predicting underwater environmental
+  changes?" -> retrieves and answers with the correct parameters
+  (temperature, pH, dissolved oxygen, pressure...), matching the
+  evaluation set's actual expected answer for this question.
+- An unrelated follow-up ("What forecasting methods are proposed?") with
+  unrelated prior history got a benign, non-distorting rewrite rather
+  than being corrupted by the previous turn's topic.
+
+**Tests** (`tests/test_conversation_memory.py`, `unittest`, no new
+dependency; `generate_answer` mocked with a deterministic fake so the
+suite doesn't depend on the real model's language behavior for
+assertions - that behavior was checked separately above):
+
+| Test | Proves |
+|---|---|
+| `test_followup_resolves_using_history` | "What is its calibration constant?" after "What is Project Zephyr?" correctly answers with the constant |
+| `test_unrelated_followup_still_works` | a standalone new question isn't derailed by unrelated prior history |
+| `test_history_from_wrong_document_cannot_leak_facts` | even history from document A passed alongside document B's index/chunks (simulating a caller bug) cannot surface A's facts, because `retrieve()` only ever searches the index/chunks it's given |
+| `test_processing_new_source_resets_conversation_history` | (`streamlit.testing.v1.AppTest`, driven through `app.py`'s real Website flow) processing a second source resets `chat_history` to `[]`, and the next `answer_question` call receives the new document's index and an empty history, not the old conversation |
+
+The AppTest-based test drives the actual `app.py` session-state flow
+(process source A, ask twice, process source B, ask again) rather than
+a synthetic reconstruction - the most faithful test available for
+"does switching documents actually reset memory." One implementation
+note: `AppTest` re-executes `app.py`'s source directly rather than
+reusing the imported `app` module object, so patches have to target
+`src.ingestion.ingest_url`/`src.rag.answer_question` (looked up through
+the normal import system, which *is* shared) rather than `app.ingest_url`
+(discovered the hard way - an early version of this test patched the
+wrong target and passed for the wrong reason, silently exercising the
+real network path instead of the mock).
+
+The PDF upload path shares the identical two lines of reset logic
+(`st.session_state.chat_history = []`) as the Website path already
+covered by the AppTest above; it wasn't additionally driven through
+`AppTest`'s file-uploader simulation because doing so hit an unrelated,
+pre-existing Windows-specific `tempfile` permission issue in `app.py`'s
+`NamedTemporaryFile(delete=False)` cleanup, out of scope for this task.
+
+```
+Ran 16 tests in ~11s (4 new conversation-memory tests + the 12 existing
+tests from Tasks 4-5)
+OK
+```
+
+**Document isolation**: history is passed explicitly as a plain argument,
+never stored globally, so it can only affect whatever `index`/`chunks`
+pair it's called alongside. Cross-document leakage is not possible
+through the history mechanism itself, and - per
+`test_history_from_wrong_document_cannot_leak_facts` - not possible even
+if the caller mixed up which history belongs with which document, because
+retrieval is hard-scoped to the given index/chunks regardless of what the
+rewritten query says.
+
+**Regression check**: no retrieval/generation evaluation code touched;
+`evaluation/results.json` and `evaluation/generation_results.json`
+unchanged. All Task 4/5 tests re-run alongside the new ones and still
+pass.
+
+**Decision**: **KEEP**.

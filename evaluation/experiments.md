@@ -549,3 +549,93 @@ these are not tracked by git and don't affect any recorded evaluation
 result.)
 
 **Decision**: **KEEP**.
+
+---
+
+## Task 5 — Website Ingestion Robustness
+
+**Date**: 2026-09-01
+
+This is a robustness/correctness change, not a retrieval-quality
+experiment. No retrieval or generation metrics are affected -
+`src/web_loader.py` runs before chunking/embedding/indexing and its
+output shape (a `Document`) is unchanged for valid pages.
+
+**Issue**: `src/web_loader.py`'s `load_webpage` let low-level `requests`
+exceptions propagate unmodified, and had no handling at all for a page
+that loads successfully but contains little or no usable text.
+
+**Diagnosis** (reproduced before changing anything):
+- A page with empty/near-empty extracted text doesn't fail inside
+  `load_webpage` at all - it silently returns a `Document` with an empty
+  or tiny `text`. `chunk_document` then returns `[]` (no crash there),
+  but `create_index([])` crashes with
+  `numpy.AxisError: axis 1 is out of bounds for array of dimension 1` -
+  reproduced directly against an empty `Document`. This is exactly the
+  "cryptic traceback instead of a clear error" the task describes, and
+  covers robustness cases 8 (empty page), 9 (nav/script-only page), and
+  10 (too little real content).
+- `requests.exceptions.ConnectionError`'s default message is a wall of
+  connection-pool/retry/DNS internals (`HTTPSConnectionPool(host=...):
+  Max retries exceeded... NameResolutionError(...)`) - confirmed by
+  triggering a real DNS failure. Not something to show a Streamlit user
+  directly. `MissingSchema`'s default message, by contrast, is already
+  reasonably clear ("Perhaps you meant https://example.com?").
+- `app.py`'s `ingest_url` call is already wrapped in a broad
+  `try/except Exception as e: st.sidebar.error(f"Error: {e}")`, so no
+  *raw traceback* ever reaches the user - the actual problem is that
+  `str(e)` for several failure modes (the empty-content `AxisError`
+  above, and the raw `ConnectionError`) was not an actionable message.
+
+**Change** (`src/web_loader.py` only):
+- Wrapped the `requests.get`/`raise_for_status()` call with specific
+  `except` clauses for `MissingSchema`, `InvalidURL`, `ConnectionError`,
+  `Timeout`, `HTTPError` (reports the actual status code), and a
+  catch-all `RequestException`, each re-raised as a `ValueError` with a
+  short, specific, user-facing message. Redirects are left to `requests`'
+  own default handling (follows up to 30, raises `TooManyRedirects` -
+  a `RequestException` subclass - if exceeded); not special-cased, since
+  the default behavior is already correct and the task asked not to
+  over-engineer the scraper.
+- Added a `MIN_WORDS = 20` check on the extracted text after stripping
+  boilerplate; below that, raises a clear `ValueError` instead of letting
+  an empty document reach `create_index` and crash downstream with an
+  opaque numpy error.
+- Extended the stripped-tag list from `script/style/nav/footer/header` to
+  also include `aside`, `form`, `noscript` - common low-value boilerplate
+  (cookie banners, sidebars, forms) that would otherwise dilute chunks.
+- Fixed a pre-existing bug in the file's own `__main__` demo block: it
+  accessed `document["source"]`/`document["text"]` as if `Document` were
+  a dict, but it's a dataclass - this would have raised `TypeError` if
+  anyone ran `python -m src.web_loader` directly. Changed to attribute
+  access. Verified with a real request to `https://example.com`.
+
+**Tests** (`tests/test_web_loader.py`, `unittest`, no new dependency,
+`requests.get` mocked - no live network needed):
+
+| Test | Proves |
+|---|---|
+| `test_valid_page_extracts_useful_text` | normal HTML → correct `Document` |
+| `test_missing_scheme_raises_clear_error` | `MissingSchema` → `ValueError` |
+| `test_http_404_raises_clear_error` | `HTTPError` (404) → `ValueError` |
+| `test_connection_failure_raises_clear_error` | `ConnectionError` → `ValueError` |
+| `test_empty_page_raises_clear_error` | blank page → `ValueError`, not a downstream crash |
+| `test_boilerplate_is_stripped_but_content_kept` | nav/script/footer text removed, paragraph text kept |
+
+```
+Ran 12 tests in ~10s (6 new web-loader tests + the 6 existing
+document-isolation tests, run together to confirm no regression)
+OK
+```
+
+**Result**: all 12 tests pass. The Streamlit `except Exception as e`
+wrapper in `app.py` needed no changes - it already displays whatever
+message `load_webpage` raises, so making that message clear was the
+actual fix.
+
+**Regression check**: no retrieval or generation code touched;
+`evaluation/results.json` and `evaluation/generation_results.json` are
+untouched. The document-isolation tests from Task 4 were re-run alongside
+the new tests and still pass.
+
+**Decision**: **KEEP**.

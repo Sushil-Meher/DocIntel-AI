@@ -156,11 +156,26 @@ if st.session_state.index is not None:
                 )
 
             st.session_state.chat_history.append(
-                {"question": query, "answer": answer}
+                {"question": query, "answer": answer.text}
             )
 
             st.markdown("### Answer")
-            st.write(answer)
+            st.write(answer.text)
+
+            if answer.sources:
+
+                st.markdown("### Sources")
+
+                for source in answer.sources:
+
+                    if source["source_type"] == "Website":
+                        st.markdown(f"- {source['source']}")
+
+                    elif "page" in source:
+                        st.markdown(f"- Page {source['page']} — {source['source']}")
+
+                    else:
+                        st.markdown(f"- {source['source']}")
 
 else:
 

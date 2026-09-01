@@ -749,3 +749,113 @@ unchanged. All Task 4/5 tests re-run alongside the new ones and still
 pass.
 
 **Decision**: **KEEP**.
+
+---
+
+## Task 7 — Source Attribution / Provenance UX
+
+**Date**: 2026-09-02
+
+This is a functionality/provenance task, not a retrieval-quality
+experiment. No retrieval or generation metrics are expected to move, and
+none did (verified below) - `evaluate_retrieval.py`/
+`evaluate_generation.py` call `retrieve`/`build_prompt`/`generate_answer`
+directly, never `answer_question`, so the code paths they exercise are
+untouched.
+
+**Problem**: `answer_question` already built deterministic citations from
+retrieved chunk metadata (not from the LLM - that part was already
+correct), but returned them concatenated into the same string as the
+answer text (`answer + "\n\nSources:\n..."`). The task asked for the
+answer and its sources to be genuinely separate, with clearer per-source
+metadata (source type, page, URL) and no raw dicts or invented fields
+reaching the UI.
+
+**Change**:
+- `src/rag.py`: added a small `Answer` dataclass (`text: str`, `sources:
+  list[dict]`), matching the existing `Document`/`Chunk` dataclass
+  convention already used elsewhere in the codebase. `answer_question`
+  now returns `Answer` instead of a plain string.
+- New `build_sources(results)` builds the citation list entirely from
+  retrieved chunk metadata (`source`, `page`) - never from the generated
+  answer text or from conversation history, and never asked of the LLM.
+  Dedupes by `(source, page)`, preserving first-seen order (which is
+  already FAISS-similarity-descending, so the most relevant source
+  appears first and ordering is deterministic for a fixed query/document).
+  `source_type` ("PDF" or "Website") is derived by checking whether
+  `source` starts with `http://`/`https://` - no new metadata field
+  needed anywhere upstream, no chunking/embedding/retrieval change.
+  Website entries omit the `page` field entirely (it's always `1` for a
+  single-page fetch and would be meaningless noise); missing `source` is
+  skipped rather than fabricated, missing `page` is simply omitted rather
+  than defaulted.
+- `app.py`: renders `answer.text` under "### Answer" and, only when
+  `answer.sources` is non-empty, a separate "### Sources" section listing
+  each entry as `Page N — name` (PDF) or the bare URL (Website). No
+  "confidence" score or similar invented field introduced.
+- Updated the 5 existing callers of `answer_question`'s previous
+  string-returning contract: `app.py` (now stores `answer.text` in
+  `chat_history`, not the `Answer` object itself - important, since
+  interpolating the whole dataclass into the Task 6 rewrite prompt would
+  have leaked its repr into the model's context), `src/rag.py`'s own
+  `__main__` demo block, and 4 call sites across
+  `tests/test_conversation_memory.py`.
+
+**Provenance architecture** (unchanged data flow, per the task's
+requirement):
+
+```
+query -> contextualize_query (Task 6) -> retrieve (current document only)
+       -> build_prompt -> generate_answer -> build_sources(results)
+```
+
+`build_sources` reads only the `results` list returned by `retrieve()` -
+it has no access to conversation history and no access to any other
+document's index/chunks, so cross-document or cross-conversation leakage
+into citations isn't just avoided by convention, it's structurally
+impossible given the function's inputs.
+
+**Tests** (`tests/test_provenance.py`, `unittest`, no new dependency):
+
+| Test | Proves |
+|---|---|
+| `test_pdf_citation` | PDF chunk -> `{"source_type": "PDF", "source": ..., "page": ...}` |
+| `test_website_citation` | URL chunk -> `{"source_type": "Website", "source": ...}`, no `page` |
+| `test_duplicate_source_page_is_deduplicated` | 3 chunks from the same page -> 1 entry |
+| `test_ordering_follows_retrieval_order` | source order matches input (retrieval/relevance) order |
+| `test_missing_source_is_skipped_without_crashing` | a result with no `source` key is skipped, not fabricated |
+| `test_missing_page_is_omitted_not_invented` | a PDF result missing `page` omits the field rather than inventing one |
+| `test_sources_reflect_only_the_given_document` | (via `answer_question`) two different documents' answers cite only their own source name |
+| `test_conversation_history_cannot_appear_as_a_source` | a history entry engineered to look citable never appears in `answer.sources` |
+| `test_rejected_query_has_no_sources` | a query rejected by the relevance threshold returns `sources=[]` |
+| `test_sources_section_renders_for_pdf_and_website_entries` | (`streamlit.testing.v1.AppTest`, real `app.py`) both source types render correctly with no exception |
+| `test_no_sources_section_when_answer_has_none` | (`AppTest`) no "### Sources" markdown is rendered for a refused answer |
+
+The last two are UI-rendering tests, not just backend unit tests - an
+earlier draft of the Task 6 `AppTest` only ever exercised the
+`answer.sources == []` path (the fake answer never included sources), so
+the actual Streamlit rendering branch had no coverage until these were
+added here.
+
+**Regression check**:
+
+```
+Ran 27 tests in ~11s (11 new Task 7 tests + 16 existing from Tasks 4-6)
+OK
+```
+
+Re-ran `evaluate_retrieval.py` and `evaluate_generation.py` and diffed
+the output files byte-for-byte against their pre-Task-7 versions:
+
+```
+evaluation/results.json: IDENTICAL
+evaluation/generation_results.json: IDENTICAL
+```
+
+recall@1/3/5/8/10 and average keyword coverage/semantic similarity are
+exactly the values recorded in Experiment 7 (0.500/0.900/0.900/1.000/
+1.000 and 0.757/0.787) - unchanged, as expected, and not claimed as an
+improvement.
+
+**Decision**: **KEEP**. No resume-worthy metric - this is a UX/correctness
+change, not a measured improvement, and none is claimed.

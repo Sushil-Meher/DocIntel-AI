@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
-from src.rag import answer_question
+from src.rag import Answer, answer_question
 from tests.test_document_isolation import ingest_pdf_text
 
 
@@ -57,13 +57,13 @@ class ContextualQueryTests(unittest.TestCase):
             a1 = answer_question(
                 "What is Project Zephyr?", index_a, chunks_a, history=history
             )
-            history.append({"question": "What is Project Zephyr?", "answer": a1})
+            history.append({"question": "What is Project Zephyr?", "answer": a1.text})
 
             a2 = answer_question(
                 "What is its calibration constant?", index_a, chunks_a, history=history
             )
 
-        self.assertIn("42", a2)
+        self.assertIn("42", a2.text)
 
     def test_unrelated_followup_still_works(self):
         index_a, chunks_a = ingest_pdf_text(DOC_A_TEXT, "a.pdf")
@@ -83,7 +83,7 @@ class ContextualQueryTests(unittest.TestCase):
                 "Who leads Project Zephyr?", index_a, chunks_a, history=history
             )
 
-        self.assertIn("Mensah", answer)
+        self.assertIn("Mensah", answer.text)
 
     def test_history_from_wrong_document_cannot_leak_facts(self):
         # Simulates a worst-case bug where the caller mixed up documents
@@ -105,9 +105,9 @@ class ContextualQueryTests(unittest.TestCase):
                 history=stale_history_from_a
             )
 
-        self.assertIn("917", answer)
-        self.assertNotIn("42", answer)
-        self.assertNotIn("zephyr", answer.lower())
+        self.assertIn("917", answer.text)
+        self.assertNotIn("42", answer.text)
+        self.assertNotIn("zephyr", answer.text.lower())
 
 
 class SessionResetTests(unittest.TestCase):
@@ -127,7 +127,7 @@ class SessionResetTests(unittest.TestCase):
 
         def fake_answer_question(query, index, chunks, history=None, **kwargs):
             calls.append({"index": index, "history": list(history or [])})
-            return f"answer about {index}"
+            return Answer(text=f"answer about {index}")
 
         with patch("src.ingestion.ingest_url", side_effect=[(index_a, chunks_a), (index_b, chunks_b)]), \
              patch("src.rag.answer_question", side_effect=fake_answer_question):

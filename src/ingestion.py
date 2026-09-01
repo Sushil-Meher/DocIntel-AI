@@ -10,7 +10,13 @@ def ingest_pdf(file_path: str):
     chunks = []
 
     for document in documents:
-        chunks.extend(chunk_document(document))
+        chunks.extend(
+            chunk_document(
+                document,
+                chunk_size=100,
+                overlap=20
+            )
+        )
 
     index = create_index(chunks)
 
@@ -23,7 +29,11 @@ def ingest_pdf(file_path: str):
 def ingest_url(url: str):
     webpage = load_webpage(url)
 
-    chunks = chunk_document(webpage)
+    chunks = chunk_document(
+            webpage,
+            chunk_size=100,
+            overlap=20
+        )
 
     index = create_index(chunks)
 

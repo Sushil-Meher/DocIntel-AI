@@ -1,13 +1,15 @@
-import faiss
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 
-from .vector_store import load_index, load_chunks
 from .embedding import create_embeddings
 
 
-def retrieve(index,chunks,query: str,top_k: int = 3):
-
+def retrieve(
+    index,
+    chunks,
+    query: str,
+    top_k: int = 3,
+    min_score: float | None = None
+):
     query_embedding = create_embeddings([query])
 
     query_vector = np.array(
@@ -15,55 +17,38 @@ def retrieve(index,chunks,query: str,top_k: int = 3):
         dtype="float32"
     )
 
-    distances, indices = index.search(
+    scores, indices = index.search(
         query_vector,
         top_k
     )
 
     results = []
 
-    for distance, index_position in zip(
-        distances[0],
+    for score, index_position in zip(
+        scores[0],
         indices[0]
     ):
 
+        if index_position < 0:
+            continue
+
+        # For IndexFlatIP, larger score = more similar.
+        if (
+            min_score is not None
+            and score < min_score
+        ):
+            continue
+
         chunk = chunks[index_position]
 
-        results.append({
-            "text": chunk.text,
-            "source": chunk.source,
-            "page": chunk.page,
-            "chunk_id": chunk.chunk_id,
-            "distance": float(distance)
-        })
+        results.append(
+            {
+                "text": chunk.text,
+                "source": chunk.source,
+                "page": chunk.page,
+                "chunk_id": chunk.chunk_id,
+                "distance": float(score)
+            }
+        )
 
     return results
-
-if __name__ == "__main__":
-
-    index = load_index(
-        "artifacts/faiss.index"
-    )
-
-    chunks = load_chunks(
-        "artifacts/chunks.pkl"
-    )
-
-    results = retrieve(
-        index,
-        chunks,
-        "What is artificial intelligence?",
-        top_k=3
-    )
-
-    for result in results:
-
-        print("\n" + "=" * 60)
-
-        print("Source:", result["source"])
-        print("Page:", result["page"])
-        print("Chunk:", result["chunk_id"])
-        print("Distance:", result["distance"])
-
-        print("\nText:")
-        print(result["text"])

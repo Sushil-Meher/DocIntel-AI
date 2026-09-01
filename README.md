@@ -1,4 +1,4 @@
-# DocIntel-AI
+# RAGForge AI
 
 Document question answering over user-provided PDFs and web pages using
 retrieval-augmented generation (RAG).
@@ -209,7 +209,7 @@ the other, and historical results stay reproducible.
 ## Project Structure
 
 ```
-DocIntel-AI/
+RAGForge-AI/
 ├── app.py                    Streamlit application
 ├── src/
 │   ├── chunking.py           word-based chunking with overlap

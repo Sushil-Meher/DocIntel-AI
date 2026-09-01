@@ -1439,3 +1439,98 @@ OK
 
 **Resume-worthy metric**: none - this is a documentation task. No new
 metric was measured or claimed.
+
+---
+
+### Task 12 — Final Project Rename
+
+**Date**: 2026-09-02
+
+**Old name**: DocIntel-AI. **New name**: RAGForge AI. No RAG behavior,
+retrieval configuration, generation configuration, or evaluation
+methodology changed - confirmed below.
+
+**Search and classification**: searched the entire repository
+(case-insensitive) for `DocIntel-AI`, `DocIntel AI`, `docintel-ai`, and
+`docintel`. Two files matched:
+
+- `README.md` — 2 matches, both genuine stale user-facing references
+  (the `# DocIntel-AI` title, and the `DocIntel-AI/` root label in the
+  Project Structure tree). `app.py` already said "RAGForge AI" as of
+  Task 10.5, so the README was the only place still inconsistent.
+- `evaluation/experiments.md` — 5 matches, all inside past task entries
+  narrating what the project's name/title actually was *at that point in
+  its history* (Task 8 setting the Streamlit title to "DocIntel AI",
+  Task 10.5 changing it away from "DocIntel AI" to "RAGForge AI", Task
+  11 explicitly noting the README was kept as "DocIntel-AI" at the time).
+  These are historical record, not stale branding - rewriting them would
+  make the log describe something that didn't actually happen at that
+  point in the project's timeline. Left untouched, per this task's own
+  "preserve historical references" rule.
+
+No project metadata file (`pyproject.toml`, `setup.py`, `setup.cfg`,
+`package.json`) exists in this repository, so there was nothing else to
+update and nothing new was created for the rename alone.
+
+**Files changed**: `README.md` only (2 lines: the title, and the
+Project Structure tree's root folder label, changed to `RAGForge-AI/`
+for consistency with the rebranded title - the on-disk/remote folder
+name itself is unchanged, see GitHub Remote below).
+
+**Post-rename search**: re-ran the same case-insensitive search.
+Remaining matches are exactly the 5 intentional historical references in
+`evaluation/experiments.md` listed above - none in `README.md`, none
+anywhere else.
+
+**GitHub remote**: `git remote -v` shows `origin` pointing at
+`https://github.com/Sushil-Meher/DocIntel-AI.git`. `gh` (GitHub CLI) is
+not installed in this environment (`gh auth status` → command not
+found), so per this task's explicit instruction, no remote rename was
+attempted and `origin` was left untouched. The repository rename and
+the `origin` URL update are both manual steps for the user - see the
+final report for the exact commands.
+
+**Tests**:
+
+```
+Ran 50 tests in ~14s (unchanged from Task 11 - a documentation/text
+change cannot affect test behavior)
+OK
+```
+
+**Evaluation regression**: re-ran both retrieval benchmarks and both
+generation benchmarks, diffing all four result files byte-for-byte
+against their pre-task versions - all identical.
+
+```
+Historical retrieval:  0.500 / 0.900 / 0.900 / 1.000 / 1.000
+Historical generation: keyword coverage 0.757, semantic similarity 0.787
+Expanded retrieval:    0.321 / 0.643 / 0.750 / 0.821 / 0.893
+Expanded generation:   keyword coverage 0.708, semantic similarity 0.619
+
+evaluation/results.json:                     IDENTICAL
+evaluation/generation_results.json:          IDENTICAL
+evaluation/expanded_results.json:            IDENTICAL
+evaluation/expanded_generation_results.json: IDENTICAL
+```
+
+**Local Streamlit verification**: started a real `streamlit run app.py`
+server from `D:\Projects\DocIntel-AI` (confirmed HTTP 200, stopped
+cleanly afterward), and separately drove the actual `app.py` source
+through `streamlit.testing.v1.AppTest` to confirm: page title and header
+both read "RAGForge AI", PDF source selection/ingestion/chat/sources all
+work with no exception, website source selection/ingestion works, and
+switching from the PDF to the website resets `chat_history` to `[]`. The
+Browser preview tool was not used, consistent with Tasks 7 and 10.5's
+finding that it launches an unrelated project regardless of working
+directory.
+
+**No RAG behavior changed**: embeddings, chunking, FAISS configuration,
+retrieval threshold (0.25), top_k (10), reranking, the generation model
+and its settings, prompts, contextual query rewriting, conversation
+memory, document isolation, and provenance logic are all untouched -
+this task edited two lines of Markdown text.
+
+**Decision**: **KEEP**.
+
+**Resume-worthy metric**: none - this is a naming/presentation task.
